@@ -8,15 +8,15 @@ public class CameraConnectApp : MonoBehaviour
     [SerializeField] TMPro.TMP_Text lastCodeText;
 
     //Which IP addresses belong with which color codes, and number codes
-    List<(string a, string b, string c)> ipCodes = new List<(string a, string b, string c)> // a is IPs, b is color codes, c is number codes
+    List<IPInformation> ipCodes = new List<IPInformation> // a is IPs, b is color codes, c is number codes
     {
-        ("192.168.0.1", "BGRYY", "2314"),
-        ("10.0.0.1", "RPRPG", "1323"),
-        ("172.16.01", "OBPOB", "6301"),
-        ("255.100.42.7", "BBBYR", "6301"),
+        {new IPInformation("192.168.0.1", "BGRYY", "2314")},
+        {new IPInformation ("10.0.0.1", "RPRPG", "1323")},
+        {new IPInformation("172.16.01", "OBPOB", "6301")},
+        {new IPInformation("255.100.42.7", "BBBYR", "6301")}
     };
 
-    string lastInputIpAddress;
+    public string lastInputIpAddress;
     string lastInputColorCode = "";
     string lastInputNumberCode = "";
 
@@ -28,12 +28,12 @@ public class CameraConnectApp : MonoBehaviour
         lastInputIpAddress = input;
 
     //Called when a code value is clicked
-    void HandleCodeDigit(CodeModule.CodeTypes codeType, string codeDigit)
+    void HandleCodeDigit(SendCodeDigit sendCodeDigit)
     {
-        if (codeType == CodeModule.CodeTypes.colors)
-            HandleColorCode(codeDigit);
-        else if (codeType == CodeModule.CodeTypes.numbers)
-            HandleNumberCode(codeDigit);
+        if (sendCodeDigit.myCodeType == CodeModule.CodeTypes.colors)
+            HandleColorCode(sendCodeDigit.digit);
+        else if (sendCodeDigit.myCodeType == CodeModule.CodeTypes.numbers)
+            HandleNumberCode(sendCodeDigit.digit);
     }
 
     void HandleColorCode(string codeDigit)
@@ -46,7 +46,7 @@ public class CameraConnectApp : MonoBehaviour
         lastCodeText.text = lastInputColorCode;
         foreach (var pair in ipCodes)
         {
-            if (pair.a == lastInputIpAddress && pair.b == lastInputColorCode)
+            if (pair.ipAddress == lastInputIpAddress && pair.colorCode == lastInputColorCode)
             {
                 accessCameraButton.SetActive(true);
                 lastInputColorCode = "";
@@ -66,7 +66,7 @@ public class CameraConnectApp : MonoBehaviour
 
         foreach (var pair in ipCodes)
         {
-            if (pair.a == lastInputIpAddress && pair.c == lastInputNumberCode)
+            if (pair.ipAddress == lastInputIpAddress && pair.numberCode == lastInputNumberCode)
             {
                 accessCameraButton.SetActive(true);
                 lastInputNumberCode = "";
@@ -77,7 +77,24 @@ public class CameraConnectApp : MonoBehaviour
 
     void OnEnable() =>
         CodeModule.OnSendCodeDigit += HandleCodeDigit;
+        
 
     void OnDisable() =>
         CodeModule.OnSendCodeDigit -= HandleCodeDigit;
+}
+
+
+
+public class IPInformation
+{
+    public readonly string ipAddress;
+    public readonly string colorCode;
+    public readonly string numberCode;
+
+    public IPInformation(string ipAddress, string colorCode, string numberCode)
+    {
+        this.ipAddress = ipAddress;
+        this.colorCode = colorCode;
+        this.numberCode = numberCode;
+    }
 }
