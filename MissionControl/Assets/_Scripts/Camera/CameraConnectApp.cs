@@ -23,7 +23,7 @@ public class CameraConnectApp : MonoBehaviour
     [SerializeField] int colorCodeLength;
     [SerializeField] int numberCodeLength;
 
-    //Takes players input for the IP
+    // Takes players input for the IP
     public void ReadIpInput(string input) =>
         lastInputIpAddress = input;
 
@@ -63,6 +63,7 @@ public class CameraConnectApp : MonoBehaviour
 
         lastInputNumberCode += codeDigit;
         lastCodeText.text = lastInputNumberCode;
+
         foreach (var pair in ipCodes)
         {
             if (pair.a == lastInputIpAddress && pair.c == lastInputNumberCode)

@@ -1,4 +1,5 @@
 using System;
+using Unity.Android.Gradle.Manifest;
 using Unity.VisualScripting;
 using UnityEngine;
 using static GameStateManager;
@@ -11,7 +12,7 @@ using static GameStateManager;
  * The less events this class subscribes to the better, as it necessarily creates large chains of events.
 */
 
-public class GameStateManager : MonoBehaviour
+public class GameStateManager : MonoBehaviour, IGameStateActionHandler
 {
     readonly KeyCode pauseKey = KeyCode.Escape;
 
@@ -23,33 +24,25 @@ public class GameStateManager : MonoBehaviour
 
 
     public static EventHandler<GameStateChangeEventArgs> GameStateChangeEventHandler;
-    public static EventHandler<PerformGameActionEventArgs> PerformGameActionEventHandler;
-    void OnEnable()
-    {
-        UIButton.UIInteractEventHandler += HandleUIInteract;
-    }
+    public static EventHandler<PerformGameActionEventArgs> GameStateActionEventHandler;
 
-    void OnDisable()
-    {
-        UIButton.UIInteractEventHandler += HandleUIInteract;
-    }
 
     // Start is called before the first frame update
     void Start()
-        => PerformGameAction(GameAction.EnterMainMenu);
+    {
+        UIButton.GameStateActionHandler = this as IGameStateActionHandler;
+        
+        PerformGameAction(GameAction.EnterMainMenu);
+    }
 
     private void Update()
     {
         GameStateUpdate();
     }
 
-    /// <summary> Performs a game action given from a UI button. </summary>
-    void HandleUIInteract(object sender, UIButton.UIInteractEventArgs e)
+    public void OnClick(GameAction myGameAction)
     {
-        if (e.myButtonType != UIButton.ButtonType.GameAction || e.myInteractionType != UIButton.UIInteractionTypes.Click)
-            return;
-
-        PerformGameAction(e.myActionToPerform);
+        PerformGameAction(myGameAction);
     }
 
     void GameStateUpdate()
@@ -84,13 +77,13 @@ public class GameStateManager : MonoBehaviour
     {
         if (action == GameAction.None)
         {
-            LogsManager.LogWarning(this, "Cannont run comand 'none'.");
+            this.LogWarning("Cannont run comand 'none'.");
             return;
         }
 
         // Logger.Log($"Performed game action: {action}");
         MyLastGameAction = action;
-        OnPerformGameAction(action);
+        GameStateActionEventHandler?.Invoke(this, new(this, action));
 
         // Updates game state to fit the action
         switch (action)
@@ -114,8 +107,6 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
-    void OnPerformGameAction(GameAction action)
-        => PerformGameActionEventHandler?.Invoke(this, new(this, action));
 
     /// <summary> Informs listeners on how to align with the current state of the game. </summary>
     /// <param name="newState"> The state of the game to update to. </param>
@@ -123,12 +114,12 @@ public class GameStateManager : MonoBehaviour
     {
         if (newState == GameState.None)
         {
-            LogsManager.LogWarning(this, "Cannont update game state to 'none'.");
+            this.LogWarning("Cannont update game state to 'none'.");
             return;
         }
         else if (newState == MyGameState)
         {
-            LogsManager.LogWarning(this, $"Cannont update game state to its own state ({newState}).");
+            this.LogWarning($"Cannont update game state to its own state ({newState}).");
             return;
         }
 
@@ -136,6 +127,8 @@ public class GameStateManager : MonoBehaviour
         MyGameState = newState;
 
         GameStateChangeEventHandler?.Invoke(this, new(this, newState, previousState));
+
+
     }
 }
 

@@ -4,39 +4,38 @@ using System;
 using UnityEngine.Assertions;
 using static UIButton;
 
-public class GameplayManager : MonoBehaviour
+// The difference between GameplayManager and GameStateManager is a little muddy, but essentially Gameplay Manager is directly responsibile for all events that occur inside while the game is actively being played, whereas gamestate manager is responsible for the overall global state of the game, even when it's not being played.
+public class GameplayManager : MonoBehaviour, IGameplayActionHandler
 {
     [field: SerializeField] List<int> employeesPerDay = new();
 
-    public static EventHandler<PerformGameplayActionEventArgs> PerformGameplayActionEventHandler;
+    public static EventHandler<PerformGameplayActionEventArgs> GameplayActionEventHandler;
 
-    public DayState MyDayState { get; private set; }
-    public DayState MyPreviousDayState { get; private set; }
+    public PlayState MyPlayState { get; private set; }
+    public PlayState MyPreviousPlayState { get; private set; }
     public static int CurrentDay { get; private set; }
     public static int RemainingEmployees { get; private set; }
 
-    public enum DayState { None, StartDay, StartWork, EndWork, EndDay }
+    public enum PlayState { None, }
 
     public static int EmployeesHiredToday { get; private set; } = 0;
     public static int EmployeesRejectedToday { get; private set; } = 0;
     public static int MistakesMadeToday { get; private set; } = 0;
 
-
     private void OnEnable()
     {
-        GameStateManager.PerformGameActionEventHandler += HandleGameAction;
-        UIButton.UIInteractEventHandler += HandleUIInteract;
+        GameStateManager.GameStateActionEventHandler += HandleGameAction;
     }
 
     private void OnDisable()
     {
-        GameStateManager.PerformGameActionEventHandler -= HandleGameAction;
-        UIButton.UIInteractEventHandler -= HandleUIInteract;
+        GameStateManager.GameStateActionEventHandler -= HandleGameAction;
     }
 
-    void HandleUIInteract(object sender, UIInteractEventArgs e)
+    void Start()
     {
-    }
+        UIButton.GameplayActionHandler = this as IGameplayActionHandler;
+    }    
 
     void HandleGameAction(object sender, PerformGameActionEventArgs e)
     {
@@ -46,13 +45,18 @@ public class GameplayManager : MonoBehaviour
             break;
         }
     }
+
+    public void OnClick(PlayState myPlayState)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class PerformGameplayActionEventArgs : EventArgs
 {
-    public readonly GameplayManager.DayState myDayState;
+    public readonly GameplayManager.PlayState myDayState;
 
-    public PerformGameplayActionEventArgs(GameplayManager.DayState myDayState)
+    public PerformGameplayActionEventArgs(GameplayManager.PlayState myDayState)
     {
         this.myDayState = myDayState;
     }

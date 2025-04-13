@@ -7,23 +7,19 @@ using System.Linq;
 using UnityEngine.Assertions;
 
 // Responsible for loading and unloading UI menus
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour, IChangeMenuHandler
 {
     [Header("Menus")]
     [SerializeField] Menu mainMenu;
     [SerializeField] Menu pauseMenu;
     [SerializeField] Menu settingsMenu;
-    [SerializeField] Menu levelSelectMenu;
-    [SerializeField] Menu dailyReportMenu;
     [SerializeField] Menu creditsScreen;
-    [SerializeField] Menu gameEndScreen;
-
     [Header("Cameras")]
     [SerializeField] Camera userInterfaceCamera;
     [SerializeField] LayerMask uiOnlyCullingMask;
     [SerializeField] LayerMask allSeeingCullingMask;
     
-    public enum MenuType { None, Previous, MainMenu, Credits, Pause, Settings, LevelSelect, DailyReport, GameOverScreen, Empty }
+    public enum MenuType { None, Previous, MainMenu, Credits, Pause, Settings, Empty }
 
     public static event EventHandler<MenuChangeEventArgs> MenuChangeEventHandler;
 
@@ -46,14 +42,13 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        Assert.AreEqual(MenuToMenuType.Count(), Enum.GetNames(typeof(MenuType)).Length);
+
         MenuTypeToMenu = new()
         {
             { MenuType.MainMenu,        mainMenu },
             { MenuType.Pause,           pauseMenu},
-            { MenuType.GameOverScreen,  gameEndScreen},
             { MenuType.Settings,        settingsMenu},
-            { MenuType.DailyReport,     dailyReportMenu},
-            { MenuType.LevelSelect,     levelSelectMenu},
             { MenuType.Credits,         creditsScreen},
         };
 
@@ -84,6 +79,8 @@ public class UIManager : MonoBehaviour
 
         // Debug.Log($"Game Manager's Last Game Action: {GameStateManager.Instance.MyLastGameAction}");
         //UpdateMenusToGameAction(GameStateManager.Instance.MyLastGameAction);
+
+        UIButton.ChangeMenuHandler = this as IChangeMenuHandler;
     }
 
     private void Update()
@@ -97,26 +94,24 @@ public class UIManager : MonoBehaviour
 
     void OnEnable()
     {
-        UIButton.UIInteractEventHandler += HandleUIButtonInteract;
         Menu.SetCanvasEventHandler += HandleSetCanvas;
-        GameplayManager.PerformGameplayActionEventHandler += HandlePerformGameplayAction;
-        GameStateManager.PerformGameActionEventHandler += HandleGameAction;
+        GameplayManager.GameplayActionEventHandler += HandleGameplayAction;
+        GameStateManager.GameStateActionEventHandler += HandleGameStateAction;
     }
 
     void OnDisable()
     {
-        UIButton.UIInteractEventHandler -= HandleUIButtonInteract;
-        GameStateManager.PerformGameActionEventHandler -= HandleGameAction;
         Menu.SetCanvasEventHandler -= HandleSetCanvas;
-        GameplayManager.PerformGameplayActionEventHandler -= HandlePerformGameplayAction;
+        GameStateManager.GameStateActionEventHandler -= HandleGameStateAction;
+        GameplayManager.GameplayActionEventHandler -= HandleGameplayAction;
     }
 
-    private void HandlePerformGameplayAction(object sender, PerformGameplayActionEventArgs e)
+    private void HandleGameplayAction(object sender, PerformGameplayActionEventArgs e)
     {
 
     }
 
-    void HandleGameAction(object sender, PerformGameActionEventArgs e)
+    void HandleGameStateAction(object sender, PerformGameActionEventArgs e)
         => UpdateMenusToGameAction(e.myGameAction);
 
     public bool IsAMenuEnabled()
@@ -139,8 +134,6 @@ public class UIManager : MonoBehaviour
         return isAMenuEnabled;
     }
 
-
-
     /// <summary> Sets UI and level camera active based on if there's currently an active canvas in the scene. </summary>
     /// <param name="setActive"> The SetActive() property the canvas was set to. </param>
     void HandleSetCanvas(object sender, Menu.SetCanvasEventArgs e)
@@ -159,7 +152,6 @@ public class UIManager : MonoBehaviour
         {
             GameAction.EnterMainMenu => MenuType.MainMenu,
             GameAction.PauseGame => MenuType.Pause,
-            GameAction.LoseGame => MenuType.GameOverScreen,
             _ => MenuType.Empty,
         };
 
@@ -168,16 +160,9 @@ public class UIManager : MonoBehaviour
         LoadMenu(menuToLoad);
     }
 
-    /// <summary> Loads the appropraite menu when we click a ui button </summary>
-    void HandleUIButtonInteract(object sender, UIButton.UIInteractEventArgs e)
-    {
-        if (e.myButtonType != UIButton.ButtonType.UI)
-            return;
-
-        if (e.myInteractionType != UIButton.UIInteractionTypes.Click)
-            return;
-
-        LoadMenu(e.myMenuToOpen);
+    public void OnClick(MenuType myMenuType)
+    { 
+        LoadMenu(myMenuType);
     }
 
     void LoadMenu(MenuType myMenuType, bool addToHistory = true, bool addToQueue = true)

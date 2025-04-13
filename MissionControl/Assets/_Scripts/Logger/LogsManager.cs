@@ -13,19 +13,13 @@ public class LogsManager : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
-        instance = this;
-    }
+        => instance = this;
 
     public static void Log(MonoBehaviour loggingObject, string message, UnityEngine.Object context = null)
-    {
-        Log(isWarning: false, loggingObject, message, context);
-    }
+        => Log(isWarning: false, loggingObject, message, context);
 
     public static void LogWarning(MonoBehaviour loggingObject, string message, UnityEngine.Object context = null)
-    {
-        Log(isWarning: true, loggingObject, message, context);
-    }
+        => Log(isWarning: true, loggingObject, message, context);
 
     static void Log(bool isWarning, MonoBehaviour loggingObject, string message, UnityEngine.Object context = null)
     {
