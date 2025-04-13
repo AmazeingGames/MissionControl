@@ -8,7 +8,7 @@ public class CameraConnectApp : MonoBehaviour
     [SerializeField] TMPro.TMP_Text lastCodeText;
 
     //Which IP addresses belong with which color codes, and number codes
-    List<IPInformation> ipCodes = new List<IPInformation> // a is IPs, b is color codes, c is number codes
+    readonly List<IPInformation> ipCodes = new List<IPInformation> // a is IPs, b is color codes, c is number codes
     {
         {new IPInformation("192.168.0.1", "BGRYY", "2314")},
         {new IPInformation ("10.0.0.1", "RPRPG", "1323")},
