@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler
+// Component to easily drag UI elements
+public class UIDragger : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
     [SerializeField] Canvas canvas;
     [SerializeField] RectTransform rectTransform;
