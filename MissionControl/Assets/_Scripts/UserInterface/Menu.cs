@@ -8,7 +8,7 @@ using UnityEngine;
 class Menu
 {
     [field: SerializeField] public Canvas Canvas { get; private set; } = new();
-    [field: SerializeField] public bool CanSeePaper { get; private set; }
+    // [field: SerializeField] public bool CanSeePaper { get; private set; }
     public Transform CanvasElements { get; private set; }
     public MenuType MenuType { get; private set; }
 
@@ -54,7 +54,7 @@ class Menu
         if (mySetCanvasAction == CanvasAction.FinishSet)
             Canvas.gameObject.SetActive(setActive);
 
-        LogsManager.Log(uiManager, $"Setting {Canvas.name} canvas {(setActive ? "active" : "disabled")}");
+        LogsManager.Log(uiManager.gameObject, $"Setting {Canvas.name} canvas {(setActive ? "active" : "disabled")}");
         SetCanvasEventHandler?.Invoke(this, new(this, setActive, CanvasElements, moveOutOfFrame, wasNested, mySetCanvasAction));
 
     }
@@ -63,7 +63,7 @@ class Menu
     {
         if (Canvas == null)
         {
-            LogsManager.Log(uiManager, "Could not initialize null canvas");
+            LogsManager.Log(uiManager.gameObject, "Gameobject should not be null");
             return;
         }
 

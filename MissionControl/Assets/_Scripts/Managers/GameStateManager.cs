@@ -17,14 +17,15 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
     readonly KeyCode pauseKey = KeyCode.Escape;
 
     public enum GameState { None, InMenu, Running, Paused, Loading }
-    public enum GameAction { None, EnterMainMenu, PlayGame, PauseGame, ResumeGame, LoseGame }
+    public enum GameAction { None, EnterMainMenu, StartGame, PauseGame, ResumeGame, LoseGame }
 
     public GameState MyGameState { get; private set; }
     public GameAction MyLastGameAction { get; private set; }
 
 
+    // I really dislike the wordy names for these, but they're named this way to differentiate themselves from the GameplayManager's events
     public static EventHandler<GameStateChangeEventArgs> GameStateChangeEventHandler;
-    public static EventHandler<PerformGameActionEventArgs> GameStateActionEventHandler;
+    public static EventHandler<GameStateActionEventArgs> GameStateActionEventHandler;
 
 
     // Start is called before the first frame update
@@ -94,7 +95,7 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
                 break;
 
             case GameAction.ResumeGame:
-            case GameAction.PlayGame:
+            case GameAction.StartGame:
                 OnGameStateChange(GameState.Running);
                 break;
 
@@ -132,12 +133,12 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
     }
 }
 
-public class PerformGameActionEventArgs : EventArgs
+public class GameStateActionEventArgs : EventArgs
 {
     public readonly GameStateManager gameManager;
     public readonly GameAction myGameAction;
 
-    public PerformGameActionEventArgs(GameStateManager gameManager, GameAction gameAction)
+    public GameStateActionEventArgs(GameStateManager gameManager, GameAction gameAction)
     {
         this.gameManager = gameManager;
         this.myGameAction = gameAction;

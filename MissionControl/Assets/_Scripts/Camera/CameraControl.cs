@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using static CameraControl;
@@ -56,10 +57,19 @@ public class CameraControl : MonoBehaviour
                 throw new SwitchExpressionException("Camera control pan mode not handled");
         }
 
+        bool isAtRightEdge = transform.position.x >= maxRight;
+        bool isAtLeftEdge = transform.position.x <= maxLeft;
 
-        targetPosition += new Vector3(panDirection * scrollSpeed * Time.deltaTime, 0f, 0f);
-        transform.position = Vector3.Lerp(transform.position, targetPosition, 0.1f);
+        targetPosition += new Vector3(panDirection * scrollSpeed * Time.deltaTime, 0f);
+
+        bool isTryingToPanRight = targetPosition.x > transform.position.x;
+        bool isTryingToPanLeft = targetPosition.x < transform.position.x;
+
+        // Fixes camera stutter when at screen edge
+        if ((isTryingToPanRight && !isAtRightEdge) || (isTryingToPanLeft && !isAtLeftEdge) || (!isTryingToPanLeft && !isTryingToPanRight))
+            transform.DOMoveX(targetPosition.x, .1f);
+
         targetPosition.x = Mathf.Clamp(targetPosition.x, maxLeft, maxRight);
-
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, maxLeft, maxRight), transform.position.y, transform.position.z); 
     }
 }

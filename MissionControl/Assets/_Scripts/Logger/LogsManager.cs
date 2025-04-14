@@ -15,16 +15,16 @@ public class LogsManager : MonoBehaviour
     void Start()
         => instance = this;
 
-    public static void Log(MonoBehaviour loggingObject, string message, UnityEngine.Object context = null)
+    public static void Log(GameObject loggingObject, string message, UnityEngine.Object context = null)
         => Log(isWarning: false, loggingObject, message, context);
 
-    public static void LogWarning(MonoBehaviour loggingObject, string message, UnityEngine.Object context = null)
+    public static void LogWarning(GameObject loggingObject, string message, UnityEngine.Object context = null)
         => Log(isWarning: true, loggingObject, message, context);
 
-    static void Log(bool isWarning, MonoBehaviour loggingObject, string message, UnityEngine.Object context = null)
+    static void Log(bool isWarning, GameObject loggingObject, string message, UnityEngine.Object context = null)
     {
         Logger logger = instance.loggers.Find(l => l.LoggingObject == loggingObject);
-        Assert.IsNotNull(logger, "Logging object has not properly been set up in the LogsManager.");
+        Assert.IsNotNull(logger, $"Logging object has not properly been set up in the LogsManager. {loggingObject.name} is not contained added as a parameter in the logger");
 
         if (logger.MyTextColor != Logger.RichTextColor.none)
             message = $"<color={logger.MyTextColor}>{message}</color>";
@@ -50,7 +50,7 @@ public class LogsManager : MonoBehaviour
 class Logger
 {
     public enum RichTextColor { none, aqua, black, blue, brown, cyan, darkblue, fuchsia, green, grey, lightblue, lime, magenta, maroon, navy, olive, orange, purple, red, silver, teal, white, yellow}
-    [SerializeField] public bool ShouldLog { get; private set; }
-    [SerializeField] public GameObject LoggingObject { get; private set; }
-    [SerializeField] public RichTextColor MyTextColor { get; private set; }
+    [field: SerializeField] public GameObject LoggingObject { get; private set; }
+    [field: SerializeField] public RichTextColor MyTextColor { get; private set; }
+    [field: SerializeField] public bool ShouldLog { get; private set; }
 }

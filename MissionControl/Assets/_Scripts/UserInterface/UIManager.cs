@@ -14,10 +14,11 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
     [SerializeField] Menu pauseMenu;
     [SerializeField] Menu settingsMenu;
     [SerializeField] Menu creditsScreen;
-    [Header("Cameras")]
-    [SerializeField] Camera userInterfaceCamera;
-    [SerializeField] LayerMask uiOnlyCullingMask;
-    [SerializeField] LayerMask allSeeingCullingMask;
+
+    // [Header("Cameras")]
+    // [SerializeField] Camera userInterfaceCamera;
+    // [SerializeField] LayerMask uiOnlyCullingMask;
+    // [SerializeField] LayerMask allSeeingCullingMask;
     
     public enum MenuType { None, Previous, MainMenu, Credits, Pause, Settings, Empty }
 
@@ -42,8 +43,6 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
 
     private void Awake()
     {
-        Assert.AreEqual(MenuToMenuType.Count(), Enum.GetNames(typeof(MenuType)).Length);
-
         MenuTypeToMenu = new()
         {
             { MenuType.MainMenu,        mainMenu },
@@ -54,12 +53,7 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
 
         MenuToMenuType = MenuTypeToMenu.ToDictionary(x => x.Value, x => x.Key);
         menus.AddRange(MenuTypeToMenu.Values);
-    }
 
-    private void Start()
-    {
-        // Initializes each menu
-        // Makes sure only the main menu is open on start
         foreach (Menu menu in menus)
         {
             if (!MenuToMenuType.TryGetValue(menu, out MenuType menuType))
@@ -73,9 +67,11 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
                 menu.Canvas.gameObject.SetActive(false);
         }
 
-        // Ignores following MenuTypes: 'Previous', 'None', 'Empty'
-        if (MenuTypeToMenu.Count < Enum.GetNames(typeof(MenuType)).Length - 3)
-            throw new Exception("Not all enums are counted for in the MenuTypeToMenu dictionary");
+        Assert.AreEqual(MenuToMenuType.Count() + 3, Enum.GetNames(typeof(MenuType)).Length, "Not all enums are counted for in the MenuTypeToMenu dictionary");
+    }
+
+    private void Start()
+    {
 
         // Debug.Log($"Game Manager's Last Game Action: {GameStateManager.Instance.MyLastGameAction}");
         //UpdateMenusToGameAction(GameStateManager.Instance.MyLastGameAction);
@@ -111,7 +107,7 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
 
     }
 
-    void HandleGameStateAction(object sender, PerformGameActionEventArgs e)
+    void HandleGameStateAction(object sender, GameStateActionEventArgs e)
         => UpdateMenusToGameAction(e.myGameAction);
 
     public bool IsAMenuEnabled()
@@ -139,7 +135,7 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
     void HandleSetCanvas(object sender, Menu.SetCanvasEventArgs e)
     {
         bool isAMenuEnabled = IsAMenuEnabled();
-        userInterfaceCamera.gameObject.SetActive(isAMenuEnabled);
+        // userInterfaceCamera.gameObject.SetActive(isAMenuEnabled);
         OnMenuChange(CurrentMenuType, previousMenuType, isEnablingMenu: e.setActive);
     }
     void OnMenuChange(MenuType newMenuType, MenuType previousMenuType, bool isEnablingMenu)
@@ -240,10 +236,10 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
         menu.SetCanvas(true, false, transitioningToMenuUnderStack);
 
 
-        if (menu.CanSeePaper)
+        /* if (menu.CanSeePaper)
             userInterfaceCamera.cullingMask = allSeeingCullingMask;
         else
-            userInterfaceCamera.cullingMask = uiOnlyCullingMask;
+            userInterfaceCamera.cullingMask = uiOnlyCullingMask;*/
     }
 
     /// <summary> Loads the last loaded menu. </summary>

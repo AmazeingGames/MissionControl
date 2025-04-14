@@ -7,14 +7,10 @@ using static UIButton;
 // The difference between GameplayManager and GameStateManager is a little muddy, but essentially Gameplay Manager is directly responsibile for all events that occur inside while the game is actively being played, whereas gamestate manager is responsible for the overall global state of the game, even when it's not being played.
 public class GameplayManager : MonoBehaviour, IGameplayActionHandler
 {
-    [field: SerializeField] List<int> employeesPerDay = new();
-
     public static EventHandler<PerformGameplayActionEventArgs> GameplayActionEventHandler;
 
     public PlayState MyPlayState { get; private set; }
     public PlayState MyPreviousPlayState { get; private set; }
-    public static int CurrentDay { get; private set; }
-    public static int RemainingEmployees { get; private set; }
 
     public enum PlayState { None, }
 
@@ -37,11 +33,11 @@ public class GameplayManager : MonoBehaviour, IGameplayActionHandler
         UIButton.GameplayActionHandler = this as IGameplayActionHandler;
     }    
 
-    void HandleGameAction(object sender, PerformGameActionEventArgs e)
+    void HandleGameAction(object sender, GameStateActionEventArgs e)
     {
         switch (e.myGameAction)
         {
-            case GameStateManager.GameAction.PlayGame:
+            case GameStateManager.GameAction.StartGame:
             break;
         }
     }
