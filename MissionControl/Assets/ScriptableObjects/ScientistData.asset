@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf55f272930b1dd4ca7e6883b8638154, type: 3}
-  m_Name: CaptainData
+  m_Name: ScientistData
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Lynn
-  <MyRole>k__BackingField: 0
-  <Icon>k__BackingField: {fileID: 2716737222526641249, guid: 5e52415352090424bbfcb0bebd07ca20, type: 3}
+  <Name>k__BackingField: Liz
+  <MyRole>k__BackingField: 3
+  <Icon>k__BackingField: {fileID: 7784398144006018321, guid: beb3712cc06745748b5b75a7ac495b29, type: 3}
   <Picture>k__BackingField: {fileID: 0}
   <LogNotes>k__BackingField:
-  - Is dead
-  - Is incredibly narcissistic
-  - Definitey super ableist
-  - 'Last words: "Pfft, what are you gonna do: stab me?"'
+  - Is super dead, like it's not even funny at this point
+  - Terminally diagonsed with 'Canadian'
+  - 'Went into cardiac arrest. Coroner''s report: too excited.'
   <NotesFont>k__BackingField: {fileID: 11400000, guid: bafb996321bd9f44597dfced0ae9140b, type: 2}

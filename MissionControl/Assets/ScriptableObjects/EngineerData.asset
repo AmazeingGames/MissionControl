@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf55f272930b1dd4ca7e6883b8638154, type: 3}
-  m_Name: DoctorData
+  m_Name: EngineerData
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: "\xC1lvar\xF3"
-  <MyRole>k__BackingField: 4
-  <Icon>k__BackingField: {fileID: -2345153250441549502, guid: 19db46f387ca4554ab9f3439bdcf7cf6, type: 3}
+  <Name>k__BackingField: Blake
+  <MyRole>k__BackingField: 1
+  <Icon>k__BackingField: {fileID: -1290077559972362069, guid: e32577588e3d2144591124f1fdc458c6, type: 3}
   <Picture>k__BackingField: {fileID: 0}
   <LogNotes>k__BackingField:
-  - Is super dead
-  - Won't give up secret paella recipe.
-  - 'Last words: "I''m telling you: Sgt. Pepper''s Lonely Heart''s Club Band was
-    a revolutionary album!"'
+  - Is definitely dead
+  - Shards of broken glass found at the crime scene.
+  - 'Last words: "Oh yeah! Oh no!"'
   <NotesFont>k__BackingField: {fileID: 11400000, guid: bafb996321bd9f44597dfced0ae9140b, type: 2}

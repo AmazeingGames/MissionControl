@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf55f272930b1dd4ca7e6883b8638154, type: 3}
-  m_Name: EngineerData
+  m_Name: CaptainData
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Blake
-  <MyRole>k__BackingField: 1
-  <Icon>k__BackingField: {fileID: -1290077559972362069, guid: e32577588e3d2144591124f1fdc458c6, type: 3}
+  <Name>k__BackingField: Lynn
+  <MyRole>k__BackingField: 0
+  <Icon>k__BackingField: {fileID: 2716737222526641249, guid: 5e52415352090424bbfcb0bebd07ca20, type: 3}
   <Picture>k__BackingField: {fileID: 0}
   <LogNotes>k__BackingField:
-  - Is definitely dead
-  - Shards of broken glass found at the crime scene, but no body.
-  - 'Last words: "Oh yeah! Oh no!"'
+  - Is dead
+  - Incredibly humble
+  - 'Last words: "Pfft, what are you gonna do: stab me?"'
   <NotesFont>k__BackingField: {fileID: 11400000, guid: bafb996321bd9f44597dfced0ae9140b, type: 2}

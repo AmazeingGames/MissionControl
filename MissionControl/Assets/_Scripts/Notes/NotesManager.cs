@@ -31,8 +31,6 @@ public class NotesManager : MonoBehaviour, IClickTab
     Sequence notebookSequence;
     public static EventHandler<OpenNotesEventArgs> OpenNotesEventHandler;
 
-    bool wasOpenOnPause;
-
     private void Start()
     {
         NotesTab.clickTabHandler = this as IClickTab;
@@ -47,7 +45,10 @@ public class NotesManager : MonoBehaviour, IClickTab
     {
         GameStateManager.PerformGameActionEventHandler -= HandlePerformGameAction;
     }
-    
+
+    bool areNotesOpen;
+    bool wasOpenOnPause;
+
     void HandlePerformGameAction(object sender, PerformGameActionEventArgs e)
     {
         switch (e.myGameAction)
@@ -60,13 +61,12 @@ public class NotesManager : MonoBehaviour, IClickTab
 
                 break;
             case GameStateManager.GameAction.PauseGame:
+                wasOpenOnPause = areNotesOpen;
                 OpenNotes(false);
-                wasOpenOnPause = true;
                 break;
 
             case GameStateManager.GameAction.ResumeGame:
-                if (wasOpenOnPause)
-                    OpenNotes(true);
+                OpenNotes(wasOpenOnPause);
                 break;
             case GameStateManager.GameAction.LoseGame:
                 break;
@@ -99,7 +99,7 @@ public class NotesManager : MonoBehaviour, IClickTab
 
     void OpenNotes(bool isOpening)
     {
-        wasOpenOnPause = false;
+        areNotesOpen = isOpening;
         OpenNotesEventHandler?.Invoke(this, new(isOpening));
 
         notebookSequence?.Kill();
