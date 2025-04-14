@@ -54,6 +54,8 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
         MenuToMenuType = MenuTypeToMenu.ToDictionary(x => x.Value, x => x.Key);
         menus.AddRange(MenuTypeToMenu.Values);
 
+        // Initializes each menu
+        // Makes sure only the main menu is open on start
         foreach (Menu menu in menus)
         {
             if (!MenuToMenuType.TryGetValue(menu, out MenuType menuType))
@@ -72,6 +74,7 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
 
     private void Start()
     {
+        
 
         // Debug.Log($"Game Manager's Last Game Action: {GameStateManager.Instance.MyLastGameAction}");
         //UpdateMenusToGameAction(GameStateManager.Instance.MyLastGameAction);
@@ -91,23 +94,16 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
     void OnEnable()
     {
         Menu.SetCanvasEventHandler += HandleSetCanvas;
-        GameplayManager.GameplayActionEventHandler += HandleGameplayAction;
-        GameStateManager.GameStateActionEventHandler += HandleGameStateAction;
+        GameStateManager.PerformGameActionEventHandler += HandleGameStateAction;
     }
 
     void OnDisable()
     {
         Menu.SetCanvasEventHandler -= HandleSetCanvas;
-        GameStateManager.GameStateActionEventHandler -= HandleGameStateAction;
-        GameplayManager.GameplayActionEventHandler -= HandleGameplayAction;
+        GameStateManager.PerformGameActionEventHandler -= HandleGameStateAction;
     }
 
-    private void HandleGameplayAction(object sender, PerformGameplayActionEventArgs e)
-    {
-
-    }
-
-    void HandleGameStateAction(object sender, GameStateActionEventArgs e)
+    void HandleGameStateAction(object sender, PerformGameActionEventArgs e)
         => UpdateMenusToGameAction(e.myGameAction);
 
     public bool IsAMenuEnabled()
@@ -234,12 +230,6 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
 
         previousMenu?.SetCanvas(false, false, !transitioningToMenuUnderStack);
         menu.SetCanvas(true, false, transitioningToMenuUnderStack);
-
-
-        /* if (menu.CanSeePaper)
-            userInterfaceCamera.cullingMask = allSeeingCullingMask;
-        else
-            userInterfaceCamera.cullingMask = uiOnlyCullingMask;*/
     }
 
     /// <summary> Loads the last loaded menu. </summary>

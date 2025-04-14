@@ -3,6 +3,7 @@ using Unity.Android.Gradle.Manifest;
 using Unity.VisualScripting;
 using UnityEngine;
 using static GameStateManager;
+using static PlayerMovement;
 
 // Responsible for knowing the global game state and informing listeners of important global events
 
@@ -16,16 +17,47 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
 {
     readonly KeyCode pauseKey = KeyCode.Escape;
 
+
+    public enum PlayState { None, Station, Notes }
     public enum GameState { None, InMenu, Running, Paused, Loading }
     public enum GameAction { None, EnterMainMenu, StartGame, PauseGame, ResumeGame, LoseGame }
 
-    public GameState MyGameState { get; private set; }
+    public static PlayState MyPlayState { get; private set; }
+    public static GameState MyGameState { get; private set; }
+    
     public GameAction MyLastGameAction { get; private set; }
-
 
     // I really dislike the wordy names for these, but they're named this way to differentiate themselves from the GameplayManager's events
     public static EventHandler<GameStateChangeEventArgs> GameStateChangeEventHandler;
-    public static EventHandler<GameStateActionEventArgs> GameStateActionEventHandler;
+    public static EventHandler<PerformGameActionEventArgs> PerformGameActionEventHandler;
+
+
+    void OnEnable()
+    {
+        NotesManager.OpenNotesEventHandler += HandleOpenNotes;
+        PlayerMovement.ConnectToStationEventHandler += HandleConnectToStation;
+    }
+
+    private void OnDisable()
+    {
+        NotesManager.OpenNotesEventHandler -= HandleOpenNotes;
+        PlayerMovement.ConnectToStationEventHandler -= HandleConnectToStation;
+    }
+
+    void HandleConnectToStation(object sender, ConnectToStationEventArgs e)
+    {
+        MyPlayState = PlayState.Station;
+    }    
+
+    void HandleOpenNotes(object sender, OpenNotesEventArgs e)
+    {
+        MyPlayState = e.isOpening ? PlayState.Notes : PlayState.Station;
+    }
+
+    public void OnClick(GameAction myGameAction)
+    {
+        PerformGameAction(myGameAction);
+    }
 
 
     // Start is called before the first frame update
@@ -39,11 +71,6 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
     private void Update()
     {
         GameStateUpdate();
-    }
-
-    public void OnClick(GameAction myGameAction)
-    {
-        PerformGameAction(myGameAction);
     }
 
     void GameStateUpdate()
@@ -84,7 +111,7 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
 
         // Logger.Log($"Performed game action: {action}");
         MyLastGameAction = action;
-        GameStateActionEventHandler?.Invoke(this, new(this, action));
+        PerformGameActionEventHandler?.Invoke(this, new(this, action));
 
         // Updates game state to fit the action
         switch (action)
@@ -133,12 +160,12 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
     }
 }
 
-public class GameStateActionEventArgs : EventArgs
+public class PerformGameActionEventArgs : EventArgs
 {
     public readonly GameStateManager gameManager;
     public readonly GameAction myGameAction;
 
-    public GameStateActionEventArgs(GameStateManager gameManager, GameAction gameAction)
+    public PerformGameActionEventArgs(GameStateManager gameManager, GameAction gameAction)
     {
         this.gameManager = gameManager;
         this.myGameAction = gameAction;

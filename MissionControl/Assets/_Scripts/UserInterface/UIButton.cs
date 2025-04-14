@@ -60,12 +60,8 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         var rectTransform = transform as RectTransform;
 
         text_TMP.transform.localScale = new Vector3(regularScale, regularScale, text_TMP.transform.localScale.z);
-
-        if (underline != null )
-        {
-            underline.rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, underline.rectTransform.sizeDelta.y);
-            underline.fillAmount = 0;
-        }
+        // underline.rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, underline.rectTransform.sizeDelta.y);
+        // underline.fillAmount = 0;
 
         StartCoroutine(SetUnderlineLength());
     }
@@ -74,22 +70,17 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     {
         text_TMP.transform.localScale = new(RegularScale, RegularScale);
         text_TMP.alpha = RegularOpacity;
-
-        if (underline != null)
-            underline.fillAmount = 0;
+        // underline.fillAmount = 0;
     }
 
     IEnumerator SetUnderlineLength()
     {
-        if (underline != null)
-            underline.rectTransform.sizeDelta = new Vector2(0, underline.rectTransform.sizeDelta.y);
+        // underline.rectTransform.sizeDelta = new Vector2(0, underline.rectTransform.sizeDelta.y);
 
         while (true)
         {
             var rect = transform as RectTransform;
-
-            if (underline != null)
-                underline.rectTransform.sizeDelta = new Vector2(rect.sizeDelta.x, underline.rectTransform.sizeDelta.y);
+            // underline.rectTransform.sizeDelta = new Vector2(rect.sizeDelta.x, underline.rectTransform.sizeDelta.y);
             yield return new WaitForSeconds(.1f);
         }
     }
@@ -124,18 +115,15 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     {
         float time = 0;
 
-
-        float startingFill = underline != null ? underline.fillAmount : 0;
+        // float startingFill = underline.fillAmount;
         float targetFill = isSelected ? 1 : 0;
 
         while (time < 1)
         {
             var lerpCurve = UnderlineLerpCurve;
 
-            float newFillAmount = Mathf.Lerp(startingFill, targetFill, lerpCurve.Evaluate(time));
-            
-            if (underline != null)
-                underline.fillAmount = newFillAmount;
+            // float newFillAmount = Mathf.Lerp(startingFill, targetFill, lerpCurve.Evaluate(time));
+            // underline.fillAmount = newFillAmount;
 
             time += Time.deltaTime * UnderlineLerpSpeed;
             yield return null;
@@ -256,5 +244,5 @@ public interface IGameStateActionHandler
 
 public interface IGameplayActionHandler
 {
-    public void OnClick(GameplayManager.PlayState myPlayState);
+    public void OnClick(GameStateManager.PlayState myPlayState);
 }

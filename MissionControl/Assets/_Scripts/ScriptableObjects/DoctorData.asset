@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf55f272930b1dd4ca7e6883b8638154, type: 3}
+  m_Name: DoctorData
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: "\xC1lvar\xF3"
+  <MyRole>k__BackingField: 4
+  <Icon>k__BackingField: {fileID: -2345153250441549502, guid: 19db46f387ca4554ab9f3439bdcf7cf6, type: 3}
+  <Picture>k__BackingField: {fileID: 0}
+  <LogNotes>k__BackingField:
+  - Is super dead
+  - Won't give up secret paella recipe.
+  - 'Last words: "I''m telling you: Sgt. Pepper''s Lonely Heart''s Club Band was
+    a revolutionary album!"'
+  <NotesFont>k__BackingField: {fileID: 11400000, guid: bafb996321bd9f44597dfced0ae9140b, type: 2}

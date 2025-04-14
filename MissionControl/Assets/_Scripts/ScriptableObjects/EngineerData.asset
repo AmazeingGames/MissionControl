@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf55f272930b1dd4ca7e6883b8638154, type: 3}
+  m_Name: EngineerData
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Blake
+  <MyRole>k__BackingField: 1
+  <Icon>k__BackingField: {fileID: -1290077559972362069, guid: e32577588e3d2144591124f1fdc458c6, type: 3}
+  <Picture>k__BackingField: {fileID: 0}
+  <LogNotes>k__BackingField:
+  - Is definitely dead
+  - Shards of broken glass found at the crime scene, but no body.
+  - 'Last words: "Oh yeah! Oh no!"'
+  <NotesFont>k__BackingField: {fileID: 11400000, guid: bafb996321bd9f44597dfced0ae9140b, type: 2}

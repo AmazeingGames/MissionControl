@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf55f272930b1dd4ca7e6883b8638154, type: 3}
+  m_Name: ScientistData
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Liz
+  <MyRole>k__BackingField: 3
+  <Icon>k__BackingField: {fileID: 7784398144006018321, guid: beb3712cc06745748b5b75a7ac495b29, type: 3}
+  <Picture>k__BackingField: {fileID: 0}
+  <LogNotes>k__BackingField:
+  - Is super dead, like it's not even funny at this point
+  - Terminally diagonsed with 'Canadian'
+  - 'Went into cardiac arrest. Coroner''s report: too much enthusiasm.'
+  <NotesFont>k__BackingField: {fileID: 11400000, guid: bafb996321bd9f44597dfced0ae9140b, type: 2}

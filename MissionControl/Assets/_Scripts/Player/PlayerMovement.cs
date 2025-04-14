@@ -3,25 +3,34 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using static PlayerMovement;
+using static System.Collections.Specialized.BitVector32;
 
 // Simulates player movement by scaling canvases and gameobjects
 public class PlayerMovement : MonoBehaviour
 {
     public enum StationType { None, Computer, Desk }
 
-    [SerializeField] List<Station> stationsData = new();
+    [SerializeField] List<StationData> stationsData = new();
     [SerializeField] float movementDuration = .5f;
 
     StationType myStationType = StationType.None;
 
+    public static EventHandler<ConnectToStationEventArgs> ConnectToStationEventHandler;
+
     private void OnEnable()
     {
-        GameStateManager.GameStateActionEventHandler += HandleGameStateAction;    
+        GameStateManager.PerformGameActionEventHandler += HandlePerformGameAction;    
     }
 
     private void OnDisable()
     {
-        GameStateManager.GameStateActionEventHandler -= HandleGameStateAction;
+        GameStateManager.PerformGameActionEventHandler -= HandlePerformGameAction;
+    }
+
+    void HandlePerfromGameAction(object sender, PerformGameActionEventArgs e)
+    {
+
     }
 
     // Update is called once per frame
@@ -32,21 +41,21 @@ public class PlayerMovement : MonoBehaviour
         switch (myStationType)
         {
             case StationType.None:
-            break;
+                break;
 
             case StationType.Computer:
                 if (verticalInput == -1)
                     ChangeStation(StationType.Desk);
-            break;
+                break;
 
             case StationType.Desk:
                 if (verticalInput == 1)
                     ChangeStation(StationType.Computer);
-            break;
+                break;
         }
     }
 
-    void HandleGameStateAction(object sender, GameStateActionEventArgs e)
+    void HandlePerformGameAction(object sender, PerformGameActionEventArgs e)
     {
         switch (e.myGameAction)
         {
@@ -65,36 +74,41 @@ public class PlayerMovement : MonoBehaviour
 
     void ChangeStation(StationType myStationType)
     {
-        Assert.IsTrue(myStationType != this.myStationType, "Should not be trying to set station to its current station.");
+        ConnectToStationEventHandler?.Invoke(this, new(myStationType));
+
+        if (myStationType == this.myStationType)
+            Debug.LogWarning("Should generally not be trying to set station to its current station.");
         this.myStationType = myStationType;
 
-        foreach (Station station in stationsData)
-            station.ChangeStation(myStationType, movementDuration);
+        foreach (StationData stationData in stationsData)
+            stationData.ChangeStation(myStationType, movementDuration);
+
     }
 }
 
 [Serializable]
-class Station
+class StationData
 {
-    [SerializeField] public PlayerMovement.StationType MyStation { get; private set; }
-    [SerializeField] public List<GameObject> StationObjects { get; private set; }
+    [field: SerializeField] public PlayerMovement.StationType MyStationType { get; private set; }
+    [field: SerializeField] public List<GameObject> StationObjects { get; private set; }
     
     // We might need a scale for every single station, but this is fine for a binary system
-    [SerializeField] public float InFocusScale { get; private set; }
-    [SerializeField] public float OutOfFocusScale { get; private set; }
-
-    public Station(PlayerMovement.StationType myStation, List<GameObject> stationObjects, float inFocusScale, float outOfFocusScale)
-    {
-        MyStation = myStation;
-        StationObjects = stationObjects;
-        InFocusScale = inFocusScale;
-        OutOfFocusScale = outOfFocusScale;
-    }
+    [field: SerializeField] public float InFocusScale { get; private set; }
+    [field: SerializeField] public float OutOfFocusScale { get; private set; }
 
     public void ChangeStation(PlayerMovement.StationType myNewStation, float duration)
     {
-        float newScale = myNewStation == MyStation ? InFocusScale : OutOfFocusScale;
+        float newScale = myNewStation == MyStationType ? InFocusScale : OutOfFocusScale;
         foreach (GameObject gameObject in StationObjects)
             gameObject.transform.DOScale(newScale, duration);
+    }
+}
+
+public class ConnectToStationEventArgs : EventArgs
+{
+    public readonly PlayerMovement.StationType myStationType;
+    public ConnectToStationEventArgs(StationType myStationType)
+    {
+        this.myStationType = myStationType;
     }
 }
