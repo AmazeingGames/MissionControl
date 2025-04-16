@@ -5,6 +5,7 @@ using TMPro;
 using Unity.Android.Gradle.Manifest;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 using static GameStateManager;
 using static PlayerMovement;
@@ -20,13 +21,12 @@ using static PlayerMovement;
 public class GameStateManager : MonoBehaviour, IGameStateActionHandler
 {
     readonly KeyCode pauseKey = KeyCode.Escape;
-
-
     public enum PlayState { None, Station, Notes }
     public enum GameState { None, InMenu, Running, Paused, Loading }
     public enum GameAction { None, EnterMainMenu, StartGame, PauseGame, ResumeGame, LoseGame }
 
-    public static bool IsFocusedOnInput { get => inputFields.Any(i => i.isFocused); }
+    static GameStateManager instance;
+    public static bool IsFocusedOnInput { get => instance.inputFields.Any(i => i.isFocused); }
     public static PlayState MyPlayState { get; private set; }
     public static GameState MyGameState { get; private set; }
     
@@ -36,8 +36,7 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
     public static EventHandler<GameStateChangeEventArgs> GameStateChangeEventHandler;
     public static EventHandler<PerformGameActionEventArgs> PerformGameActionEventHandler;
 
-    static List<TMP_InputField> inputFields;
-
+    List<TMP_InputField> inputFields;
 
     void OnEnable()
     {
@@ -70,12 +69,16 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
     // Start is called before the first frame update
     void Start()
     {
+        Assert.IsNull(instance, "Only 1 game state manager should exist in the scene at a time.");
+        instance = this;
         UIButton.GameStateActionHandler = this as IGameStateActionHandler;
         
         PerformGameAction(GameAction.EnterMainMenu);
 
-        var inputObjects = FindObjectsByType(typeof(TMP_InputField), FindObjectsSortMode.None).ToList();
+        var inputObjects = FindObjectsByType(typeof(TMP_InputField), FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
         inputFields = inputObjects.Select(x => x.GetComponent<TMP_InputField>()).ToList();
+
+        Assert.AreEqual(inputObjects.Count, inputFields.Count, "Input fields is not correctly grabbing InputField components from inputObjects.");
     }
 
     bool isFocusedOnInput;
@@ -100,6 +103,7 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
                 if (Input.GetKeyDown(pauseKey) && !IsFocusedOnInput) // && !ScreenTransitions.IsPlayingTransitionAnimation)
                     PerformGameAction(GameAction.PauseGame);
                 break;
+
             case GameState.Paused:
                 if (Input.GetKeyDown(pauseKey)) // && !ScreenTransitions.IsPlayingTransitionAnimation)
                     PerformGameAction(GameAction.ResumeGame);
@@ -109,7 +113,7 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
         }
     }
 
-    /// <summary> Informs listerners of a game action and updates the game state accordingly. </summary>
+    /// <summary> Informs listeners of a game action and updates the game state accordingly. </summary>
     /// <param name="action"> The game action to perform. </param>
     /// <param name="levelToLoad"> If we should load a level, otherwise leave at -1. </param>
     // Update game state in response to menu changes
@@ -147,7 +151,6 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
         }
     }
 
-
     /// <summary> Informs listeners on how to align with the current state of the game. </summary>
     /// <param name="newState"> The state of the game to update to. </param>
     void OnGameStateChange(GameState newState)
@@ -167,8 +170,6 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
         MyGameState = newState;
 
         GameStateChangeEventHandler?.Invoke(this, new(this, newState, previousState));
-
-
     }
 }
 
