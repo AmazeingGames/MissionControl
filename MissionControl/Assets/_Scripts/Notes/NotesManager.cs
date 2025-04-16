@@ -57,16 +57,16 @@ public class NotesManager : MonoBehaviour, IClickTab
                 break;
             case GameStateManager.GameAction.EnterMainMenu:
             case GameStateManager.GameAction.StartGame:
-                ToggleNotes(false);
+                OpenNotes(false);
 
                 break;
             case GameStateManager.GameAction.PauseGame:
                 wasOpenOnPause = areNotesOpen;
-                ToggleNotes(false);
+                OpenNotes(false);
                 break;
 
             case GameStateManager.GameAction.ResumeGame:
-                ToggleNotes(wasOpenOnPause);
+                OpenNotes(wasOpenOnPause);
                 break;
             case GameStateManager.GameAction.LoseGame:
                 break;
@@ -87,17 +87,17 @@ public class NotesManager : MonoBehaviour, IClickTab
 
             case GameStateManager.PlayState.Notes:
                 if (Input.GetButtonDown("Notes"))
-                    ToggleNotes(isOpening: false);
+                    OpenNotes(isOpening: false);
             break;
 
             case GameStateManager.PlayState.Station:
                 if (Input.GetButtonDown("Notes"))
-                    ToggleNotes(isOpening: true);
+                    OpenNotes(isOpening: true);
             break;
         }
     }
 
-    void ToggleNotes(bool isOpening)
+    void OpenNotes(bool isOpening)
     {
         areNotesOpen = isOpening;
         OpenNotesEventHandler?.Invoke(this, new(isOpening));

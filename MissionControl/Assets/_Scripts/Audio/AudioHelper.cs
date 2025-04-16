@@ -39,20 +39,14 @@ public class AudioHelper : MonoBehaviour
         MasterBus = RuntimeManager.GetBus("bus:/");
 
         GameAmbience_Instance = CreateInstance(GameAmbience);
+
         TitleMusic_Instance = CreateInstance(GameMusic);
         GameMusic_Instance = CreateInstance(PauseMusic);
         PauseMusic_Instance = CreateInstance(TitleMusic);
     }
 
     EventInstance CreateInstance(EventReference eventReference)
-    {
-        if (eventReference.IsNull)
-        {
-            this.LogWarning("Event reference should not be null");
-            return new EventInstance();
-        }
-        return RuntimeManager.CreateInstance(eventReference);
-    }
+        => RuntimeManager.CreateInstance(eventReference);
        
 }
 
