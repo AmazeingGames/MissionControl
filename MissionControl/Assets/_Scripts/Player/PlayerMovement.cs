@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UI;
 using static PlayerMovement;
 using static System.Collections.Specialized.BitVector32;
 
@@ -35,7 +36,10 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {        
+        if (GameStateManager.IsFocusedOnInput)
+            return;
+
         float verticalInput = Input.GetAxisRaw("Vertical");
 
         switch (myStationType)

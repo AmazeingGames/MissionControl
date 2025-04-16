@@ -20,9 +20,9 @@ public class NotesTab : MonoBehaviour, IPointerClickHandler
     }
 
     private void Start()
-    {
+    {      
         DataMatch();
-    }
+    }   
 
     void DataMatch()
     {

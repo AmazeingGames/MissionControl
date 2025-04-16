@@ -16,8 +16,6 @@ public class CodeModule : MonoBehaviour
         StartCoroutine(ResetButtonColor());
         SendCodeDigit sendCodeDigit = new SendCodeDigit(codeType, codeDigit);
         OnSendCodeDigit?.Invoke(sendCodeDigit);
-
-
     }
 
     IEnumerator ResetButtonColor()

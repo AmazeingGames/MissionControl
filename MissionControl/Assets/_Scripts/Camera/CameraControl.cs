@@ -6,7 +6,7 @@ using static CameraControl;
 public class CameraControl : MonoBehaviour
 {
     public enum PanMode { Mouse, Keyboard, Both }
-    [SerializeField] PanMode panMode = PanMode.Both;
+    [SerializeField] PanMode myDefaultPanMode = PanMode.Both;
 
     [SerializeField] float scrollSpeed;
     [SerializeField] float distFromEdge;
@@ -15,12 +15,17 @@ public class CameraControl : MonoBehaviour
     [SerializeField] float maxRight;
 
     Vector3 targetPosition;
-
-    void Start() =>
+    PanMode myPanMode;
+    void Start()
+    {
         targetPosition = transform.position;
+        myPanMode = myDefaultPanMode;
+    }
 
     void Update()
     {
+        myPanMode = GameStateManager.IsFocusedOnInput ? PanMode.Mouse : myDefaultPanMode;
+
         Vector2 mousePosition = Input.mousePosition;
         float mouseDirection = 0f;
 
@@ -33,7 +38,7 @@ public class CameraControl : MonoBehaviour
 
         float panDirection;
 
-        switch (panMode)
+        switch (myPanMode)
         {
             case PanMode.Mouse:
                 panDirection = mouseDirection;

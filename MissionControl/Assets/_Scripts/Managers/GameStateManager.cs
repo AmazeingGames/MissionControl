@@ -1,7 +1,11 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using Unity.Android.Gradle.Manifest;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using static GameStateManager;
 using static PlayerMovement;
 
@@ -22,6 +26,7 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
     public enum GameState { None, InMenu, Running, Paused, Loading }
     public enum GameAction { None, EnterMainMenu, StartGame, PauseGame, ResumeGame, LoseGame }
 
+    public static bool IsFocusedOnInput { get => inputFields.Any(i => i.isFocused); }
     public static PlayState MyPlayState { get; private set; }
     public static GameState MyGameState { get; private set; }
     
@@ -30,6 +35,8 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
     // I really dislike the wordy names for these, but they're named this way to differentiate themselves from the GameplayManager's events
     public static EventHandler<GameStateChangeEventArgs> GameStateChangeEventHandler;
     public static EventHandler<PerformGameActionEventArgs> PerformGameActionEventHandler;
+
+    static List<TMP_InputField> inputFields;
 
 
     void OnEnable()
@@ -66,10 +73,15 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
         UIButton.GameStateActionHandler = this as IGameStateActionHandler;
         
         PerformGameAction(GameAction.EnterMainMenu);
+
+        var inputObjects = FindObjectsByType(typeof(TMP_InputField), FindObjectsSortMode.None).ToList();
+        inputFields = inputObjects.Select(x => x.GetComponent<TMP_InputField>()).ToList();
     }
 
+    bool isFocusedOnInput;
     private void Update()
     {
+        isFocusedOnInput = IsFocusedOnInput;
         GameStateUpdate();
     }
 
@@ -85,7 +97,7 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
             // In the future, I would like to better handle edge cases, and having to directly access scripts signals some amount of structure change is due 
             // Having a smooth, instantaneous transitions between attempted menu opens would be nice
             case GameState.Running:
-                if (Input.GetKeyDown(pauseKey)) // && !ScreenTransitions.IsPlayingTransitionAnimation)
+                if (Input.GetKeyDown(pauseKey) && !IsFocusedOnInput) // && !ScreenTransitions.IsPlayingTransitionAnimation)
                     PerformGameAction(GameAction.PauseGame);
                 break;
             case GameState.Paused:

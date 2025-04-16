@@ -12,7 +12,7 @@ public class LogsManager : MonoBehaviour
     static LogsManager instance;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
         => instance = this;
 
     public static void Log(GameObject loggingObject, string message, UnityEngine.Object context = null)
@@ -23,6 +23,11 @@ public class LogsManager : MonoBehaviour
 
     static void Log(bool isWarning, GameObject loggingObject, string message, UnityEngine.Object context = null)
     {
+        Assert.IsNotNull(instance, "Instance of logger should not be null");
+
+        foreach (Logger _logger in instance.loggers)
+            Assert.IsNotNull(_logger.LoggingObject, "Logging object should not be null");
+
         Logger logger = instance.loggers.Find(l => l.LoggingObject == loggingObject);
         Assert.IsNotNull(logger, $"Logging object has not properly been set up in the LogsManager. {loggingObject.name} is not contained added as a parameter in the logger");
 
