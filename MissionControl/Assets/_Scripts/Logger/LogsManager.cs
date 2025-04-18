@@ -7,6 +7,7 @@ using UnityEngine.Assertions;
 // Provides convenient access to toggle logging from various scripts
 public class LogsManager : MonoBehaviour
 {
+    [SerializeField] bool prefixObjectName;
     [SerializeField] List<Logger> loggers = new List<Logger>();
 
     static LogsManager instance;
@@ -33,6 +34,9 @@ public class LogsManager : MonoBehaviour
 
         if (logger.MyTextColor != Logger.RichTextColor.none)
             message = $"<color={logger.MyTextColor}>{message}</color>";
+
+        if (instance.prefixObjectName)
+            message = $"{loggingObject.name}: {message}";
 
         if (isWarning)
         {
