@@ -41,7 +41,13 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Desk
+  - name: Computer
+    uniqueID: 3195605189
+    locked: 0
+  - name: DeskBase
+    uniqueID: 1749574719
+    locked: 0
+  - name: RoomElements
     uniqueID: 1618799483
     locked: 0
   - name: Notes

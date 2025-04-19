@@ -94,18 +94,26 @@ public class PlayerMovement : MonoBehaviour
 class StationData
 {
     [field: SerializeField] public PlayerMovement.StationType MyStationType { get; private set; }
-    [field: SerializeField] public List<GameObject> StationObjects { get; private set; }
+    [field: SerializeField] public List<StationObject> StationObjects { get; private set; }
     
     // We might need a scale for every single station, but this is fine for a binary system
-    [field: SerializeField] public float InFocusScale { get; private set; }
-    [field: SerializeField] public float OutOfFocusScale { get; private set; }
 
     public void ChangeStation(PlayerMovement.StationType myNewStation, float duration)
     {
-        float newScale = myNewStation == MyStationType ? InFocusScale : OutOfFocusScale;
-        foreach (GameObject gameObject in StationObjects)
-            gameObject.transform.DOScale(newScale, duration);
+        foreach (StationObject stationObject in StationObjects)
+        {
+            float newScale = myNewStation == MyStationType ? stationObject.InFocusScale : stationObject.OutOfFocusScale;
+            stationObject.gameObject.transform.DOScale(newScale, duration);
+        }
     }
+}
+
+[Serializable]
+class StationObject
+{
+    [SerializeField] public GameObject gameObject;
+    [field: SerializeField] public float InFocusScale { get; private set; } = 1;
+    [field: SerializeField] public float OutOfFocusScale { get; private set; } = .5f;
 }
 
 public class ConnectToStationEventArgs : EventArgs

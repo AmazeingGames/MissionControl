@@ -6,7 +6,7 @@ public class CodeModule : MonoBehaviour
 {
     public enum CodeTypes { numbers, colors }
 
-    [SerializeField] string codeDigit;
+    [SerializeField] string codeCharacter;
     [SerializeField] CodeTypes codeType; 
 
     public static Action<SendCodeDigitEventArgs> OnSendCodeDigit; //string1 is codeType, string 2 is the digit that you want to send as part of the secret code
@@ -20,7 +20,7 @@ public class CodeModule : MonoBehaviour
     private void OnMouseDown()
     {
         StartCoroutine(ResetButtonColor());
-        OnSendCodeDigit?.Invoke(new SendCodeDigitEventArgs(codeType, codeDigit));
+        OnSendCodeDigit?.Invoke(new SendCodeDigitEventArgs(codeType, codeCharacter));
     }
 
     IEnumerator ResetButtonColor()
