@@ -40,7 +40,11 @@ public class Window : MonoBehaviour
         sequence = DOTween.Sequence();
 
         bool isClosingBeforeBeingOpened = !hasOpened && !isOpening;
-        Assert.IsFalse(isClosingBeforeBeingOpened);
+        if (isClosingBeforeBeingOpened)
+        {
+            Debug.LogWarning("Closing window before it should even be open.");
+            return;
+        }
 
         if (!hasOpened)
         {
