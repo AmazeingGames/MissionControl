@@ -74,8 +74,6 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
 
     private void Start()
     {
-        
-
         // Debug.Log($"Game Manager's Last Game Action: {GameStateManager.Instance.MyLastGameAction}");
         //UpdateMenusToGameAction(GameStateManager.Instance.MyLastGameAction);
 

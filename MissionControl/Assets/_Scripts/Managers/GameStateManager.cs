@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.Android.Gradle.Manifest;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -23,7 +22,7 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
     readonly KeyCode pauseKey = KeyCode.Escape;
     public enum PlayState { None, Station, Notes }
     public enum GameState { None, InMenu, Running, Paused, Loading }
-    public enum GameAction { None, EnterMainMenu, StartGame, PauseGame, ResumeGame, LoseGame }
+    public enum GameAction { None, EnterMainMenu, StartGame, PauseGame, ResumeGame, LoseGame, QuitGame }
 
     static GameStateManager instance;
     public static bool IsFocusedOnInput { get => instance.inputFields.Any(i => i.isFocused); }
@@ -146,9 +145,34 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
                 OnGameStateChange(GameState.Paused);
                 break;
 
+            case GameAction.QuitGame:
             case GameAction.None:
                 break;
+
+            default:
+                throw new Exception("Game action not recognized by GameStateManager");
         }
+
+        switch (action)
+        {
+            case GameAction.None:
+                break;
+            case GameAction.EnterMainMenu:
+                break;
+            case GameAction.StartGame:
+                break;
+            case GameAction.PauseGame:
+                break;
+            case GameAction.ResumeGame:
+                break;
+            case GameAction.LoseGame:
+                break;
+            case GameAction.QuitGame:
+                Application.Quit();
+                break;
+        }
+
+
     }
 
     /// <summary> Informs listeners on how to align with the current state of the game. </summary>

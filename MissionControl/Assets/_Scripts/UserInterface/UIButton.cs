@@ -53,6 +53,40 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     void Start()
     {
+        switch (myButtonType)
+        {
+            case ButtonType.None:
+                break;
+            case ButtonType.UI:
+                break;
+            case ButtonType.Gamestate:
+                switch (myGameActionToPerform)
+                {
+                    case GameStateManager.GameAction.None:
+                        break;
+                    case GameStateManager.GameAction.EnterMainMenu:
+                        break;
+                    case GameStateManager.GameAction.StartGame:
+                        break;
+                    case GameStateManager.GameAction.PauseGame:
+                        break;
+                    case GameStateManager.GameAction.ResumeGame:
+                        break;
+                    case GameStateManager.GameAction.LoseGame:
+                        break;
+                    case GameStateManager.GameAction.QuitGame:
+                        if (Application.platform != RuntimePlatform.WindowsPlayer && Application.platform != RuntimePlatform.OSXPlayer)
+                        {
+                            gameObject.SetActive(false);
+                            return;
+                        }
+                        break;
+                }
+                break;
+            case ButtonType.Gameplay:
+                break;
+        }
+
         text_TMP.alpha = RegularOpacity;
         text_TMP.gameObject.SetActive(true);
 

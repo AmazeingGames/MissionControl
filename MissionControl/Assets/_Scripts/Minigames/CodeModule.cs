@@ -9,31 +9,42 @@ public class CodeModule : MonoBehaviour
     [SerializeField] string codeDigit;
     [SerializeField] CodeTypes codeType; 
 
-    public static Action<SendCodeDigit> OnSendCodeDigit; //string1 is codeType, string 2 is the digit that you want to send as part of the secret code
+    public static Action<SendCodeDigitEventArgs> OnSendCodeDigit; //string1 is codeType, string 2 is the digit that you want to send as part of the secret code
+
+    SpriteRenderer spriteRenderer;
+    private void Start()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     private void OnMouseDown()
     {
         StartCoroutine(ResetButtonColor());
-        SendCodeDigit sendCodeDigit = new SendCodeDigit(codeType, codeDigit);
-        OnSendCodeDigit?.Invoke(sendCodeDigit);
+        OnSendCodeDigit?.Invoke(new SendCodeDigitEventArgs(codeType, codeDigit));
     }
 
     IEnumerator ResetButtonColor()
     {
-        Color startingColor = gameObject.GetComponent<SpriteRenderer>().color;
-        gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+        while (spriteRenderer == null)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            yield return null;
+        }
+
+        Color startingColor = spriteRenderer.color;
+        spriteRenderer.color = Color.black;
         yield return new WaitForSeconds(.1f);
-        gameObject.GetComponent<SpriteRenderer>().color = startingColor;
+        spriteRenderer.color = startingColor;
     }
 }
 
 
-public class SendCodeDigit
+public class SendCodeDigitEventArgs
 {
     public readonly CodeModule.CodeTypes myCodeType;
     public readonly string digit;
 
-    public SendCodeDigit(CodeModule.CodeTypes myCodeType, string digit)
+    public SendCodeDigitEventArgs(CodeModule.CodeTypes myCodeType, string digit)
     {
         this.myCodeType = myCodeType;
         this.digit = digit;

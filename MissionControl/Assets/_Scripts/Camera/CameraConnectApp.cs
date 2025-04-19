@@ -28,7 +28,7 @@ public class CameraConnectApp : MonoBehaviour
         lastInputIpAddress = input;
 
     //Called when a code value is clicked
-    void HandleCodeDigit(SendCodeDigit sendCodeDigit)
+    void HandleCodeDigit(SendCodeDigitEventArgs sendCodeDigit)
     {
         if (sendCodeDigit.myCodeType == CodeModule.CodeTypes.colors)
             HandleColorCode(sendCodeDigit.digit);
