@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
-        if (GameStateManager.IsFocusedOnInput)
+        if (GameStateManager.IsFocusedOnInput || GameStateManager.MyPlayState == GameStateManager.PlayState.Notes)
             return;
 
         float verticalInput = Input.GetAxisRaw("Vertical");

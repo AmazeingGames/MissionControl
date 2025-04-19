@@ -24,6 +24,9 @@ public class CameraControl : MonoBehaviour
 
     void Update()
     {
+        if (GameStateManager.MyPlayState == GameStateManager.PlayState.Notes)
+            return;
+
         myPanMode = GameStateManager.IsFocusedOnInput ? PanMode.Mouse : myDefaultPanMode;
 
         Vector2 mousePosition = Input.mousePosition;
