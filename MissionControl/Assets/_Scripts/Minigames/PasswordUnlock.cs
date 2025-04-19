@@ -12,24 +12,43 @@ public class PasswordUnlock : MonoBehaviour
     [SerializeField] TMP_InputField inputField;
 
     [Header("Animation")]
-    [SerializeField] float duration;
-    [SerializeField] float shakeAmount;
-    [SerializeField] Ease ease;
+    [SerializeField] float duration = .2f;
+    [SerializeField] float shakeAmount = 1;
+    [SerializeField] Ease ease = Ease.Linear;
 
     [Header("Password")]
     [SerializeField] List<string> password;
 
 
     Sequence shakeSequence;
+    Window unlockWindow;
+    Window lockWindow;
+    private void Start()
+    {
+        lockWindow = lockScreen.GetComponent<Window>();
+        unlockWindow = unlockScreen.GetComponent<Window>();
+    }
     public void ReadInput(string input)
     {
+        Debug.Log("reading password input");
+        input = new string(input.ToLower());
         if (password.Contains(input))
         {
-            lockScreen.SetActive(false);
-            unlockScreen.SetActive(true);
+            inputField.text = "";
+
+            if (lockWindow != null)
+                lockWindow.ToggleWindow(false);
+            else
+                lockScreen.SetActive(false);
+            
+            if (unlockWindow != null)
+                unlockWindow.ToggleWindow(true);
+            else
+                unlockScreen.SetActive(true);
         }
-        else if (inputField.text != "")
+        else if (inputField != null && inputField.text != "")
         {
+            
             inputField.text = "";
             //inputField.Select();
             inputField.ActivateInputField();
@@ -42,6 +61,8 @@ public class PasswordUnlock : MonoBehaviour
             shakeSequence.Append(transform.DOLocalMoveX(xPosition + shakeAmount, duration / 3)).SetEase(ease);
             shakeSequence.Append(transform.DOLocalMoveX(xPosition, duration / 3)).SetEase(ease);
         }
+        if (inputField == null)
+            Debug.LogWarning("Input field should not be null");
     }
 
 }
