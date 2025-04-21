@@ -8,7 +8,7 @@ public class CameraConnectApp : MonoBehaviour
     [SerializeField] TMPro.TMP_Text lastCodeText;
 
     //Which IP addresses belong with which color codes, and number codes
-    List<IPInformation> ipCodes = new List<IPInformation> // a is IPs, b is color codes, c is number codes
+    readonly List<IPInformation> ipCodes = new List<IPInformation> // a is IPs, b is color codes, c is number codes
     {
         {new IPInformation("192.168.0.1", "BGRYY", "2314")},
         {new IPInformation ("10.0.0.1", "RPRPG", "1323")},
@@ -23,12 +23,12 @@ public class CameraConnectApp : MonoBehaviour
     [SerializeField] int colorCodeLength;
     [SerializeField] int numberCodeLength;
 
-    //Takes players input for the IP
+    // Takes players input for the IP
     public void ReadIpInput(string input) =>
         lastInputIpAddress = input;
 
     //Called when a code value is clicked
-    void HandleCodeDigit(SendCodeDigit sendCodeDigit)
+    void HandleCodeDigit(SendCodeDigitEventArgs sendCodeDigit)
     {
         if (sendCodeDigit.myCodeType == CodeModule.CodeTypes.colors)
             HandleColorCode(sendCodeDigit.digit);
@@ -63,6 +63,7 @@ public class CameraConnectApp : MonoBehaviour
 
         lastInputNumberCode += codeDigit;
         lastCodeText.text = lastInputNumberCode;
+
         foreach (var pair in ipCodes)
         {
             if (pair.ipAddress == lastInputIpAddress && pair.numberCode == lastInputNumberCode)

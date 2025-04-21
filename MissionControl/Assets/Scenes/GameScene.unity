@@ -2221,7 +2221,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2479,7 +2479,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lockScreen: {fileID: 1509098390}
   unlockScreen: {fileID: 1327652062}
-  password: 2.15.23
+  inputField: {fileID: 0}
+  duration: 0.2
+  shakeAmount: 1
+  ease: 1
+  password: []
 --- !u!1 &400124868
 GameObject:
   m_ObjectHideFlags: 0
@@ -2981,6 +2985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0182539f5fa8d4bd1bd957499199ead9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myDefaultPanMode: 2
   scrollSpeed: 5
   distFromEdge: 10
   maxLeft: 0
@@ -3407,7 +3412,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3904,7 +3909,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lockScreen: {fileID: 517215753}
   unlockScreen: {fileID: 1105554131}
-  password: acquire log data
+  inputField: {fileID: 0}
+  duration: 0.2
+  shakeAmount: 1
+  ease: 1
+  password: []
 --- !u!114 &517215756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4004,7 +4013,6 @@ MonoBehaviour:
   m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
-    serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
@@ -4108,6 +4116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0182539f5fa8d4bd1bd957499199ead9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myDefaultPanMode: 2
   scrollSpeed: 45
   distFromEdge: 30
   maxLeft: -20
@@ -4662,7 +4671,11 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
@@ -4681,9 +4694,14 @@ MonoBehaviour:
   m_ShadowSoftnessFalloffIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
+  m_Mesh: {fileID: 0}
+  m_PreviousLightCookieSprite: 0
+  m_CachedPosition: {x: 0, y: 0, z: 0}
+  m_BatchSlotIndex: 0
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  forceUpdate: 0
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -4698,6 +4716,12 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+  m_PreviousShapeLightFalloffSize: -1
+  m_PreviousShapeLightParametricSides: -1
+  m_PreviousShapeLightParametricAngleOffset: -1
+  m_PreviousShapeLightParametricRadius: -1
+  m_PreviousShapePathHash: -1
+  m_PreviousLightType: 0
 --- !u!4 &619394802
 Transform:
   m_ObjectHideFlags: 0
@@ -4894,7 +4918,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4999,7 +5023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f250d66886b47158903f5bada13043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  codeDigit: R
+  codeCharacter: 
   codeType: 1
 --- !u!1 &671798650
 GameObject:
@@ -5214,7 +5238,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6319,7 +6343,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6424,7 +6448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f250d66886b47158903f5bada13043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  codeDigit: P
+  codeCharacter: 
   codeType: 1
 --- !u!1 &992841845
 GameObject:
@@ -6946,7 +6970,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7051,7 +7075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f250d66886b47158903f5bada13043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  codeDigit: G
+  codeCharacter: 
   codeType: 1
 --- !u!1 &1048192537
 GameObject:
@@ -7798,7 +7822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f250d66886b47158903f5bada13043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  codeDigit: 1
+  codeCharacter: 
   codeType: 0
 --- !u!61 &1151801164
 BoxCollider2D:
@@ -7869,7 +7893,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9123,7 +9147,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9815,7 +9839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f250d66886b47158903f5bada13043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  codeDigit: 6
+  codeCharacter: 
   codeType: 0
 --- !u!61 &1292893635
 BoxCollider2D:
@@ -9886,7 +9910,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10778,7 +10802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f250d66886b47158903f5bada13043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  codeDigit: 2
+  codeCharacter: 
   codeType: 0
 --- !u!61 &1598832465
 BoxCollider2D:
@@ -10849,7 +10873,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11566,7 +11590,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11671,7 +11695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f250d66886b47158903f5bada13043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  codeDigit: Y
+  codeCharacter: 
   codeType: 1
 --- !u!1 &1790390825
 GameObject:
@@ -12140,7 +12164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f250d66886b47158903f5bada13043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  codeDigit: 3
+  codeCharacter: 
   codeType: 0
 --- !u!61 &1839148739
 BoxCollider2D:
@@ -12211,7 +12235,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12434,7 +12458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f250d66886b47158903f5bada13043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  codeDigit: 4
+  codeCharacter: 
   codeType: 0
 --- !u!61 &1918052848
 BoxCollider2D:
@@ -12505,7 +12529,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12813,7 +12837,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12918,7 +12942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f250d66886b47158903f5bada13043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  codeDigit: O
+  codeCharacter: 
   codeType: 1
 --- !u!1 &1986893494
 GameObject:
@@ -13104,7 +13128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f250d66886b47158903f5bada13043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  codeDigit: 5
+  codeCharacter: 
   codeType: 0
 --- !u!61 &1991097280
 BoxCollider2D:
@@ -13175,7 +13199,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14083,7 +14107,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14188,7 +14212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f250d66886b47158903f5bada13043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  codeDigit: B
+  codeCharacter: 
   codeType: 1
 --- !u!1 &2105729865
 GameObject:
