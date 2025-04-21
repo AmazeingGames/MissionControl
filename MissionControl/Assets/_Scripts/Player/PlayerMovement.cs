@@ -10,7 +10,7 @@ using static System.Collections.Specialized.BitVector32;
 // Simulates player movement by scaling canvases and gameobjects
 public class PlayerMovement : MonoBehaviour
 {
-    public enum StationType { None, Computer, Desk }
+    public enum StationType { None, Computer, Desk, ComputerFull }
 
     [SerializeField] List<StationData> stationsData = new();
     [SerializeField] float movementDuration = .5f;
@@ -34,13 +34,15 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    // I should define stations with scriptable objects, that way I can easily define and edit movement paths in the inspector
     // Update is called once per frame
     void Update()
     {        
         if (GameStateManager.IsFocusedOnInput || GameStateManager.MyPlayState == GameStateManager.PlayState.Notes)
             return;
 
-        float verticalInput = Input.GetAxisRaw("Vertical");
+        bool zoomIn = Input.GetButtonDown("ZoomIn");
+        bool zoomOut = Input.GetButtonDown("ZoomOut");
 
         switch (myStationType)
         {
@@ -48,12 +50,19 @@ public class PlayerMovement : MonoBehaviour
                 break;
 
             case StationType.Computer:
-                if (verticalInput == -1)
+                if (zoomOut)
                     ChangeStation(StationType.Desk);
+                else if (zoomIn)
+                    ChangeStation(StationType.ComputerFull);
                 break;
 
             case StationType.Desk:
-                if (verticalInput == 1)
+                if (zoomIn)
+                    ChangeStation(StationType.Computer);
+                break;
+
+            case StationType.ComputerFull:
+                if (zoomOut)
                     ChangeStation(StationType.Computer);
                 break;
         }
@@ -102,8 +111,8 @@ class StationData
     {
         foreach (StationObject stationObject in StationObjects)
         {
-            float newScale = myNewStation == MyStationType ? stationObject.InFocusScale : stationObject.OutOfFocusScale;
-            stationObject.gameObject.transform.DOScale(newScale, duration);
+            if (myNewStation == MyStationType)
+            stationObject.gameObject.transform.DOScale(stationObject.InFocusScale, duration);
         }
     }
 }
@@ -113,7 +122,7 @@ class StationObject
 {
     [SerializeField] public GameObject gameObject;
     [field: SerializeField] public float InFocusScale { get; private set; } = 1;
-    [field: SerializeField] public float OutOfFocusScale { get; private set; } = .5f;
+    // [field: SerializeField] public float DefaultScale { get; private set; } = .5f;
 }
 
 public class ConnectToStationEventArgs : EventArgs
