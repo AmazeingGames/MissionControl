@@ -1,11 +1,14 @@
 using DG.Tweening;
 using JetBrains.Annotations;
+using Sirenix.Utilities;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NotesManager : MonoBehaviour, IClickTab
 {
-    [Header("Notebook Tween")]
+    [Header("Notebook Toggle Tween")]
     [SerializeField] float moveInDuration;
     [SerializeField] float moveOutDuration;
     [SerializeField] float inPosition;
@@ -19,9 +22,16 @@ public class NotesManager : MonoBehaviour, IClickTab
     [SerializeField] ScrambleMode textScrambleMode;
     [SerializeField] Ease textEase;
 
+    [Header("Page Turn Tween")]
+    [SerializeField] float pageTurnSpeed;
+    [SerializeField] RotateMode pageTurnRotateMode;
+
     [Header("Canvas")]
     [SerializeField] Canvas notesCanvas;
     [SerializeField] RectTransform notes;
+
+    [Header("Pages")]
+    [SerializeField] List<Transform> pages;
 
     [Header("Text Fields")]
     [SerializeField] TMPro.TextMeshProUGUI role_TMP;
@@ -30,6 +40,11 @@ public class NotesManager : MonoBehaviour, IClickTab
 
     Sequence notebookSequence;
     public static EventHandler<OpenNotesEventArgs> OpenNotesEventHandler;
+
+    int pageIndex = -1;
+    bool isTurningPage = false;
+
+    List<Action> RotateSequence = new();
 
     private void Start()
     {
@@ -71,7 +86,6 @@ public class NotesManager : MonoBehaviour, IClickTab
             case GameStateManager.GameAction.LoseGame:
                 break;
         }
-
     }
 
     void Update()
@@ -95,6 +109,14 @@ public class NotesManager : MonoBehaviour, IClickTab
                     ToggleNotes(isOpening: true);
             break;
         }
+
+        if (areNotesOpen)
+        {
+            if (Input.GetKeyDown(KeyCode.D))
+                TurnNextPage();
+            if (Input.GetKeyDown(KeyCode.A))
+                TurnPreviousPage();
+        }
     }
 
     void ToggleNotes(bool isOpening)
@@ -116,6 +138,60 @@ public class NotesManager : MonoBehaviour, IClickTab
             notebookSequence.OnComplete(() => notesCanvas.gameObject.SetActive(isOpening));
         }
     }
+
+    public void TurnNextPage()
+    {
+        StartCoroutine(TurnPageCoroutine(true, 180));
+    }
+
+    public void TurnPreviousPage()
+    {
+        StartCoroutine(TurnPageCoroutine(false, 0));
+    }
+
+    IEnumerator TurnPageCoroutine(bool isTurningForward, float angle)
+    {
+        if (isTurningPage)
+            yield break;
+
+        if (isTurningForward && pageIndex >= pages.Count - 1)
+            yield break;
+
+        else if (!isTurningForward && pageIndex <= 0)
+            yield break;
+
+        if (isTurningForward)
+            pageIndex++;
+
+
+        pages[pageIndex].SetAsLastSibling();
+
+        float time = 0;
+
+        while (true)
+        {
+            isTurningPage = true;
+
+            Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
+            time += Time.deltaTime * pageTurnSpeed;
+
+            pages[pageIndex].rotation = Quaternion.Slerp(pages[pageIndex].rotation, targetRotation, time);
+            float differenceBetweenAngles = Quaternion.Angle(pages[pageIndex].rotation, targetRotation);
+
+            this.Log($"Time: {time}");
+
+            if (differenceBetweenAngles < .1f)
+            {
+                if (!isTurningForward)
+                    pageIndex--;
+                
+                isTurningPage = false;
+                break;
+            }
+            yield return null;
+        }
+    }
+
 
     public void OnClickTab(CrewData crewData)
     {

@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      chaliepixl2_0: 5082745107214934373
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
