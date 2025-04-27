@@ -27,6 +27,7 @@ public class NotesTab : MonoBehaviour, IPointerClickHandler
     void DataMatch()
     {
         image.sprite = crewData.Icon;
+        image.color = crewData.IconColor;
     }
 
     public void OnPointerClick(PointerEventData eventData)

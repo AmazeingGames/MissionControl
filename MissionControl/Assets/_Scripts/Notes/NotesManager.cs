@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NotesManager : MonoBehaviour, IClickTab
 {
@@ -23,8 +24,27 @@ public class NotesManager : MonoBehaviour, IClickTab
     [SerializeField] Ease textEase;
 
     [Header("Page Turn Tween")]
-    [SerializeField] float pageTurnSpeed;
-    [SerializeField] RotateMode pageTurnRotateMode;
+    [SerializeField] float defaultPageTurnSpeed;
+    [SerializeField] float fastPageTurnSpeed;
+
+    [Header("Button Appear")]
+    [SerializeField] Ease buttonAppearEase;
+    [SerializeField] float buttonAppearDuration;
+    [SerializeField] bool shouldShake;
+
+    [Header("Button Shake")]
+    [SerializeField] float buttonShakeDuration;
+    [SerializeField] float buttonShakeStrength;
+    [SerializeField] float buttonShakeVibrato;
+    [SerializeField] float buttonShakeRandomness;
+    [SerializeField] bool buttonShakeFadeOut;
+    [SerializeField] ShakeRandomnessMode buttonShakeMode;
+
+    [Header("Button Punch")]
+    [SerializeField] Vector3 buttonPunch;
+    [SerializeField] float buttonPunchDuration;
+    [SerializeField] float buttonPunchElasticity;
+    [SerializeField] int buttonPunchVibrato;
 
     [Header("Canvas")]
     [SerializeField] Canvas notesCanvas;
@@ -32,25 +52,35 @@ public class NotesManager : MonoBehaviour, IClickTab
 
     [Header("Pages")]
     [SerializeField] List<Transform> pages;
-
-    [Header("Text Fields")]
+    [SerializeField] int fateSelectPage;
+    
+    [Header("Elements")]
     [SerializeField] TMPro.TextMeshProUGUI role_TMP;
     [SerializeField] TMPro.TextMeshProUGUI name_TMP;
     [SerializeField] TMPro.TextMeshProUGUI notes_TMP;
+    [SerializeField] List<Button> fateSelectButtons;
 
     Sequence notebookSequence;
     public static EventHandler<OpenNotesEventArgs> OpenNotesEventHandler;
 
     int pageIndex = -1;
     bool isTurningPage = false;
+    bool hasEnabledButtons;
 
-    List<Action> RotateSequence = new();
-
-    private void Start()
+    private IEnumerator Start()
     {
         NotesTab.clickTabHandler = this as IClickTab;
 
         InitializePages();
+
+        yield return null;
+
+        foreach (var button in fateSelectButtons)
+        {
+            button.GetComponent<PageElement>().enabled = false;
+            button.gameObject.SetActive(false);
+            button.transform.GetChild(0).gameObject.SetActive(false);
+        }
     }
 
 
@@ -158,17 +188,17 @@ public class NotesManager : MonoBehaviour, IClickTab
         }
     }
 
-    public void TurnNextPage()
+    public void TurnNextPage(bool useDefaultSpeed = true)
     {
-        StartCoroutine(TurnPageCoroutine(true, 180));
+        StartCoroutine(TurnPageCoroutine(true, 180, useDefaultSpeed));
     }
 
-    public void TurnPreviousPage()
+    public void TurnPreviousPage(bool useDefaultSpeed = true)
     {
-        StartCoroutine(TurnPageCoroutine(false, 0));
+        StartCoroutine(TurnPageCoroutine(false, 0, useDefaultSpeed));
     }
 
-    IEnumerator TurnPageCoroutine(bool isTurningForward, float angle)
+    IEnumerator TurnPageCoroutine(bool isTurningForward, float angle, bool useDefaultSpeed)
     {
         if (isTurningPage)
             yield break;
@@ -191,7 +221,9 @@ public class NotesManager : MonoBehaviour, IClickTab
             isTurningPage = true;
 
             Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
-            time += Time.deltaTime * pageTurnSpeed;
+
+            float turnSpeed = useDefaultSpeed ? defaultPageTurnSpeed : fastPageTurnSpeed;
+            time += Time.deltaTime * turnSpeed;
 
             pages[pageIndex].rotation = Quaternion.Slerp(pages[pageIndex].rotation, targetRotation, time);
             float differenceBetweenAngles = Quaternion.Angle(pages[pageIndex].rotation, targetRotation);
@@ -217,11 +249,65 @@ public class NotesManager : MonoBehaviour, IClickTab
         name_TMP.DOText($"- {crewData.Name} -", titleEaseDuration, true, textScrambleMode, textScrambleChars).SetEase(textEase);
 
         string targetText = "";
-        foreach (string note in crewData.LogNotes)
-            targetText += $"> {note}\n";
+        //foreach (string note in crewData.LogNotes)
+            //targetText += $"> {note}\n";
 
         notes_TMP.DOText(targetText, notesEaseDuration, true, textScrambleMode, textScrambleChars).SetEase(textEase);
-        notes_TMP.font = crewData.NotesFont;
+        StartCoroutine(TurnToPageCoroutine(fateSelectPage));
+
+        
+        foreach (var button in fateSelectButtons)
+        {
+            if (hasEnabledButtons)
+                break;
+
+            var buttonText = button.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>();
+            var buttonImage = button.GetComponent<Image>();
+
+            var originalbuttonColor = buttonImage.color;
+            var transparentButtonColor = buttonImage.color;
+            transparentButtonColor.a = 0;
+            buttonImage.color = transparentButtonColor;
+
+            var originalTextColor = buttonText.color;
+            var transparentTextColor = buttonText.color;
+            transparentTextColor.a = 0;
+            buttonText.color = transparentTextColor;
+
+
+            button.GetComponent<PageElement>().enabled = true;
+            button.gameObject.SetActive(true);
+            buttonText.gameObject.SetActive(true);
+
+            buttonText.DOColor(originalTextColor, buttonAppearDuration).SetEase(buttonAppearEase);
+            buttonImage.DOColor(originalbuttonColor, buttonAppearDuration).SetEase(buttonAppearEase);
+        }
+        hasEnabledButtons = true;
+
+        foreach (var button in fateSelectButtons)
+        {
+            button.transform.DOKill();
+
+            if (shouldShake)
+                button.transform.DOShakeRotation(buttonShakeDuration, fadeOut: buttonShakeFadeOut, strength: new Vector3(0, 0, buttonShakeStrength), randomnessMode: buttonShakeMode);
+            else
+                button.transform.DOPunchRotation(buttonPunch, buttonPunchDuration, buttonPunchVibrato, buttonPunchElasticity).OnComplete(() => button.transform.DORotate(new(0, 0, 0), .5f));
+        }
+    }
+
+    IEnumerator TurnToPageCoroutine(int pageIndex)
+    {
+        while (pageIndex != this.pageIndex)
+        {
+            if (pageIndex > this.pageIndex)
+                TurnNextPage(false);
+            else if (pageIndex < this.pageIndex)
+                TurnPreviousPage(false);
+            else
+                yield break;
+
+            yield return null;
+        }
     }
 }
 
