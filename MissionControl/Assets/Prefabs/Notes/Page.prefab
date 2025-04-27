@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2983681076290751177}
   - component: {fileID: 1067826169723853139}
-  - component: {fileID: 4661210423510609}
   - component: {fileID: 2028779006744605207}
+  - component: {fileID: 4661210423510609}
   m_Layer: 0
   m_Name: TextElementLarge
   m_TagString: Untagged
@@ -46,6 +46,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463698994824046823}
   m_CullTransparentMesh: 1
+--- !u!114 &2028779006744605207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463698994824046823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce7f9ef26542354891bc52095fb8249, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setChildren: 1
+  isBackPage: 0
 --- !u!114 &4661210423510609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,18 +151,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2028779006744605207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 463698994824046823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ce7f9ef26542354891bc52095fb8249, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3034656760131641209
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9622642, g: 0.8435933, b: 0.557387, a: 1}
+  m_Color: {r: 0.9622642, g: 0.9254336, b: 0.8333571, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -276,6 +278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce7f9ef26542354891bc52095fb8249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setChildren: 1
+  isBackPage: 0
 --- !u!1 &4301135665707931540
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9622642, g: 0.8435933, b: 0.557387, a: 1}
+  m_Color: {r: 0.9622642, g: 0.9254336, b: 0.8333571, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -410,6 +414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce7f9ef26542354891bc52095fb8249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setChildren: 1
+  isBackPage: 0
 --- !u!1 &8703791995047204265
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,6 +565,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce7f9ef26542354891bc52095fb8249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setChildren: 1
+  isBackPage: 0
 --- !u!1 &8945846616526257922
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,8 +577,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6986698504627577798}
   - component: {fileID: 1530905277988173559}
-  - component: {fileID: 8256219410673679368}
   - component: {fileID: 7732491581089739087}
+  - component: {fileID: 8256219410673679368}
   m_Layer: 0
   m_Name: TextElementSmall
   m_TagString: Untagged
@@ -605,6 +613,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8945846616526257922}
   m_CullTransparentMesh: 1
+--- !u!114 &7732491581089739087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8945846616526257922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce7f9ef26542354891bc52095fb8249, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setChildren: 1
+  isBackPage: 0
 --- !u!114 &8256219410673679368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,15 +718,3 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7732491581089739087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8945846616526257922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ce7f9ef26542354891bc52095fb8249, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

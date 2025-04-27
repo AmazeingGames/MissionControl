@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PageElement : MonoBehaviour
 {
+    [SerializeField] bool setChildren = true;
     TextMeshProUGUI text_TMP;
     Button button;
     Image image;
@@ -34,7 +35,8 @@ public class PageElement : MonoBehaviour
 
         foreach (Transform child in children)
         {
-            child.gameObject.SetActive(shouldBeVisible);
+            if (setChildren)
+                child.gameObject.SetActive(shouldBeVisible);
         }
     }
 

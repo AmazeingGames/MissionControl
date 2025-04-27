@@ -1,3 +1,5 @@
+using System;
+using System.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,9 +11,23 @@ public class NotesTab : MonoBehaviour, IPointerClickHandler
 
     [Header("Components")]
     [SerializeField] Image image;
+    static IClickTab clickTabHandler;
+    public static IClickTab ClickTabHandler 
+    { 
+        get 
+            => clickTabHandler;
+        set
+        {
+            if (clickTabHandler != null)
+                Debug.LogWarning($"Trying to set handler to {value}, when it's already set to {clickTabHandler}");
+            clickTabHandler = value;
+        }
+    }
 
-    public static IClickTab clickTabHandler;
-
+    private void OnApplicationQuit()
+    {
+        Debug.Log("Quit");
+    }
 
     private void OnValidate()
     {
@@ -32,7 +48,7 @@ public class NotesTab : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        clickTabHandler?.OnClickTab(crewData);
+        ClickTabHandler?.OnClickTab(crewData);
     }
 }
 

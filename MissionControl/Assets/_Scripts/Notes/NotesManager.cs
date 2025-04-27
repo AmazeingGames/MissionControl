@@ -31,6 +31,9 @@ public class NotesManager : MonoBehaviour, IClickTab
     [SerializeField] Ease buttonAppearEase;
     [SerializeField] float buttonAppearDuration;
     [SerializeField] bool shouldShake;
+    [SerializeField] float buttonTextAppearDuration;
+    [SerializeField] ScrambleMode buttonTextScrambleMode;
+    [SerializeField] Ease buttonTextEase;
 
     [Header("Button Shake")]
     [SerializeField] float buttonShakeDuration;
@@ -54,14 +57,19 @@ public class NotesManager : MonoBehaviour, IClickTab
     [SerializeField] List<Transform> pages;
     [SerializeField] int fateSelectPage;
     
-    [Header("Elements")]
+    [Header("Page Elements")]
     [SerializeField] TMPro.TextMeshProUGUI role_TMP;
     [SerializeField] TMPro.TextMeshProUGUI name_TMP;
     [SerializeField] TMPro.TextMeshProUGUI notes_TMP;
     [SerializeField] List<Button> fateSelectButtons;
+    [SerializeField] TMPro.TextMeshProUGUI fate_TMP;
+    [SerializeField] TMPro.TextMeshProUGUI logs_TMP;
+    [SerializeField] Image crewMatePicture;
 
     Sequence notebookSequence;
     public static EventHandler<OpenNotesEventArgs> OpenNotesEventHandler;
+
+    public static CrewData CrewData { get; private set; }
 
     int pageIndex = -1;
     bool isTurningPage = false;
@@ -69,7 +77,7 @@ public class NotesManager : MonoBehaviour, IClickTab
 
     private IEnumerator Start()
     {
-        NotesTab.clickTabHandler = this as IClickTab;
+        NotesTab.ClickTabHandler = this;
 
         InitializePages();
 
@@ -82,7 +90,6 @@ public class NotesManager : MonoBehaviour, IClickTab
             button.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
-
 
     void OnEnable()
     {
@@ -245,17 +252,18 @@ public class NotesManager : MonoBehaviour, IClickTab
 
     public void OnClickTab(CrewData crewData)
     {
+        CrewData = crewData;
+
         role_TMP.DOText($"{crewData.MyRole}", titleEaseDuration, true, textScrambleMode, textScrambleChars).SetEase(textEase);
         name_TMP.DOText($"- {crewData.Name} -", titleEaseDuration, true, textScrambleMode, textScrambleChars).SetEase(textEase);
 
         string targetText = "";
-        //foreach (string note in crewData.LogNotes)
-            //targetText += $"> {note}\n";
-
-        notes_TMP.DOText(targetText, notesEaseDuration, true, textScrambleMode, textScrambleChars).SetEase(textEase);
         StartCoroutine(TurnToPageCoroutine(fateSelectPage));
 
-        
+        fate_TMP.DOText($"{crewData.Name}'s fate is unkown", buttonTextAppearDuration, true, buttonTextScrambleMode, null).SetEase(buttonTextEase);
+        logs_TMP.DOText($"Logs Logs Logs", buttonTextAppearDuration, true, buttonTextScrambleMode, null).SetEase(buttonTextEase);
+        crewMatePicture.sprite = crewData.Picture;
+
         foreach (var button in fateSelectButtons)
         {
             if (hasEnabledButtons)
@@ -279,6 +287,7 @@ public class NotesManager : MonoBehaviour, IClickTab
             button.gameObject.SetActive(true);
             buttonText.gameObject.SetActive(true);
 
+            // Note: I could instead use DOFade
             buttonText.DOColor(originalTextColor, buttonAppearDuration).SetEase(buttonAppearEase);
             buttonImage.DOColor(originalbuttonColor, buttonAppearDuration).SetEase(buttonAppearEase);
         }
@@ -291,7 +300,7 @@ public class NotesManager : MonoBehaviour, IClickTab
             if (shouldShake)
                 button.transform.DOShakeRotation(buttonShakeDuration, fadeOut: buttonShakeFadeOut, strength: new Vector3(0, 0, buttonShakeStrength), randomnessMode: buttonShakeMode);
             else
-                button.transform.DOPunchRotation(buttonPunch, buttonPunchDuration, buttonPunchVibrato, buttonPunchElasticity).OnComplete(() => button.transform.DORotate(new(0, 0, 0), .5f));
+                button.transform.DOPunchRotation(buttonPunch, buttonPunchDuration, buttonPunchVibrato, buttonPunchElasticity).OnComplete(() => button.transform.DOLocalRotate(new(0, 0, 0), .5f));
         }
     }
 
