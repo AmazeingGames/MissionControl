@@ -49,7 +49,10 @@ public class NotesManager : MonoBehaviour, IClickTab
     private void Start()
     {
         NotesTab.clickTabHandler = this as IClickTab;
+
+        InitializePages();
     }
+
 
     void OnEnable()
     {
@@ -97,17 +100,17 @@ public class NotesManager : MonoBehaviour, IClickTab
         switch (GameStateManager.MyPlayState)
         {
             case GameStateManager.PlayState.None:
-            break;
+                break;
 
             case GameStateManager.PlayState.Notes:
                 if (Input.GetButtonDown("Notes"))
                     ToggleNotes(isOpening: false);
-            break;
+                break;
 
             case GameStateManager.PlayState.Station:
                 if (Input.GetButtonDown("Notes"))
                     ToggleNotes(isOpening: true);
-            break;
+                break;
         }
 
         if (areNotesOpen)
@@ -116,6 +119,22 @@ public class NotesManager : MonoBehaviour, IClickTab
                 TurnNextPage();
             if (Input.GetKeyDown(KeyCode.A))
                 TurnPreviousPage();
+        }
+    }
+
+    void InitializePages()
+    {
+        foreach (var page in pages)
+        {
+            page.gameObject.SetActive(true);
+
+            for (int i = 0; i < page.childCount; i++)
+            {
+                page.GetChild(i).gameObject.SetActive(true);
+            }
+
+            page.transform.rotation = Quaternion.identity;
+            page.SetAsFirstSibling();
         }
     }
 
@@ -157,12 +176,11 @@ public class NotesManager : MonoBehaviour, IClickTab
         if (isTurningForward && pageIndex >= pages.Count - 1)
             yield break;
 
-        else if (!isTurningForward && pageIndex <= 0)
+        else if (!isTurningForward && pageIndex < 0)
             yield break;
 
         if (isTurningForward)
             pageIndex++;
-
 
         pages[pageIndex].SetAsLastSibling();
 

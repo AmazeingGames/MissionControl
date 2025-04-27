@@ -12,16 +12,20 @@ public class PageTextElement : MonoBehaviour
     void Start()
     {
         text_TMP = GetComponent<TextMeshProUGUI>();
+
+        if (!isOnRight)
+            transform.localRotation = new(0, -1, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isOnRight)
-        {
-            shouldBeVisible = transform.rotation.y > -.7;
-        }
-        text_TMP.enabled = shouldBeVisible;
+        shouldBeVisible = transform.rotation.y > -.7;
 
+        if (text_TMP.enabled != shouldBeVisible)
+        {
+            Debug.Log("Set text component");
+            text_TMP.enabled = shouldBeVisible;
+        }
     }
 }
