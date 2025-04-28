@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Hiding
   m_EditorClassIdentifier: Assembly-CSharp::SubFateData
-  shortDisplay: Hiding
-  fullDisplay: and in hiding
+  <ShortDisplay>k__BackingField: Hiding
+  <FullDisplay>k__BackingField: and in hiding

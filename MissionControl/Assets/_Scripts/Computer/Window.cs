@@ -33,7 +33,7 @@ public class Window : MonoBehaviour
 
         if (isOpening)
             gameObject.SetActive(true);
-        
+
         sequence?.Kill();
         sequence = DOTween.Sequence();
 
@@ -51,12 +51,17 @@ public class Window : MonoBehaviour
 
         float targetScale = isOpening ? originalSize : 0f;
         sequence.Append(rectTransform.DOScale(targetScale, duration)).SetEase(ease);
-        
+
         if (!isOpening)
             sequence.OnComplete(() => { gameObject.SetActive(false); LogsManager.Log(LogsManager.Instance.WindowsLogger, "finished closing"); onComplete?.Invoke(); });
-        else 
+        else
             sequence.OnComplete(() => { LogsManager.Log(LogsManager.Instance.WindowsLogger, "finished opening"); onComplete?.Invoke(); });
 
         hasOpened = true;
+    }
+
+    public void ToggleWindow(bool isOpening)
+    {
+        ToggleWindow(isOpening, null, -1);
     }
 }

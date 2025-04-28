@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8263b1bcc4c304342a844c4a371f3f29, type: 3}
   m_Name: SuicideGun
   m_EditorClassIdentifier: Assembly-CSharp::SubFateData
-  shortDisplay: Gun
-  fullDisplay: shot themself
+  <ShortDisplay>k__BackingField: Gun
+  <FullDisplay>k__BackingField: shot themself

@@ -11,23 +11,8 @@ public class NotesTab : MonoBehaviour, IPointerClickHandler
 
     [Header("Components")]
     [SerializeField] Image image;
-    static IClickTab clickTabHandler;
-    public static IClickTab ClickTabHandler 
-    { 
-        get 
-            => clickTabHandler;
-        set
-        {
-            if (clickTabHandler != null)
-                Debug.LogWarning($"Trying to set handler to {value}, when it's already set to {clickTabHandler}");
-            clickTabHandler = value;
-        }
-    }
 
-    private void OnApplicationQuit()
-    {
-        Debug.Log("Quit");
-    }
+    public static EventHandler<ClickTabEventArgs> ClickTabEventHandler;
 
     private void OnValidate()
     {
@@ -35,10 +20,8 @@ public class NotesTab : MonoBehaviour, IPointerClickHandler
             DataMatch();
     }
 
-    private void Start()
-    {      
-        DataMatch();
-    }   
+    private void Start()   
+        => DataMatch();
 
     void DataMatch()
     {
@@ -48,11 +31,17 @@ public class NotesTab : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        ClickTabHandler?.OnClickTab(crewData);
+        Debug.Log("Clicked tab");
+        ClickTabEventHandler?.Invoke(this, new(crewData));
     }
 }
 
-public interface IClickTab
+public class ClickTabEventArgs : EventArgs
 {
-    void OnClickTab(CrewData crewData);
+    public readonly CrewData crewData;
+
+    public ClickTabEventArgs(CrewData crewData)
+    {
+        this.crewData = crewData;
+    }
 }

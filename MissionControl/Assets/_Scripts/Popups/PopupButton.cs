@@ -50,7 +50,4 @@ public class PopupButton : MonoBehaviour, IPointerClickHandler
     }
 }
 
-public interface IClickPopup
-{
-    void OnClickPopupButton(PopupsManager.Popup myPopup, bool isOpening);
-}
+public interface IClickPopup { void OnClickPopupButton(PopupsManager.Popup myPopup, bool isOpening); }

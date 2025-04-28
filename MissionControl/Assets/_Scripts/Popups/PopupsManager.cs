@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using System.Linq;
 using static PopupsManager;
 
-public class PopupsManager : MonoBehaviour, IClickPopup, IOpenSubfate
+public class PopupsManager : MonoBehaviour, IClickPopup
 {
     public enum Popup { None, Fate, Time, Location, Notes, SelectFate, SelectAttacker }
 
@@ -32,10 +32,24 @@ public class PopupsManager : MonoBehaviour, IClickPopup, IOpenSubfate
     [SerializeField] Image photo;
 
     List<Window> popups = new();
-    readonly List<Window> openPopups = new();
+    static readonly List<Window> openPopups = new();
     static PopupsManager instance;
 
-    public static EventHandler<TogglePopupsEventArgs> TogglePopupEventHandler;
+    public static bool IsAPopupOpen => openPopups.Count > 0;
+
+    public static EventHandler<TogglePopupsArgs> TogglePopupEventHandler;
+
+    void OnEnable()
+    {
+        GameStateManager.ChangePlayStateEventHandler += HandleChangePlayState;
+        FateManager.SelectFateEventHandler += HandleSelectFate;
+    }
+
+    void OnDisable()
+    {
+        GameStateManager.ChangePlayStateEventHandler -= HandleChangePlayState;
+        FateManager.SelectFateEventHandler += HandleSelectFate;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -71,22 +85,34 @@ public class PopupsManager : MonoBehaviour, IClickPopup, IOpenSubfate
             case GameStateManager.PlayState.Station:
                 break;
             case GameStateManager.PlayState.Notes:
-                break;
-            case GameStateManager.PlayState.Popups:
-                if (Input.GetMouseButtonDown(1))
+                if (Input.GetMouseButtonDown(1) && IsAPopupOpen)
                     TogglePopup(openPopups[^1], false);
                 break;
         }
-        
     }
 
-    void HandleToggleNotes(object sender, ToggleNotesEventArgs e)
+    void HandleSelectFate(object sender, EventArgs e)
     {
-        FadeBackground(e.isOpening);
+        TogglePopup(selectFatePopup, false);
     }
 
-    public void HandleOpenFateSelect(FateArguments fateArguments)
-        => TogglePopup(selectFatePopup, true);
+    void HandleChangePlayState(object sender, ChangePlayStateEventArgs e)
+    {
+        switch (e.myPlayState)
+        {
+            case GameStateManager.PlayState.None:
+                FadeBackground(false);
+            break;
+
+            case GameStateManager.PlayState.Station:
+                FadeBackground(false);
+            break;
+
+            case GameStateManager.PlayState.Notes:
+                FadeBackground(true);
+            break;
+        }
+    }
 
     public void OnClickPopupButton(PopupsManager.Popup myPopup, bool isOpening)
         => TogglePopup(PopupsToWindow[myPopup], isOpening);
@@ -121,12 +147,11 @@ public class PopupsManager : MonoBehaviour, IClickPopup, IOpenSubfate
         bool isAPopupOpen = openPopups.Count != 0;
         popupWindow.ToggleWindow(isOpening, onComplete, toggleDuration);
 
-        Popup myKey = PopupsToWindow.FirstOrDefault(x => x.Value == popupWindow).Key;
-        OnTogglePopup(myKey, isOpening, openPopups.Count);
+        Popup myPopup = PopupsToWindow.FirstOrDefault(x => x.Value == popupWindow).Key;
+
+        TogglePopupEventHandler?.Invoke(this, new(myPopup, isOpening, openPopups.Count));
     }
 
-    void OnTogglePopup(Popup myPopup, bool isOpening, int newCount)
-        => TogglePopupEventHandler?.Invoke(this, new(myPopup, isOpening, newCount));
 
     void FadeBackground(bool fadeIn)
     {
@@ -158,7 +183,6 @@ public class PopupsManager : MonoBehaviour, IClickPopup, IOpenSubfate
     {
         var crewData = NotesManager.CrewData;
         
-        // Fate
         name_TMP.text = $"{crewData.MyName}";
         photo.sprite = crewData.Picture;
     }
@@ -167,13 +191,13 @@ public class PopupsManager : MonoBehaviour, IClickPopup, IOpenSubfate
         => instance.PopupsToWindow[popup].gameObject.activeSelf;
 }
 
-public class TogglePopupsEventArgs : EventArgs
+public class TogglePopupsArgs : EventArgs
 {
     public readonly PopupsManager.Popup popup;
     public readonly bool isOpening;
     public readonly int countAfterToggled;
 
-    public TogglePopupsEventArgs(Popup popup, bool isOpening, int countAfterToggled)
+    public TogglePopupsArgs(Popup popup, bool isOpening, int countAfterToggled)
     {
         this.popup = popup;
         this.isOpening = isOpening;

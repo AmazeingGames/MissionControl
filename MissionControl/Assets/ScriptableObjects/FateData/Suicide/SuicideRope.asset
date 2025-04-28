@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: SuicideRope
   m_EditorClassIdentifier: Assembly-CSharp::SubFateData
-  shortDisplay: Rope
-  fullDisplay: hanged themself
+  <ShortDisplay>k__BackingField: Rope
+  <FullDisplay>k__BackingField: hanged themself

@@ -7,7 +7,7 @@ using System.Linq;
 using UnityEngine.Assertions;
 
 // Responsible for loading and unloading UI menus
-public class UIManager : MonoBehaviour, IChangeMenuHandler
+public class UIManager : MonoBehaviour, IClickUIButton
 {
     [Header("Menus")]
     [SerializeField] Menu mainMenu;
@@ -15,11 +15,6 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
     [SerializeField] Menu settingsMenu;
     [SerializeField] Menu creditsScreen;
 
-    // [Header("Cameras")]
-    // [SerializeField] Camera userInterfaceCamera;
-    // [SerializeField] LayerMask uiOnlyCullingMask;
-    // [SerializeField] LayerMask allSeeingCullingMask;
-    
     public enum MenuType { None, Previous, MainMenu, Credits, Pause, Settings, Empty }
 
     public static event EventHandler<MenuChangeEventArgs> MenuChangeEventHandler;
@@ -54,8 +49,6 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
         MenuToMenuType = MenuTypeToMenu.ToDictionary(x => x.Value, x => x.Key);
         menus.AddRange(MenuTypeToMenu.Values);
 
-        // Initializes each menu
-        // Makes sure only the main menu is open on start
         foreach (Menu menu in menus)
         {
             if (!MenuToMenuType.TryGetValue(menu, out MenuType menuType))
@@ -74,10 +67,7 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
 
     private void Start()
     {
-        // Debug.Log($"Game Manager's Last Game Action: {GameStateManager.Instance.MyLastGameAction}");
-        //UpdateMenusToGameAction(GameStateManager.Instance.MyLastGameAction);
-
-        UIButton.ChangeMenuHandler = this as IChangeMenuHandler;
+        UIButton.ChangeMenuHandler = this;
     }
 
     private void Update()
@@ -119,23 +109,15 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
             }
         }
         this.Log($"The following canvases are currently active: {(activeCanvases == string.Empty ? "no active canvases" : activeCanvases[..^2])}");
-        
-        // Debug.Log($"The following canvases are currently active: {(activeCanvases == string.Empty ? "no active canvases" : activeCanvases[..^2])}");
         return isAMenuEnabled;
     }
 
-    /// <summary> Sets UI and level camera active based on if there's currently an active canvas in the scene. </summary>
-    /// <param name="setActive"> The SetActive() property the canvas was set to. </param>
     void HandleSetCanvas(object sender, Menu.SetCanvasEventArgs e)
-    {
-        bool isAMenuEnabled = IsAMenuEnabled();
-        // userInterfaceCamera.gameObject.SetActive(isAMenuEnabled);
-        OnMenuChange(CurrentMenuType, previousMenuType, isEnablingMenu: e.setActive);
-    }
+        => OnMenuChange(CurrentMenuType, previousMenuType, isEnablingMenu: e.setActive);
+
     void OnMenuChange(MenuType newMenuType, MenuType previousMenuType, bool isEnablingMenu)
         => MenuChangeEventHandler?.Invoke(this, new(newMenuType, previousMenuType, isEnablingMenu));
 
-    /// <summary> Loads a menu appropraite to the current game action. </summary>
     void UpdateMenusToGameAction(GameStateManager.GameAction action)
     {
         MenuType menuToLoad = action switch
@@ -144,23 +126,17 @@ public class UIManager : MonoBehaviour, IChangeMenuHandler
             GameAction.PauseGame => MenuType.Pause,
             _ => MenuType.Empty,
         };
-
-        // Debug.Log($"Menu Manager: Handled Game Action {action} and loaded menu of type: {menuToLoad}");
-
         LoadMenu(menuToLoad);
     }
 
-    public void OnClick(MenuType myMenuType)
-    { 
-        LoadMenu(myMenuType);
-    }
+    public void HandleUIButton(MenuType myMenuType)
+        => LoadMenu(myMenuType);
 
     void LoadMenu(MenuType myMenuType, bool addToHistory = true, bool addToQueue = true)
     {
         // In the future I would like the game to smoothly switch between screen transitions
         if (UIAnimator.IsPlayingTransitionAnimation)
         {
-            // Debug.LogWarning("Can not change menus during screen transition.");
             if (addToQueue)
                 nextInQueue = myMenuType;
             return;

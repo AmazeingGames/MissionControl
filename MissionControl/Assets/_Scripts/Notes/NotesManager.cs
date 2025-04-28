@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NotesManager : MonoBehaviour, IClickTab
+public class NotesManager : MonoBehaviour
 {
     [Header("Notebook Toggle Tween")]
     [SerializeField] float moveInDuration;
@@ -67,8 +67,7 @@ public class NotesManager : MonoBehaviour, IClickTab
     [SerializeField] Image crewMatePicture;
 
     Sequence notebookSequence;
-    public static EventHandler<ToggleNotesEventArgs> OpenNotesEventHandler;
-    public static IToggleNotes OpenNotesHandler;
+    public static IToggleNotes ToggleNotesHandler;
 
     public static CrewData CrewData { get; private set; }
 
@@ -78,8 +77,6 @@ public class NotesManager : MonoBehaviour, IClickTab
 
     private IEnumerator Start()
     {
-        NotesTab.ClickTabHandler = this;
-
         InitializePages();
 
         yield return null;
@@ -95,11 +92,13 @@ public class NotesManager : MonoBehaviour, IClickTab
     void OnEnable()
     {
         GameStateManager.PerformGameActionEventHandler += HandlePerformGameAction;
+        NotesTab.ClickTabEventHandler += HandleClickTab;
     }
 
     void OnDisable()
     {
         GameStateManager.PerformGameActionEventHandler -= HandlePerformGameAction;
+        NotesTab.ClickTabEventHandler -= HandleClickTab;
     }
 
     bool areNotesOpen;
@@ -111,11 +110,12 @@ public class NotesManager : MonoBehaviour, IClickTab
         {
             case GameStateManager.GameAction.None:
                 break;
+
             case GameStateManager.GameAction.EnterMainMenu:
             case GameStateManager.GameAction.StartGame:
                 ToggleNotes(false);
-
                 break;
+
             case GameStateManager.GameAction.PauseGame:
                 wasOpenOnPause = areNotesOpen;
                 ToggleNotes(false);
@@ -143,20 +143,21 @@ public class NotesManager : MonoBehaviour, IClickTab
             case GameStateManager.PlayState.Notes:
                 if (Input.GetButtonDown("Notes"))
                     ToggleNotes(isOpening: false);
+
+                if (!PopupsManager.IsAPopupOpen)
+                {
+                    if (Input.GetKeyDown(KeyCode.D))
+                        TurnNextPage();
+                    if (Input.GetKeyDown(KeyCode.A))
+                        TurnPreviousPage();
+                }
+                
                 break;
 
             case GameStateManager.PlayState.Station:
                 if (Input.GetButtonDown("Notes"))
                     ToggleNotes(isOpening: true);
                 break;
-        }
-
-        if (areNotesOpen)
-        {
-            if (Input.GetKeyDown(KeyCode.D))
-                TurnNextPage();
-            if (Input.GetKeyDown(KeyCode.A))
-                TurnPreviousPage();
         }
     }
 
@@ -179,7 +180,7 @@ public class NotesManager : MonoBehaviour, IClickTab
     void ToggleNotes(bool isOpening)
     {
         areNotesOpen = isOpening;
-        OpenNotesEventHandler?.Invoke(this, new(isOpening));
+        ToggleNotesHandler?.HandleToggleNotes(new(isOpening));
 
         notebookSequence?.Kill();
         notebookSequence = DOTween.Sequence();
@@ -251,19 +252,19 @@ public class NotesManager : MonoBehaviour, IClickTab
     }
 
 
-    public void OnClickTab(CrewData crewData)
+    public void HandleClickTab(object sender, ClickTabEventArgs e)
     {
-        CrewData = crewData;
+        CrewData = e.crewData;
 
-        role_TMP.DOText($"{crewData.MyRole}", titleEaseDuration, true, textScrambleMode, textScrambleChars).SetEase(textEase);
-        name_TMP.DOText($"- {crewData.MyName} -", titleEaseDuration, true, textScrambleMode, textScrambleChars).SetEase(textEase);
+        role_TMP.DOText($"{e.crewData.MyRole}", titleEaseDuration, true, textScrambleMode, textScrambleChars).SetEase(textEase);
+        name_TMP.DOText($"- {e.crewData.MyName} -", titleEaseDuration, true, textScrambleMode, textScrambleChars).SetEase(textEase);
 
         string targetText = "";
         StartCoroutine(TurnToPageCoroutine(fateSelectPage));
 
-        fate_TMP.DOText($"{crewData.MyName}'s fate is unkown", buttonTextAppearDuration, true, buttonTextScrambleMode, null).SetEase(buttonTextEase);
+        fate_TMP.DOText($"{e.crewData.MyName} {FateManager.GetGuessedFate(e.crewData.MyName).FullDisplay}", buttonTextAppearDuration, true, buttonTextScrambleMode, null).SetEase(buttonTextEase);
         logs_TMP.DOText($"Logs Logs Logs", buttonTextAppearDuration, true, buttonTextScrambleMode, null).SetEase(buttonTextEase);
-        crewMatePicture.sprite = crewData.Picture;
+        crewMatePicture.sprite = e.crewData.Picture;
 
         foreach (var button in fateSelectButtons)
         {
@@ -323,7 +324,7 @@ public class NotesManager : MonoBehaviour, IClickTab
 
 public interface IToggleNotes
 {
-    public void HandleToggleNotes();
+    public void HandleToggleNotes(ToggleNotesArgs e);
 }
 
 public class ToggleNotesArgs

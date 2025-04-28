@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf55f272930b1dd4ca7e6883b8638154, type: 3}
   m_Name: CaptainData
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Socha
+  <MyName>k__BackingField: 0
   <MyRole>k__BackingField: 0
   <Icon>k__BackingField: {fileID: -1927911570766903740, guid: fe42c8b526e77e54ab91d0590272d9e8, type: 3}
   <IconColor>k__BackingField: {r: 0.5882353, g: 0.3882353, b: 0.69803923, a: 1}

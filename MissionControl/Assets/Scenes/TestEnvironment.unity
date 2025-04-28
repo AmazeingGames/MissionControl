@@ -7007,7 +7007,6 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420033}
   - component: {fileID: 519420031}
-  - component: {fileID: 519420030}
   - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
@@ -7016,18 +7015,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &519420030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -8314,7 +8301,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 619394802}
-  - component: {fileID: 619394801}
   m_Layer: 0
   m_Name: Global Light 2D
   m_TagString: Untagged
@@ -8322,18 +8308,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &619394801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619394800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &619394802
 Transform:
   m_ObjectHideFlags: 0
@@ -9967,7 +9941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3034656760131641209, guid: acae45d0e44ba0a459697b6268b2513c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3219538043843085232, guid: acae45d0e44ba0a459697b6268b2513c, type: 3}
       propertyPath: m_IsActive
@@ -19329,7 +19303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1391609335
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21345,6 +21319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rememberPageNumber: 0
   fateButtonsParent: {fileID: 1017841627}
+  unkownFate: {fileID: 11400000, guid: b5c57d8af1f899a40949117b400da6ac, type: 2}
   fates:
   - {fileID: 11400000, guid: 237c1a0359b616f4688f586df95ea8c7, type: 2}
   - {fileID: 11400000, guid: cbb858ee5e4f7144bb10322669346305, type: 2}
@@ -21362,6 +21337,8 @@ MonoBehaviour:
   LizsFate: {fileID: 11400000, guid: 32a79c3de92ecba44aa9e9def59b2f1a, type: 2}
   MelsFate: {fileID: 11400000, guid: 81343cbe17b73bf43b37ee018f6c8a86, type: 2}
   BlakesFate: {fileID: 11400000, guid: 75853760f0dad9345be2681c99f70dba, type: 2}
+  crewMateFate_TMP: {fileID: 1624803803}
+  selectFate_TMP: {fileID: 1425672639}
 --- !u!1 &1561561846
 GameObject:
   m_ObjectHideFlags: 0
@@ -21518,7 +21495,7 @@ GameObject:
   - component: {fileID: 1578676818}
   - component: {fileID: 1578676819}
   m_Layer: 0
-  m_Name: Gameplay
+  m_Name: GameplayManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21824,22 +21801,28 @@ MonoBehaviour:
   loggers:
   - <LoggingObject>k__BackingField: {fileID: 1578676817}
     <MyTextColor>k__BackingField: 1
-    <ShouldLog>k__BackingField: 0
+    <ShouldLog>k__BackingField: 1
+    <ShouldLogWarnings>k__BackingField: 1
   - <LoggingObject>k__BackingField: {fileID: 1658043176}
     <MyTextColor>k__BackingField: 8
-    <ShouldLog>k__BackingField: 1
+    <ShouldLog>k__BackingField: 0
+    <ShouldLogWarnings>k__BackingField: 0
   - <LoggingObject>k__BackingField: {fileID: 1291743066}
     <MyTextColor>k__BackingField: 10
     <ShouldLog>k__BackingField: 0
+    <ShouldLogWarnings>k__BackingField: 1
   - <LoggingObject>k__BackingField: {fileID: 1963455906}
     <MyTextColor>k__BackingField: 0
     <ShouldLog>k__BackingField: 0
-  - <LoggingObject>k__BackingField: {fileID: 1498266428}
-    <MyTextColor>k__BackingField: 0
-    <ShouldLog>k__BackingField: 0
+    <ShouldLogWarnings>k__BackingField: 1
   - <LoggingObject>k__BackingField: {fileID: 1498266428}
     <MyTextColor>k__BackingField: 15
+    <ShouldLog>k__BackingField: 0
+    <ShouldLogWarnings>k__BackingField: 1
+  - <LoggingObject>k__BackingField: {fileID: 1558199139}
+    <MyTextColor>k__BackingField: 16
     <ShouldLog>k__BackingField: 1
+    <ShouldLogWarnings>k__BackingField: 1
   <WindowsLogger>k__BackingField: {fileID: 1498266428}
 --- !u!1 &1610715496
 GameObject:
@@ -28453,7 +28436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9204340313623571620, guid: f5d96c2a0702da44498da64c1933d6b2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3067937178894325800, guid: f5d96c2a0702da44498da64c1933d6b2, type: 3}

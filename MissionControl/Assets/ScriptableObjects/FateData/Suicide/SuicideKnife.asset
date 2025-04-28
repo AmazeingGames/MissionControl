@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: SuicideKnife
   m_EditorClassIdentifier: Assembly-CSharp::SubFateData
-  shortDisplay: Knife
-  fullDisplay: stabbed themself
+  <ShortDisplay>k__BackingField: Knife
+  <FullDisplay>k__BackingField: stabbed themself

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Sector8
   m_EditorClassIdentifier: Assembly-CSharp::SubFateData
-  shortDisplay: Sector-8
-  fullDisplay: in Sector-8
+  <ShortDisplay>k__BackingField: Sector-8
+  <FullDisplay>k__BackingField: in Sector-8

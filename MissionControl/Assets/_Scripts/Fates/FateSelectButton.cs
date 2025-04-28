@@ -10,20 +10,16 @@ public class FateSelectButton : MonoBehaviour, IPointerClickHandler
     FateData fate;
 
     public static ISelectFate selectFateHandler;
-    public static IOpenSubfate openSubFateHandler;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (fate.SubFates == null || fate.SubFates.Count == 0)
-            selectFateHandler?.HandleSelectFate(new FateArguments(fate));
-        else
-            openSubFateHandler?.HandleOpenFateSelect(new FateArguments(fate));
+        selectFateHandler?.HandleSelectFate(new FateArguments(fate));
     }
 
-    public void Initialize(FateData fate)
+    public void InitializeFate(FateData fate)
     {
         this.fate = fate;
-        
+
         if (fate != null)
         {
             gameObject.SetActive(true);
@@ -34,31 +30,11 @@ public class FateSelectButton : MonoBehaviour, IPointerClickHandler
     }
 }
 
-/*public class SelectFateEventArgs : EventArgs
-{
-    public bool SelectSubFate { get; private set; }
-    public FateData Fate { get; private set; }
-    public SelectFateEventArgs(FateData fate)
-    {
-        Fate = fate;
-        SelectSubFate = fate.SubFates != null && fate.SubFates.Count > 0;
-    }
-}*/
+public interface ISelectFate { void HandleSelectFate(FateArguments fateArguments); }
 
-public interface IOpenSubfate
-{
-    void HandleOpenFateSelect(FateArguments fateArguments);
-}
-
-public interface ISelectFate
-{
-    void HandleSelectFate(FateArguments fateArguments);
-}
-
-public class FateArguments
-{
+public class FateArguments 
+{ 
     public readonly FateData fate;
-
     public FateArguments(FateData fate)
     {
         this.fate = fate;
