@@ -59,7 +59,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setChildren: 1
-  isBackPage: 0
 --- !u!114 &4661210423510609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,7 +255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 1f767181f83145740b8941ef5d2abfe1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -279,7 +278,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setChildren: 1
-  isBackPage: 0
 --- !u!1 &4301135665707931540
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +378,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 5bdc41c9bb7e0ef46a4b68d34d6f1d3c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -415,7 +413,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setChildren: 1
-  isBackPage: 0
 --- !u!1 &8703791995047204265
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +563,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setChildren: 1
-  isBackPage: 0
 --- !u!1 &8945846616526257922
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +622,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setChildren: 1
-  isBackPage: 0
 --- !u!114 &8256219410673679368
 MonoBehaviour:
   m_ObjectHideFlags: 0

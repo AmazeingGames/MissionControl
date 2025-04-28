@@ -8,12 +8,10 @@ using UnityEngine;
 public class CrewData : ScriptableObject
 {
     public enum Role { Captain, Engineer, Specialist, Scientist, Doctor }
+    public enum Name { Socha, Mel, Blake, Alvaro, Liz, NoOne }
 
     [Header("Text")]
-    [field: PreviouslySerializedAs("name")]
-    [field: SerializeField] public string Name { get; private set; }
-    
-    [field: PreviouslySerializedAs("myRole")]
+    [field: SerializeField] public Name MyName { get; private set; } = Name.NoOne;
     [field: SerializeField] public Role MyRole {get; private set; }
 
     [Header("Visuals")]

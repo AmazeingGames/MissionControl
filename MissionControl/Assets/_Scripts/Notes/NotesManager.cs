@@ -67,7 +67,8 @@ public class NotesManager : MonoBehaviour, IClickTab
     [SerializeField] Image crewMatePicture;
 
     Sequence notebookSequence;
-    public static EventHandler<OpenNotesEventArgs> OpenNotesEventHandler;
+    public static EventHandler<ToggleNotesEventArgs> OpenNotesEventHandler;
+    public static IToggleNotes OpenNotesHandler;
 
     public static CrewData CrewData { get; private set; }
 
@@ -255,12 +256,12 @@ public class NotesManager : MonoBehaviour, IClickTab
         CrewData = crewData;
 
         role_TMP.DOText($"{crewData.MyRole}", titleEaseDuration, true, textScrambleMode, textScrambleChars).SetEase(textEase);
-        name_TMP.DOText($"- {crewData.Name} -", titleEaseDuration, true, textScrambleMode, textScrambleChars).SetEase(textEase);
+        name_TMP.DOText($"- {crewData.MyName} -", titleEaseDuration, true, textScrambleMode, textScrambleChars).SetEase(textEase);
 
         string targetText = "";
         StartCoroutine(TurnToPageCoroutine(fateSelectPage));
 
-        fate_TMP.DOText($"{crewData.Name}'s fate is unkown", buttonTextAppearDuration, true, buttonTextScrambleMode, null).SetEase(buttonTextEase);
+        fate_TMP.DOText($"{crewData.MyName}'s fate is unkown", buttonTextAppearDuration, true, buttonTextScrambleMode, null).SetEase(buttonTextEase);
         logs_TMP.DOText($"Logs Logs Logs", buttonTextAppearDuration, true, buttonTextScrambleMode, null).SetEase(buttonTextEase);
         crewMatePicture.sprite = crewData.Picture;
 
@@ -320,12 +321,16 @@ public class NotesManager : MonoBehaviour, IClickTab
     }
 }
 
-public class OpenNotesEventArgs : EventArgs
+public interface IToggleNotes
+{
+    public void HandleToggleNotes();
+}
+
+public class ToggleNotesArgs
 {
     public readonly bool isOpening;
-
-    public OpenNotesEventArgs(bool isOpening)
-    {
-        this.isOpening = isOpening;
+    public ToggleNotesArgs(bool isOpening)
+    { 
+        this.isOpening = isOpening; 
     }
 }

@@ -13,14 +13,13 @@ using static PlayerMovement;
 
 /* 
  * It's unclear as to exactly which scripts should be responsible for communicating important actions to the Game State Manager in game state, as well as how they should do it as, as the game manager currently acts as 'middle-man' between different events.
- * I would potentially be interested in exploring a different communication patterns to use instead of events, namely dependency injection, because I think it's an interesting enough design problem worth looking into. 
  * The less events this class subscribes to the better, as it necessarily creates large chains of events.
 */
 
 public class GameStateManager : MonoBehaviour, IGameStateActionHandler
 {
     readonly KeyCode pauseKey = KeyCode.Escape;
-    public enum PlayState { None, Station, Notes }
+    public enum PlayState { None, Station, Notes, Popups }
     public enum GameState { None, InMenu, Running, Paused, Loading }
     public enum GameAction { None, EnterMainMenu, StartGame, PauseGame, ResumeGame, LoseGame, QuitGame }
 
@@ -31,7 +30,6 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
     
     public GameAction MyLastGameAction { get; private set; }
 
-    // I really dislike the wordy names for these, but they're named this way to differentiate themselves from the GameplayManager's events
     public static EventHandler<GameStateChangeEventArgs> GameStateChangeEventHandler;
     public static EventHandler<PerformGameActionEventArgs> PerformGameActionEventHandler;
 
@@ -54,7 +52,7 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
         MyPlayState = PlayState.Station;
     }    
 
-    void HandleOpenNotes(object sender, OpenNotesEventArgs e)
+    void HandleOpenNotes(object sender, ToggleNotesEventArgs e)
     {
         MyPlayState = e.isOpening ? PlayState.Notes : PlayState.Station;
     }
@@ -70,7 +68,7 @@ public class GameStateManager : MonoBehaviour, IGameStateActionHandler
     {
         Assert.IsNull(instance, "Only 1 game state manager should exist in the scene at a time.");
         instance = this;
-        UIButton.GameStateActionHandler = this as IGameStateActionHandler;
+        UIButton.GameStateActionHandler = this;
         
         PerformGameAction(GameAction.EnterMainMenu);
 

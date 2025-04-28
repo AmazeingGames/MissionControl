@@ -21,7 +21,7 @@ public class PopupButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        clickPopupHandler?.OnClickPopup(myPopup, isOpening);
+        clickPopupHandler?.OnClickPopupButton(myPopup, isOpening);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -52,5 +52,5 @@ public class PopupButton : MonoBehaviour, IPointerClickHandler
 
 public interface IClickPopup
 {
-    void OnClickPopup(PopupsManager.Popup myPopup, bool isOpening);
+    void OnClickPopupButton(PopupsManager.Popup myPopup, bool isOpening);
 }

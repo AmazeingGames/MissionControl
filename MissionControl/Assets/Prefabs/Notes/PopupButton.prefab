@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5501104800828783913}
   - component: {fileID: 793411050837111246}
   m_Layer: 0
-  m_Name: FateSelectButton
+  m_Name: PopupButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
