@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+[ExecuteInEditMode]
 public class NotesTab : MonoBehaviour, IPointerClickHandler
 {
     [Header("Properties")]
@@ -14,14 +15,17 @@ public class NotesTab : MonoBehaviour, IPointerClickHandler
 
     public static EventHandler<ClickTabEventArgs> ClickTabEventHandler;
 
-    private void OnValidate()
+    private void Start()
+    {
+        if (Application.isEditor)
+            return;
+        DataMatch();
+    }
+    private void Update()
     {
         if (image != null && crewData != null)
             DataMatch();
     }
-
-    private void Start()   
-        => DataMatch();
 
     void DataMatch()
     {

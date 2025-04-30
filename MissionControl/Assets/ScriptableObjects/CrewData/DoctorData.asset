@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MyName>k__BackingField: 4
   <MyRole>k__BackingField: 4
-  <Icon>k__BackingField: {fileID: 4279260276780606416, guid: 3da05e9f66c9f254c8875335e7e9179e, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 08760e2f91904274485f2bd3ae2af3ac, type: 3}
   <IconColor>k__BackingField: {r: 0.627451, g: 0.4392157, b: 0.8901961, a: 1}
   <Picture>k__BackingField: {fileID: 21300000, guid: 6aaebae9fbcea6541ab9299af9217ba4, type: 3}

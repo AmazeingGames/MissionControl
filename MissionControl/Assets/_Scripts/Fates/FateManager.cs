@@ -7,14 +7,14 @@ using UnityEngine;
 public class FateManager : MonoBehaviour, ISelectFate
 {
     [Header("Settings")]
-    [SerializeField] bool rememberPageNumber;
+    [SerializeField] bool shouldRememberPage;
 
     [Header("Buttons")]
     [SerializeField] Transform fateButtonsParent;
 
     [Header("All Fates")]
     [SerializeField] FateData unkownFate;
-    [SerializeField] List<FateData> fates;
+    [SerializeField] List<FateData> allFates;
 
     [Header("Correct Fates")]
     [SerializeField] FateData LynnsFate;
@@ -27,7 +27,6 @@ public class FateManager : MonoBehaviour, ISelectFate
     [SerializeField] TextMeshProUGUI crewMateFate_TMP;
     [SerializeField] TextMeshProUGUI selectFate_TMP;
     readonly List<FateSelectButton> fateSelectButtons = new();
-    int currentPage = -1;
 
     List<FateData> viewingFates = null;
 
@@ -37,7 +36,8 @@ public class FateManager : MonoBehaviour, ISelectFate
 
     CrewData crewData;
 
-    List<FateData> selectedFates = new();
+    readonly List<FateData> selectedFates = new();
+    readonly Dictionary<List<FateData>, int> FatesToPageNumber = new();
 
     private void OnEnable()
     {
@@ -73,9 +73,17 @@ public class FateManager : MonoBehaviour, ISelectFate
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.D))
-            DisplayFates(currentPage + 1, viewingFates);
+            DisplayFates(GetLastViewedPage(viewingFates) + 1, viewingFates);
         else if (Input.GetKeyDown(KeyCode.A))
-            DisplayFates(currentPage - 1, viewingFates);
+            DisplayFates(GetLastViewedPage(viewingFates) - 1, viewingFates);
+    }
+
+    int GetLastViewedPage(List<FateData> fatesToView)
+    {
+        if (FatesToPageNumber.TryGetValue(fatesToView, out int pageNumber))
+            return pageNumber;
+        else
+            return 0;
     }
 
     public static FateData GetGuessedFate(CrewData.Name name)
@@ -121,7 +129,7 @@ public class FateManager : MonoBehaviour, ISelectFate
             }
         }
         else
-            DisplayFates(0, fateData.SubFates);
+            DisplayFates(GetLastViewedPage(fateData.SubFates), fateData.SubFates);
     }
 
     void HandleTogglePopup(object sender, TogglePopupsArgs e)
@@ -133,10 +141,12 @@ public class FateManager : MonoBehaviour, ISelectFate
                 break;
 
             case PopupsManager.Popup.SelectFate:
-                int pageToOpen = rememberPageNumber ? currentPage : 0;
-                pageToOpen = pageToOpen == -1 ? 0 : pageToOpen;
-
-                DisplayFates(pageToOpen, fates);                    
+                if (e.isOpening)
+                {
+                    int pageToOpen = shouldRememberPage ? GetLastViewedPage(allFates) : 0;
+                    this.Log($"Opened fates at page: {pageToOpen}");
+                    DisplayFates(pageToOpen, allFates);
+                }
                 break;
         }
     }
@@ -148,25 +158,39 @@ public class FateManager : MonoBehaviour, ISelectFate
         selectFate_TMP.text = $"{GetGuessedFate(e.crewData.MyName).FullDisplay}";
     }
 
-    void DisplayFates(int pageNumber, List<FateData> fates)
+    void DisplayFates(int pageNumber, List<FateData> fatesToDisplay)
     {
-        if (fates == null)
+        if (fatesToDisplay == null)
+        {
+            this.LogWarning("Fates to display are null");
             return;
+        }
 
-        if (pageNumber < 0 || pageNumber * fateSelectButtons.Count > fates.Count)
+        if (pageNumber < 0 || pageNumber * fateSelectButtons.Count > fatesToDisplay.Count)
+        {
+            this.LogWarning("Page number is out of list range");
             return;
+        }
 
-        currentPage = pageNumber;
-        viewingFates = fates;
+        this.Log($"Displayed page {pageNumber} for fates list {fatesToDisplay}");
+        if (FatesToPageNumber.TryGetValue(fatesToDisplay, out _))
+            FatesToPageNumber[fatesToDisplay] = pageNumber;
+        else
+            FatesToPageNumber.Add(fatesToDisplay, pageNumber);
+
+        this.Log($"fatesToPageNumber dictionary count: {FatesToPageNumber.Count}");
+        this.Log($"Selected Fates Count on Display Fates: {selectedFates.Count}");
+        
+        viewingFates = fatesToDisplay;
 
         for (int i = 0; i < fateSelectButtons.Count; i++)
         {
             FateSelectButton button = fateSelectButtons[i];
 
             int fateToSelect = i + (pageNumber * fateSelectButtons.Count);
-            if (fateToSelect < fates.Count)
+            if (fateToSelect < fatesToDisplay.Count)
             {
-                var fate = fates[fateToSelect];
+                var fate = fatesToDisplay[fateToSelect];
                 button.InitializeFate(fate);
             }
             else
