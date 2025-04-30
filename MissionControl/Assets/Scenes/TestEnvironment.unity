@@ -12720,10 +12720,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3651515461596628487, guid: 09b89b892b15bf24086bef856a8fd212, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3651515461596628487, guid: 09b89b892b15bf24086bef856a8fd212, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
@@ -23124,10 +23120,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3651515461596628487, guid: 09b89b892b15bf24086bef856a8fd212, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3651515461596628487, guid: 09b89b892b15bf24086bef856a8fd212, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
@@ -23775,10 +23767,6 @@ PrefabInstance:
     - target: {fileID: 3651515461596628487, guid: 09b89b892b15bf24086bef856a8fd212, type: 3}
       propertyPath: m_Type
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3651515461596628487, guid: 09b89b892b15bf24086bef856a8fd212, type: 3}
-      propertyPath: m_Sprite
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3651515461596628487, guid: 09b89b892b15bf24086bef856a8fd212, type: 3}
       propertyPath: m_Material
@@ -26760,10 +26748,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3651515461596628487, guid: 09b89b892b15bf24086bef856a8fd212, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3651515461596628487, guid: 09b89b892b15bf24086bef856a8fd212, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
@@ -28763,10 +28747,6 @@ PrefabInstance:
     - target: {fileID: 3651515461596628487, guid: 09b89b892b15bf24086bef856a8fd212, type: 3}
       propertyPath: m_Type
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3651515461596628487, guid: 09b89b892b15bf24086bef856a8fd212, type: 3}
-      propertyPath: m_Sprite
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3651515461596628487, guid: 09b89b892b15bf24086bef856a8fd212, type: 3}
       propertyPath: m_Material
