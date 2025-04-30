@@ -16,6 +16,7 @@ MonoBehaviour:
   <FullDisplay>k__BackingField: is alive
   <HasPerpetrator>k__BackingField: 0
   <SubFates>k__BackingField:
-  - {fileID: 11400000, guid: 97473f4acda47124a833a8f1473d4223, type: 2}
-  - {fileID: 11400000, guid: 938a5f36f5e361f44b55c8af42571ecc, type: 2}
+  - {fileID: 11400000, guid: d6dbd0075ce4eac4d9e55d61ec5ca8b9, type: 2}
+  - {fileID: 11400000, guid: 80e6d1b974f9c1d4e9cc698b3dc97fdb, type: 2}
+  - {fileID: 11400000, guid: 18aef6125c5bf074496e19cb681c18c6, type: 2}
   <SelectedSubFate>k__BackingField: {fileID: 0}

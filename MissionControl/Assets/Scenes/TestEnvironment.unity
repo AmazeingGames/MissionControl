@@ -21321,6 +21321,8 @@ MonoBehaviour:
   fateButtonsParent: {fileID: 1017841627}
   unkownFate: {fileID: 11400000, guid: b5c57d8af1f899a40949117b400da6ac, type: 2}
   fates:
+  - {fileID: 11400000, guid: 3c355f9d7a4975c41a447c1902ed10e2, type: 2}
+  - {fileID: 11400000, guid: 10659401383158544b79f046b3e3ebc9, type: 2}
   - {fileID: 11400000, guid: 237c1a0359b616f4688f586df95ea8c7, type: 2}
   - {fileID: 11400000, guid: cbb858ee5e4f7144bb10322669346305, type: 2}
   - {fileID: 11400000, guid: 32a79c3de92ecba44aa9e9def59b2f1a, type: 2}
@@ -21330,8 +21332,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 90ee7f8cb1af4ea4a87102f62ca2eba9, type: 2}
   - {fileID: 11400000, guid: 9b1d3d03235d4f4419e39ad3558ffd9d, type: 2}
   - {fileID: 11400000, guid: b5c57d8af1f899a40949117b400da6ac, type: 2}
-  - {fileID: 11400000, guid: 10659401383158544b79f046b3e3ebc9, type: 2}
-  - {fileID: 11400000, guid: 3c355f9d7a4975c41a447c1902ed10e2, type: 2}
   LynnsFate: {fileID: 11400000, guid: 237c1a0359b616f4688f586df95ea8c7, type: 2}
   AlvarosFate: {fileID: 11400000, guid: cbb858ee5e4f7144bb10322669346305, type: 2}
   LizsFate: {fileID: 11400000, guid: 32a79c3de92ecba44aa9e9def59b2f1a, type: 2}
@@ -21801,7 +21801,7 @@ MonoBehaviour:
   loggers:
   - <LoggingObject>k__BackingField: {fileID: 1578676817}
     <MyTextColor>k__BackingField: 1
-    <ShouldLog>k__BackingField: 1
+    <ShouldLog>k__BackingField: 0
     <ShouldLogWarnings>k__BackingField: 1
   - <LoggingObject>k__BackingField: {fileID: 1658043176}
     <MyTextColor>k__BackingField: 8

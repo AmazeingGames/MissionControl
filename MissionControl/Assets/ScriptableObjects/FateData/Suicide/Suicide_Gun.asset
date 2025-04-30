@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8263b1bcc4c304342a844c4a371f3f29, type: 3}
-  m_Name: SuicideGun
-  m_EditorClassIdentifier: Assembly-CSharp::SubFateData
+  m_Script: {fileID: 11500000, guid: 9efbf48f4abbc234582d25e5549cada4, type: 3}
+  m_Name: Suicide_Gun
+  m_EditorClassIdentifier: 
   <ShortDisplay>k__BackingField: Gun
   <FullDisplay>k__BackingField: shot themself
+  <HasPerpetrator>k__BackingField: 0
+  <SubFates>k__BackingField: []
+  <SelectedSubFate>k__BackingField: {fileID: 0}

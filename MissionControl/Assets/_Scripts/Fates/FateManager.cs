@@ -29,13 +29,15 @@ public class FateManager : MonoBehaviour, ISelectFate
     readonly List<FateSelectButton> fateSelectButtons = new();
     int currentPage = -1;
 
-    readonly List<FateData> viewingFates = null;
+    List<FateData> viewingFates = null;
 
     public static EventHandler SelectFateEventHandler;
 
     static List<MemberFateData> membersFateData;
 
     CrewData crewData;
+
+    List<FateData> selectedFates = new();
 
     private void OnEnable()
     {
@@ -84,12 +86,31 @@ public class FateManager : MonoBehaviour, ISelectFate
 
     public void HandleSelectFate(FateArguments fateArguments)
     {
-        if (fateArguments.fate.SubFates.Count == 0)
-        {
-            GetMemberFate(crewData.MyName).SetGuessedFate(fateArguments.fate);
+        var fateData = fateArguments.fate;
 
-            crewMateFate_TMP.text = $"{crewData.MyName} {fateArguments.fate.FullDisplay}";
-            selectFate_TMP.text = $"{fateArguments.fate.FullDisplay}";
+        if (selectedFates.Count > 0)
+        {
+            FateData lastSelectedFate = selectedFates[^1];
+
+            if (!lastSelectedFate.SubFates.Contains(fateData))
+            {
+                this.Log("Fate not contained as a subfate in previously selected fate");
+                selectedFates.Clear();
+                selectFate_TMP.text = "";
+            }
+        }
+        else
+            selectFate_TMP.text = "";
+        selectedFates.Add(fateData);
+
+        this.Log($"Selected fates count: {selectedFates.Count}");
+
+        crewMateFate_TMP.text = $"{crewData.MyName} {fateData.FullDisplay}";
+        selectFate_TMP.text += $"{fateData.FullDisplay}{(fateData.FullDisplay != "" ? " " : "")}";
+
+        if (fateData.SubFates.Count == 0)
+        {
+            GetMemberFate(crewData.MyName).SetGuessedFate(fateData);
 
             for (int i = 0; i < membersFateData.Count; i++)
             {
@@ -100,7 +121,7 @@ public class FateManager : MonoBehaviour, ISelectFate
             }
         }
         else
-            DisplayFates(0, fateArguments.fate.SubFates);
+            DisplayFates(0, fateData.SubFates);
     }
 
     void HandleTogglePopup(object sender, TogglePopupsArgs e)
@@ -136,6 +157,7 @@ public class FateManager : MonoBehaviour, ISelectFate
             return;
 
         currentPage = pageNumber;
+        viewingFates = fates;
 
         for (int i = 0; i < fateSelectButtons.Count; i++)
         {
