@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour, IClickUIButton
     [SerializeField] Menu settingsMenu;
     [SerializeField] Menu creditsScreen;
 
+    [SerializeField] List<GameObject> menuAudioSources;
+
     public enum MenuType { None, Previous, MainMenu, Credits, Pause, Settings, Empty }
 
     public static event EventHandler<MenuChangeEventArgs> MenuChangeEventHandler;
@@ -168,6 +170,9 @@ public class UIManager : MonoBehaviour, IClickUIButton
                 Assert.IsNotNull(menuToLoad, $"Add {myMenuType} to MenuTypeToMenu dictionary or above switch expression. ");
                 break;
         }
+
+        foreach (var gameObject in menuAudioSources)
+            gameObject.SetActive(IsAMenuEnabled());
     }
 
     /// <summary> Loads a menu while unloading the previous menu </summary>

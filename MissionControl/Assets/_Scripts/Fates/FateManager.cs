@@ -93,7 +93,7 @@ public class FateManager : MonoBehaviour, ISelectFate
     }
 
     public static FateData GetGuessedFate(CrewData.Name name)
-        => membersFateData.First(d => d.myName == name).GuessedFate;
+        => membersFateData.First(membersFateData => membersFateData.myName == name).GuessedFate;
 
     MemberFateData GetMemberFate(CrewData.Name name)
         => membersFateData.First(d => d.myName == name);

@@ -74,6 +74,30 @@ MonoBehaviour:
   - Name: Desktop
     Value: 52416
   Exists: 1
+--- !u!114 &-8733310785002822138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level 03/Intensity
+  m_EditorClassIdentifier: 
+  Name: Intensity
+  StudioPath: 
+  Min: 0
+  Max: 4
+  Default: 0
+  ID:
+    data1: 4130366537
+    data2: 2699559447
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-8607654596069024498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +174,34 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-7324419943913973070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level 02
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level 02
+  Guid:
+    Data1: -939964675
+    Data2: 1234949781
+    Data3: 661987496
+    Data4: 496157849
+  Banks:
+  - {fileID: -6539858603637091978}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -974641337794401602}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 56888
 --- !u!114 &-7211691110695671500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,12 +288,12 @@ MonoBehaviour:
   Path: ../../../../../FMOD/MicroKart/MicroKart Racing/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638802515875638131
+  lastModified: 638817270690945569
   FileSizes:
   - Name: Desktop
-    Value: 12975008
+    Value: 16541152
   Exists: 1
---- !u!114 &-6232183901511566876
+--- !u!114 &-6318331860431498890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,21 +303,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Level 01/Progression
+  m_Name: parameter:/Radio Station/Freq
   m_EditorClassIdentifier: 
-  Name: Progression
+  Name: Freq
   StudioPath: 
   Min: 0
-  Max: 1
+  Max: 3
   Default: 0
   ID:
-    data1: 3062800359
-    data2: 1731195358
-  Type: 2
+    data1: 3651039008
+    data2: 3735099248
+  Type: 0
   IsGlobal: 0
-  Labels:
-  - Intro
-  - Main
+  Labels: []
   Exists: 1
 --- !u!114 &-5893549321130278547
 MonoBehaviour:
@@ -347,30 +397,6 @@ MonoBehaviour:
   - Noon
   - Evening
   Exists: 1
---- !u!114 &-5023267026361158613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Level 01/Stinger
-  m_EditorClassIdentifier: 
-  Name: Stinger
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 92787679
-    data2: 313628491
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
 --- !u!114 &-4988572609729456728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,30 +424,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2182
---- !u!114 &-4612777090259561180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Level 03/Stinger
-  m_EditorClassIdentifier: 
-  Name: Stinger
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 92787679
-    data2: 313628491
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
 --- !u!114 &-4612268319811771755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,30 +444,6 @@ MonoBehaviour:
   ID:
     data1: 3876895713
     data2: 1350755851
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-4352633589658491857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Radio Station/Freq
-  m_EditorClassIdentifier: 
-  Name: Freq
-  StudioPath: 
-  Min: 0
-  Max: 3
-  Default: 0
-  ID:
-    data1: 3651039008
-    data2: 3735099248
   Type: 0
   IsGlobal: 0
   Labels: []
@@ -498,35 +476,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-3795238920750069196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/Level 01
-  m_EditorClassIdentifier: 
-  Path: event:/Music/Level 01
-  Guid:
-    Data1: 1958460028
-    Data2: 1217165032
-    Data3: -261621348
-    Data4: -48242944
-  Banks:
-  - {fileID: -6539858603637091978}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -5023267026361158613}
-  - {fileID: -6232183901511566876}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 54339
 --- !u!114 &-3791332423199435208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,7 +503,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1274
---- !u!114 &-3342668482515635656
+--- !u!114 &-3600981210288897361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -564,23 +513,52 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/Kart Music
+  m_Name: event:/Music/Level 03
   m_EditorClassIdentifier: 
-  Path: event:/Music/Kart Music
+  Path: event:/Music/Level 03
   Guid:
-    Data1: 465276184
-    Data2: 1149393700
-    Data3: 689581463
-    Data4: 528784835
+    Data1: -334097318
+    Data2: 1260140306
+    Data3: 651052185
+    Data4: -1957406073
   Banks:
   - {fileID: -6539858603637091978}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 7452078224356974356}
+  - {fileID: -8733310785002822138}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 150857
+--- !u!114 &-3389220668321550034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/MenuMusic
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/MenuMusic
+  Guid:
+    Data1: -35403706
+    Data2: 1124096962
+    Data3: -670962547
+    Data4: 625499655
+  Banks:
+  - {fileID: -6539858603637091978}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 218566
 --- !u!114 &-2881959862379559798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -667,34 +645,10 @@ MonoBehaviour:
   Path: ../../../../../FMOD/MicroKart/MicroKart Racing/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638802515840818083
+  lastModified: 638817264723390393
   FileSizes:
   - Name: Desktop
-    Value: 4090
-  Exists: 1
---- !u!114 &-2125343734099869002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Level 02/Area
-  m_EditorClassIdentifier: 
-  Name: Area
-  StudioPath: 
-  Min: 0
-  Max: 80
-  Default: 0
-  ID:
-    data1: 533873593
-    data2: 3478576879
-  Type: 0
-  IsGlobal: 0
-  Labels: []
+    Value: 4092
   Exists: 1
 --- !u!114 &-1762452828388973826
 MonoBehaviour:
@@ -778,6 +732,57 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 653
+--- !u!114 &-1072982712960990046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Kart Music
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Kart Music
+  Guid:
+    Data1: 465276184
+    Data2: 1149393700
+    Data3: 689581463
+    Data4: 528784835
+  Banks:
+  - {fileID: -6539858603637091978}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-974641337794401602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level 02/Area
+  m_EditorClassIdentifier: 
+  Name: Area
+  StudioPath: 
+  Min: 0
+  Max: 80
+  Default: 0
+  ID:
+    data1: 533873593
+    data2: 3478576879
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-894137358074847610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -802,7 +807,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-576013985672125605
+--- !u!114 &-392771174167075535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -826,8 +831,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 3809147367149288601}
-  - {fileID: -4352633589658491857}
+  - {fileID: 7038547888510277052}
+  - {fileID: -6318331860431498890}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -873,10 +878,34 @@ MonoBehaviour:
   Path: ../../../../../FMOD/MicroKart/MicroKart Racing/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638802515840756220
+  lastModified: 638817264723360179
   FileSizes:
   - Name: Desktop
     Value: 15592
+  Exists: 1
+--- !u!114 &-102422618877603765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level 01/Stinger
+  m_EditorClassIdentifier: 
+  Name: Stinger
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 92787679
+    data2: 313628491
+  Type: 0
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -927,18 +956,19 @@ MonoBehaviour:
   - {fileID: 8071479589835122069}
   - {fileID: -205562929098619867}
   - {fileID: -4988572609729456728}
-  - {fileID: -3342668482515635656}
-  - {fileID: 7395190295938204833}
-  - {fileID: 3013808688731105294}
-  - {fileID: -3795238920750069196}
-  - {fileID: -576013985672125605}
-  - {fileID: 7704262369218640416}
+  - {fileID: -1072982712960990046}
+  - {fileID: -3600981210288897361}
+  - {fileID: 7395138071141099472}
+  - {fileID: -392771174167075535}
+  - {fileID: -7324419943913973070}
+  - {fileID: -3389220668321550034}
+  - {fileID: 8805511110723904441}
   EditorParameters: []
   MasterBanks:
   - {fileID: -145932720194762122}
   StringsBanks:
   - {fileID: -2442784444699972790}
-  cacheTime: 638802515875638131
+  cacheTime: 638817270690945569
   cacheVersion: 131624
 --- !u!114 &208497896753309708
 MonoBehaviour:
@@ -987,30 +1017,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 345
---- !u!114 &432183244143392445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Level 03/Intensity
-  m_EditorClassIdentifier: 
-  Name: Intensity
-  StudioPath: 
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 4130366537
-    data2: 2699559447
-  Type: 1
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
 --- !u!114 &499821459741284304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1198,35 +1204,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 78
---- !u!114 &3013808688731105294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/Level 03
-  m_EditorClassIdentifier: 
-  Path: event:/Music/Level 03
-  Guid:
-    Data1: -334097318
-    Data2: 1260140306
-    Data3: 651052185
-    Data4: -1957406073
-  Banks:
-  - {fileID: -6539858603637091978}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -4612777090259561180}
-  - {fileID: 432183244143392445}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 150857
 --- !u!114 &3702244467630843657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1247,30 +1224,6 @@ MonoBehaviour:
   ID:
     data1: 1494634397
     data2: 1834780554
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &3809147367149288601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Radio Station/Spatializer
-  m_EditorClassIdentifier: 
-  Name: Spatializer
-  StudioPath: 
-  Min: 0
-  Max: 2
-  Default: 0
-  ID:
-    data1: 3957412765
-    data2: 1502812825
   Type: 0
   IsGlobal: 0
   Labels: []
@@ -1498,7 +1451,31 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &7395190295938204833
+--- !u!114 &7038547888510277052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Radio Station/Spatializer
+  m_EditorClassIdentifier: 
+  Name: Spatializer
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 3957412765
+    data2: 1502812825
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &7395138071141099472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1508,23 +1485,48 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambience/Music
+  m_Name: event:/Music/Level 01
   m_EditorClassIdentifier: 
-  Path: event:/Ambience/Music
+  Path: event:/Music/Level 01
   Guid:
-    Data1: -35403706
-    Data2: 1124096962
-    Data3: -670962547
-    Data4: 625499655
+    Data1: 1958460028
+    Data2: 1217165032
+    Data3: -261621348
+    Data4: -48242944
   Banks:
   - {fileID: -6539858603637091978}
-  IsStream: 1
+  IsStream: 0
   Is3D: 0
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: -102422618877603765}
   MinDistance: 1
   MaxDistance: 20
-  Length: 218566
+  Length: 54339
+--- !u!114 &7452078224356974356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level 03/Stinger
+  m_EditorClassIdentifier: 
+  Name: Stinger
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 92787679
+    data2: 313628491
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &7582058779441289653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1576,34 +1578,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1026
---- !u!114 &7704262369218640416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/Level 02
-  m_EditorClassIdentifier: 
-  Path: event:/Music/Level 02
-  Guid:
-    Data1: -939964675
-    Data2: 1234949781
-    Data3: 661987496
-    Data4: 496157849
-  Banks:
-  - {fileID: -6539858603637091978}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -2125343734099869002}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 56888
 --- !u!114 &8071479589835122069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1688,6 +1662,33 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &8805511110723904441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/GameMusic
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/GameMusic
+  Guid:
+    Data1: 459809248
+    Data2: 1143939038
+    Data3: 877196946
+    Data4: 1659535163
+  Banks:
+  - {fileID: -6539858603637091978}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 278073
 --- !u!114 &9117964637894299798
 MonoBehaviour:
   m_ObjectHideFlags: 0

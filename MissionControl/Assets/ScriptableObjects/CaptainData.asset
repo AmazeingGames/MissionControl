@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf55f272930b1dd4ca7e6883b8638154, type: 3}
   m_Name: CaptainData
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Lynn
+  <MyName>k__BackingField: 0
   <MyRole>k__BackingField: 0
-  <Icon>k__BackingField: {fileID: 2716737222526641249, guid: 5e52415352090424bbfcb0bebd07ca20, type: 3}
-  <Picture>k__BackingField: {fileID: 0}
-  <LogNotes>k__BackingField:
-  - Is dead
-  - Incredibly humble
-  - 'Last words: "Pfft, what are you gonna do: stab me?"'
-  <NotesFont>k__BackingField: {fileID: 11400000, guid: bafb996321bd9f44597dfced0ae9140b, type: 2}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 95d4f118e1f47f744aadf2762e82345f, type: 3}
+  <IconColor>k__BackingField: {r: 0.5882353, g: 0.3882353, b: 0.69803923, a: 1}
+  <Picture>k__BackingField: {fileID: -7750368862725162715, guid: 10a1e4faea4705e47aeed2e53d118823, type: 3}

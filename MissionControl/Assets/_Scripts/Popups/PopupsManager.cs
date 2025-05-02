@@ -56,6 +56,10 @@ public class PopupsManager : MonoBehaviour, IClickPopup
     {
         instance = this;
         popupParent.SetActive(false);
+
+        for (int i = 0; i < popupParent.transform.childCount; i++)
+            popupParent.transform.GetChild(i).gameObject.SetActive(false);
+
         popupBackground.gameObject.SetActive(false);
 
         PopupButton.ClickPopupHandler = this;
