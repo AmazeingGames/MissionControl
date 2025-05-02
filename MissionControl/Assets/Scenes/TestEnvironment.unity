@@ -2486,9 +2486,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1698863332}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -18.3979}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 3.5, y: 3.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &141329426
@@ -3133,8 +3133,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 3.1799927}
-  m_SizeDelta: {x: -15.2, y: -56.5}
+  m_AnchoredPosition: {x: 0, y: 1.6300049}
+  m_SizeDelta: {x: -15.2, y: -59.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &213869301
 MonoBehaviour:
@@ -3191,7 +3191,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 28.65
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6737,7 +6737,7 @@ GameObject:
   - component: {fileID: 498467615}
   - component: {fileID: 498467616}
   m_Layer: 2
-  m_Name: Title
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6780,7 +6780,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 4
+  m_PixelsPerUnitMultiplier: 2.5
 --- !u!224 &498467614
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6801,7 +6801,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 280}
+  m_SizeDelta: {x: 479.85, y: 305.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &498467615
 MonoBehaviour:
@@ -6832,14 +6832,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pageTexts:
   - Gen 3 New\nWaveTech\nCamera System\nManual
-  - 'What isn''t there to say about this system? \nEverything functions using a single
-    network which can be accessed and controlled using our software application<b>
+  - 'What isn''t there to say about this system? \n\nEverything functions using a
+    single network which can be accessed and controlled using our software application<b>
     WaveLink   '
   - ' In order to remotely access the video feed from any camera in your system,
     you''ll need a code which is automatically set for each camera based off it''s
     IP address.  \n\n<I>Codes on next page'
-  - These codes are based off the starting digits of the cameras IP address  \n192
-    - BGRYY \n10   - RPRPG \n172 - OBPOB \n255 - BBBYR
+  - In the WaveLink App, enter the IP address and associated color code to tap into
+    the room's camera feed.\n192 - BGRYY \n10   - RPRPG \n172 - OBPOB \n255 - BBBYR
   - The new Gen 3 systems also come equipped with built in high fidelity audio. Similar
     to the way you access the video feed, you can access a cameras audio feed using
     the codes on the next page.
@@ -9691,7 +9691,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -7.6, y: 6.3}
+  m_AnchoredPosition: {x: -7.600006, y: 6.300003}
   m_SizeDelta: {x: 62.99, y: 18.77}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &709650643 stripped
@@ -10526,9 +10526,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1698863332}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -7.2993}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 3.5, y: 3.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &797089844
@@ -10607,7 +10607,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 919cf9e628c874a3eabaf1ce00b51af5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7574ba86fab717d43a9c079573d2cb99, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -12855,7 +12855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1009285632
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13165,8 +13165,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1698863332}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 3.5, y: 3.5}
   m_Pivot: {x: 0, y: 1}
@@ -18695,7 +18695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1327652063
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21313,7 +21313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68e4018ceb16974a9ee3ba8b6404dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shouldRememberPage: 0
+  shouldRememberPage: 1
   fateButtonsParent: {fileID: 1017841627}
   unkownFate: {fileID: 11400000, guid: b5c57d8af1f899a40949117b400da6ac, type: 2}
   allFates:
@@ -25724,7 +25724,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 7.6, y: 6.3}
+  m_AnchoredPosition: {x: 7.600006, y: 6.300003}
   m_SizeDelta: {x: 62.990005, y: 18.77}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &1958628950
@@ -26036,8 +26036,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0, y: 88.8}
-  m_SizeDelta: {x: 153.29, y: 13.59}
+  m_AnchoredPosition: {x: -0, y: 101}
+  m_SizeDelta: {x: 153.29, y: 24.98}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1983973555
 MonoBehaviour:
@@ -26086,7 +26086,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10.85
+  m_fontSize: 19.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -27509,9 +27509,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1698863332}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -12.8486}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 3.5, y: 3.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2088237459

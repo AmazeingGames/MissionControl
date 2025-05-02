@@ -44,17 +44,6 @@ public class GameStateManager : MonoBehaviour, IClickGameButton, IToggleNotes, I
 
     readonly KeyCode pauseKey = KeyCode.Escape;
 
-    void OnEnable()
-    {
-        // PopupsManager.TogglePopupEventHandler += HandleTogglePopup;
-
-    }
-
-    void OnDisable()
-    {
-        // PopupsManager.TogglePopupEventHandler -= HandleTogglePopup;
-    }
-
     // Start is called before the first frame update
     void Start()
     {

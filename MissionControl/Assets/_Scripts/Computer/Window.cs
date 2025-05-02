@@ -39,7 +39,7 @@ public class Window : MonoBehaviour
 
         if (!hasOpened && !isOpening)
         {
-            Debug.LogWarning("Attempting to close window before it should even be open.");
+            LogsManager.LogWarning(LogsManager.Instance.WindowsLogger, "Attempting to close window before it should even be open.");
             return;
         }
 

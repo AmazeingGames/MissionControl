@@ -80,6 +80,12 @@ public class FateManager : MonoBehaviour, ISelectFate
 
     int GetLastViewedPage(List<FateData> fatesToView)
     {
+        if (fatesToView == null)
+        {
+            this.LogWarning("Trying to view a null list of fates");
+            return -1;
+        }    
+
         if (FatesToPageNumber.TryGetValue(fatesToView, out int pageNumber))
             return pageNumber;
         else
