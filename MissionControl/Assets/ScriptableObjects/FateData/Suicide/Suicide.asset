@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9efbf48f4abbc234582d25e5549cada4, type: 3}
+  m_Name: Suicide
+  m_EditorClassIdentifier: 
+  <ShortDisplay>k__BackingField: Suicide
+  <FullDisplay>k__BackingField: 
+  <HasPerpetrator>k__BackingField: 0
+  <SubFates>k__BackingField:
+  - {fileID: 11400000, guid: 2b10031ef644fd24589d8063e55dccbf, type: 2}
+  - {fileID: 11400000, guid: 93489ef14ab7e704db9a0a0bfaace6ad, type: 2}
+  - {fileID: 11400000, guid: 8d995845a9f7e9b4d86de6174307e87e, type: 2}
+  <SelectedSubFate>k__BackingField: {fileID: 0}

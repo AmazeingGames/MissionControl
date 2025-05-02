@@ -11,7 +11,7 @@ public class LogsManager : MonoBehaviour
     [SerializeField] bool prefixObjectName;
     [SerializeField] List<Logger> loggers = new List<Logger>();
 
-    [Header("Public Loggers")]
+    [Header("Public Logging Objects")]
     [field: SerializeField] public GameObject WindowsLogger { get; private set; }
 
     public static LogsManager Instance { get; private set; }
@@ -42,7 +42,7 @@ public class LogsManager : MonoBehaviour
         if (Instance.prefixObjectName)
             message = $"{loggingObject.name}: {message}";
 
-        if (isWarning)
+        if (isWarning && logger.ShouldLogWarnings)
         {
             if (context == null)
                 Debug.LogWarning(message);
@@ -66,4 +66,5 @@ class Logger
     [field: SerializeField] public GameObject LoggingObject { get; private set; }
     [field: SerializeField] public RichTextColor MyTextColor { get; private set; }
     [field: SerializeField] public bool ShouldLog { get; private set; }
+    [field: SerializeField] public bool ShouldLogWarnings { get; private set; } = true;
 }

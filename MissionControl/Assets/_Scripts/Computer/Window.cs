@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -19,47 +20,48 @@ public class Window : MonoBehaviour
         
     }
 
-    public void ToggleWindow(bool isOpening)
+    public void ToggleWindow(bool isOpening, Action onComplete = null, float overrideDuration = -1)
     {
+        float duration = overrideDuration == -1 ? this.duration : overrideDuration;
+
         if (rectTransform == null)
             rectTransform = GetComponent<RectTransform>();
 
         rectTransform.SetAsLastSibling();
 
-        string toggleText = isOpening ? "open" : "close";
-        string togglingText = isOpening ? "opening" : "closing";
-
-        LogsManager.Log(LogsManager.Instance.WindowsLogger, $"Started {toggleText}");
+        LogsManager.Log(LogsManager.Instance.WindowsLogger, $"Started {(isOpening ? "open" : "close")}");
 
         if (isOpening)
-        {
             gameObject.SetActive(true);
-        }
-        
+
         sequence?.Kill();
         sequence = DOTween.Sequence();
 
-        bool isClosingBeforeBeingOpened = !hasOpened && !isOpening;
-        if (isClosingBeforeBeingOpened)
+        if (!hasOpened && !isOpening)
         {
-            Debug.LogWarning("Attempting to close window before it should even be open.");
+            LogsManager.LogWarning(LogsManager.Instance.WindowsLogger, "Attempting to close window before it should even be open.");
             return;
         }
 
         if (!hasOpened)
         {
-            LogsManager.Log(LogsManager.Instance.WindowsLogger, $"Is {togglingText} for the first time");
+            LogsManager.Log(LogsManager.Instance.WindowsLogger, $"Is {(isOpening ? "opening" : "closing")} for the first time");
             sequence.Append(rectTransform.DOScale(0, 0));
         }
 
         float targetScale = isOpening ? originalSize : 0f;
         sequence.Append(rectTransform.DOScale(targetScale, duration)).SetEase(ease);
-        
+
         if (!isOpening)
-            sequence.OnComplete(() => { gameObject.SetActive(false); LogsManager.Log(LogsManager.Instance.WindowsLogger, "finished closing"); });
-        else 
-            sequence.OnComplete(() => { LogsManager.Log(LogsManager.Instance.WindowsLogger, "finished opening"); });
+            sequence.OnComplete(() => { gameObject.SetActive(false); LogsManager.Log(LogsManager.Instance.WindowsLogger, "finished closing"); onComplete?.Invoke(); });
+        else
+            sequence.OnComplete(() => { LogsManager.Log(LogsManager.Instance.WindowsLogger, "finished opening"); onComplete?.Invoke(); });
 
         hasOpened = true;
+    }
+
+    public void ToggleWindow(bool isOpening)
+    {
+        ToggleWindow(isOpening, null, -1);
     }
 }

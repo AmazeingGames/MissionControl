@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     StationType myStationType = StationType.None;
 
-    public static EventHandler<ConnectToStationEventArgs> ConnectToStationEventHandler;
+    public static IStationConnect StationConnectHandler;
 
     private void OnEnable()
     {
@@ -27,11 +27,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         GameStateManager.PerformGameActionEventHandler -= HandlePerformGameAction;
-    }
-
-    void HandlePerfromGameAction(object sender, PerformGameActionEventArgs e)
-    {
-
     }
 
     // I should define stations with scriptable objects, that way I can easily define and edit movement paths in the inspector
@@ -87,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
     void ChangeStation(StationType myStationType)
     {
-        ConnectToStationEventHandler?.Invoke(this, new(myStationType));
+        StationConnectHandler?.HandleConnectToStation(new(myStationType));
 
         if (myStationType == this.myStationType)
             Debug.LogWarning("Should generally not be trying to set station to its current station.");
@@ -117,19 +112,21 @@ class StationData
     }
 }
 
+public interface IStationConnect { public void HandleConnectToStation(ConnectToStationArgs e); }
+
+public class ConnectToStationArgs : EventArgs
+{
+    public readonly StationType myStationType;
+    public ConnectToStationArgs(StationType myStationType)
+    {
+        this.myStationType = myStationType;
+    }
+}
+
+
 [Serializable]
 class StationObject
 {
     [SerializeField] public GameObject gameObject;
     [field: SerializeField] public float InFocusScale { get; private set; } = 1;
-    // [field: SerializeField] public float DefaultScale { get; private set; } = .5f;
-}
-
-public class ConnectToStationEventArgs : EventArgs
-{
-    public readonly PlayerMovement.StationType myStationType;
-    public ConnectToStationEventArgs(StationType myStationType)
-    {
-        this.myStationType = myStationType;
-    }
 }

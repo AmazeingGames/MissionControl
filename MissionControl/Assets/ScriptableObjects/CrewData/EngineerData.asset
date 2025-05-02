@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf55f272930b1dd4ca7e6883b8638154, type: 3}
+  m_Name: EngineerData
+  m_EditorClassIdentifier: 
+  <MyName>k__BackingField: 1
+  <MyRole>k__BackingField: 1
+  <Icon>k__BackingField: {fileID: 21300000, guid: fe13c99a1d8e5cb4ba87bc9d09820011, type: 3}
+  <IconColor>k__BackingField: {r: 0.61960787, g: 0.41960785, b: 0.79607844, a: 1}
+  <Picture>k__BackingField: {fileID: 8582501653082391357, guid: 4633b7d76f1d72844a80c75f0880552b, type: 3}

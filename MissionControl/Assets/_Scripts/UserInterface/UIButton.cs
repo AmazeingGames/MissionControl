@@ -44,12 +44,11 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     public enum InteractionTypes { Enter, Click, Up, Exit }
 
     // We're using Interfaces instead of C# events to ensure only one class can subscribe to each event
-    public static IChangeMenuHandler ChangeMenuHandler;
-    public static IGameStateActionHandler GameStateActionHandler;
-    public static IGameplayActionHandler GameplayActionHandler;
+    public static IClickUIButton ChangeMenuHandler;
+    public static IClickGameButton GameStateActionHandler;
+    public static IClickPlayButton GameplayActionHandler;
 
     Coroutine lerpButtonCoroutine = null;
-    Coroutine lerpUnderlineCoroutine = null;
 
     void Start()
     {
@@ -91,35 +90,15 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         text_TMP.gameObject.SetActive(true);
 
         var regularScale = RegularScale;
-        var rectTransform = transform as RectTransform;
-
         text_TMP.transform.localScale = new Vector3(regularScale, regularScale, text_TMP.transform.localScale.z);
-        // underline.rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, underline.rectTransform.sizeDelta.y);
-        // underline.fillAmount = 0;
-
-        StartCoroutine(SetUnderlineLength());
     }
 
     void OnDisable()
     {
         text_TMP.transform.localScale = new(RegularScale, RegularScale);
         text_TMP.alpha = RegularOpacity;
-        // underline.fillAmount = 0;
     }
 
-    IEnumerator SetUnderlineLength()
-    {
-        // underline.rectTransform.sizeDelta = new Vector2(0, underline.rectTransform.sizeDelta.y);
-
-        while (true)
-        {
-            var rect = transform as RectTransform;
-            // underline.rectTransform.sizeDelta = new Vector2(rect.sizeDelta.x, underline.rectTransform.sizeDelta.y);
-            yield return new WaitForSeconds(.1f);
-        }
-    }
-
-    /// <summary> Moves the last held paper to the correct position over time. </summary>
     IEnumerator LerpButton(bool isSelected)
     {
         float time = 0;
@@ -145,29 +124,8 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         }
     }
 
-    IEnumerator LerpUnderline(bool isSelected)
-    {
-        float time = 0;
-
-        // float startingFill = underline.fillAmount;
-        float targetFill = isSelected ? 1 : 0;
-
-        while (time < 1)
-        {
-            var lerpCurve = UnderlineLerpCurve;
-
-            // float newFillAmount = Mathf.Lerp(startingFill, targetFill, lerpCurve.Evaluate(time));
-            // underline.fillAmount = newFillAmount;
-
-            time += Time.deltaTime * UnderlineLerpSpeed;
-            yield return null;
-        }
-    }
-
     public void OnPointerClick(PointerEventData pointerEventData)
-    {
-        OnUIInteract(pointerEventData, InteractionTypes.Click);
-    }
+        => OnUIInteract(pointerEventData, InteractionTypes.Click);
 
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
@@ -191,11 +149,6 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
             StopCoroutine(lerpButtonCoroutine);
 
         lerpButtonCoroutine = StartCoroutine(LerpButton(isSelected));
-
-        if (lerpUnderlineCoroutine != null)
-            StopCoroutine(lerpUnderlineCoroutine);
-
-        lerpUnderlineCoroutine = StartCoroutine(LerpUnderline(isSelected));
     }
 
     public void OnPointerUp(PointerEventData pointerEventData)
@@ -212,11 +165,11 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
                 break;
 
             case ButtonType.UI:
-                ChangeMenuHandler?.OnClick(myMenuToOpen);
+                ChangeMenuHandler?.HandleUIButton(myMenuToOpen);
                 break;
 
             case ButtonType.Gamestate:
-                GameStateActionHandler?.OnClick(myGameActionToPerform);
+                GameStateActionHandler?.HandleGameButton(myGameActionToPerform);
                 break;
         }
     }
@@ -266,17 +219,17 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     }
 }
 
-public interface IChangeMenuHandler
+public interface IClickUIButton
 {
-    public void OnClick(UIManager.MenuType myMenuType);
+    public void HandleUIButton(UIManager.MenuType myMenuType);
 }
 
-public interface IGameStateActionHandler
+public interface IClickGameButton
 {
-    public void OnClick(GameStateManager.GameAction myGameAction);
+    public void HandleGameButton(GameStateManager.GameAction myGameAction);
 }
 
-public interface IGameplayActionHandler
+public interface IClickPlayButton
 {
-    public void OnClick(GameStateManager.PlayState myPlayState);
+    public void HandlePlayButton(GameStateManager.PlayState myPlayState);
 }

@@ -1,7 +1,10 @@
+using System;
+using System.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+[ExecuteInEditMode]
 public class NotesTab : MonoBehaviour, IPointerClickHandler
 {
     [Header("Properties")]
@@ -10,32 +13,39 @@ public class NotesTab : MonoBehaviour, IPointerClickHandler
     [Header("Components")]
     [SerializeField] Image image;
 
-    public static IClickTab clickTabHandler;
+    public static EventHandler<ClickTabEventArgs> ClickTabEventHandler;
 
-
-    private void OnValidate()
+    private void Start()
+    {
+        if (Application.isEditor)
+            return;
+        DataMatch();
+    }
+    private void Update()
     {
         if (image != null && crewData != null)
             DataMatch();
     }
 
-    private void Start()
-    {      
-        DataMatch();
-    }   
-
     void DataMatch()
     {
         image.sprite = crewData.Icon;
+        image.color = crewData.IconColor;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        clickTabHandler?.OnClickTab(crewData);
+        Debug.Log("Clicked tab");
+        ClickTabEventHandler?.Invoke(this, new(crewData));
     }
 }
 
-public interface IClickTab
+public class ClickTabEventArgs : EventArgs
 {
-    void OnClickTab(CrewData crewData);
+    public readonly CrewData crewData;
+
+    public ClickTabEventArgs(CrewData crewData)
+    {
+        this.crewData = crewData;
+    }
 }
