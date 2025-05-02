@@ -37,12 +37,12 @@ public class PasswordUnlock : MonoBehaviour
             inputField.text = "";
 
             if (lockWindow != null)
-                lockWindow.ToggleWindow(false);
+                lockWindow.SetWindow(false);
             else
                 lockScreen.SetActive(false);
             
             if (unlockWindow != null)
-                unlockWindow.ToggleWindow(true);
+                unlockWindow.SetWindow(true);
             else
                 unlockScreen.SetActive(true);
         }

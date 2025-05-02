@@ -10,24 +10,24 @@ public class Window : MonoBehaviour
     [SerializeField] float duration = .2f;
     [SerializeField] Ease ease = Ease.InSine;
     RectTransform rectTransform;
+    RectTransform RectTransform
+    {
+        get
+        {
+            if (rectTransform == null) 
+                rectTransform = GetComponent<RectTransform>();
+            return rectTransform;
+        }
+    }
 
     Sequence sequence;
     bool hasOpened;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void ToggleWindow(bool isOpening, Action onComplete = null, float overrideDuration = -1)
+    public void SetWindow(bool isOpening, Action onComplete = null, float overrideDuration = -1)
     {
         float duration = overrideDuration == -1 ? this.duration : overrideDuration;
 
-        if (rectTransform == null)
-            rectTransform = GetComponent<RectTransform>();
-
-        rectTransform.SetAsLastSibling();
+        RectTransform.SetAsLastSibling();
 
         LogsManager.Log(LogsManager.Instance.WindowsLogger, $"Started {(isOpening ? "open" : "close")}");
 
@@ -46,12 +46,13 @@ public class Window : MonoBehaviour
         if (!hasOpened)
         {
             LogsManager.Log(LogsManager.Instance.WindowsLogger, $"Is {(isOpening ? "opening" : "closing")} for the first time");
-            sequence.Append(rectTransform.DOScale(0, 0));
+            sequence.Append(RectTransform.DOScale(0, 0));
         }
 
         float targetScale = isOpening ? originalSize : 0f;
-        sequence.Append(rectTransform.DOScale(targetScale, duration)).SetEase(ease);
+        sequence.Append(RectTransform.DOScale(targetScale, duration)).SetEase(ease);
 
+        // Disables the window after the animation sequence has finished
         if (!isOpening)
             sequence.OnComplete(() => { gameObject.SetActive(false); LogsManager.Log(LogsManager.Instance.WindowsLogger, "finished closing"); onComplete?.Invoke(); });
         else
@@ -60,8 +61,40 @@ public class Window : MonoBehaviour
         hasOpened = true;
     }
 
-    public void ToggleWindow(bool isOpening)
+    public void SetWindow(bool isOpening)
+        => SetWindow(isOpening, null, -1);
+
+    /// <summary>
+    ///     Closes a window if it was the last window interacted with, sets it as the last window interacted with.
+    /// </summary>
+    public void ToggleWindow()
     {
-        ToggleWindow(isOpening, null, -1);
+        bool isOpening = !gameObject.activeInHierarchy;
+
+        if (isOpening)
+            SetWindow(true);
+        else
+        {
+            var siblingIndex = RectTransform.GetSiblingIndex();
+            RectTransform.SetAsLastSibling();
+
+            if (siblingIndex == RectTransform.GetSiblingIndex() || IsOnlyWindowActive(RectTransform))
+                SetWindow(false);
+        }
+    }
+
+    bool IsOnlyWindowActive(RectTransform rectTransform)
+    {
+        for (int i = 0; i < rectTransform.parent.childCount; i++)
+        {
+            RectTransform window = rectTransform.parent.GetChild(i) as RectTransform;
+
+            if (window == rectTransform)
+                continue;
+
+            if (window.gameObject.activeInHierarchy)
+                return false;
+        }
+        return true;
     }
 }

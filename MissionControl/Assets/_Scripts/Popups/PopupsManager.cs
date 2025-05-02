@@ -149,7 +149,7 @@ public class PopupsManager : MonoBehaviour, IClickPopup
         }
   
         bool isAPopupOpen = openPopups.Count != 0;
-        popupWindow.ToggleWindow(isOpening, onComplete, toggleDuration);
+        popupWindow.SetWindow(isOpening, onComplete, toggleDuration);
 
         Popup myPopup = PopupsToWindow.FirstOrDefault(x => x.Value == popupWindow).Key;
 
