@@ -22435,18 +22435,18 @@ MonoBehaviour:
     Path: event:/Ambience/MenuMusic
   <UIHover>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1569403721
+      Data2: 1337087880
+      Data3: 941344435
+      Data4: 1819132537
+    Path: event:/UIHover
   <UISelect>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1103507149
+      Data2: 1132519772
+      Data3: -1003308380
+      Data4: -464707913
+    Path: event:/UISelect
   <BeatGame>k__BackingField:
     Guid:
       Data1: 0
@@ -22482,6 +22482,48 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  <MouseDown>k__BackingField:
+    Guid:
+      Data1: 1457764338
+      Data2: 1163393147
+      Data3: 916802964
+      Data4: -480510434
+    Path: event:/MouseDown
+  <MouseUp>k__BackingField:
+    Guid:
+      Data1: -2012850852
+      Data2: 1256228898
+      Data3: -1823670882
+      Data4: -324146916
+    Path: event:/MouseUp
+  <OpenWindow>k__BackingField:
+    Guid:
+      Data1: -129442289
+      Data2: 1142609830
+      Data3: -1264297338
+      Data4: 1618161529
+    Path: event:/OpenWindow
+  <CloseWindow>k__BackingField:
+    Guid:
+      Data1: -126570531
+      Data2: 1187539110
+      Data3: 1220058268
+      Data4: 1108918409
+    Path: event:/CloseWindow
+  <ToggleNotebook>k__BackingField:
+    Guid:
+      Data1: 57872285
+      Data2: 1302999493
+      Data3: -42529864
+      Data4: 1554756857
+    Path: event:/NotebookSlide
+  <NotebookTab>k__BackingField:
+    Guid:
+      Data1: -1484675967
+      Data2: 1241851562
+      Data3: 1459091113
+      Data4: -736020677
+    Path: event:/NotebookTab
 --- !u!1 &1666433887
 GameObject:
   m_ObjectHideFlags: 0
