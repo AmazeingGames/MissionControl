@@ -793,37 +793,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.7, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &45083937
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 45083938}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &45083938
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 45083937}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 464.9406, y: 409.4312, z: 0.12988424}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &49213673
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,7 +1567,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 888744238}
         m_TargetAssemblyTypeName: Window, Assembly-CSharp
-        m_MethodName: ToggleWindow
+        m_MethodName: SetWindow
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2958,7 +2927,7 @@ GameObject:
   - component: {fileID: 181977365}
   - component: {fileID: 181977364}
   m_Layer: 5
-  m_Name: Pg1
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2981,8 +2950,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 280}
+  m_AnchoredPosition: {x: 11.94, y: 18}
+  m_SizeDelta: {x: 1046.44, y: 715.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &181977364
 MonoBehaviour:
@@ -3004,9 +2973,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b31e350981019ec47a6b4289105a3b43, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: 21300000, guid: b9de2b2acbe48aa4e8afed4835feca9a, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -3131,7 +3100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.6950226, y: 1.6300049}
+  m_AnchoredPosition: {x: -0.6950073, y: 1.6300049}
   m_SizeDelta: {x: -9.009967, y: -59.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &213869301
@@ -3195,7 +3164,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 1
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -3604,7 +3573,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1009285635}
         m_TargetAssemblyTypeName: Window, Assembly-CSharp
-        m_MethodName: ToggleWindow
+        m_MethodName: SetWindow
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6433,7 +6402,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1682241440}
         m_TargetAssemblyTypeName: Window, Assembly-CSharp
-        m_MethodName: ToggleWindow
+        m_MethodName: SetWindow
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6982,10 +6951,10 @@ RectTransform:
   - {fileID: 1932487087}
   m_Father: {fileID: 1400637823}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 479.85, y: 305.7}
+  m_SizeDelta: {x: 3.4880066, y: 5.5567017}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &498467615
 MonoBehaviour:
@@ -11614,7 +11583,7 @@ GameObject:
   - component: {fileID: 880995800}
   - component: {fileID: 880995799}
   m_Layer: 5
-  m_Name: English
+  m_Name: Logs Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11636,8 +11605,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 6.9695, y: 75}
-  m_SizeDelta: {x: -13.94, y: -181.37}
+  m_AnchoredPosition: {x: 203.87, y: -52.92}
+  m_SizeDelta: {x: -568.08, y: -256.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &880995799
 MonoBehaviour:
@@ -11659,7 +11628,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wow these are some juicy logs with lots of important info
+  m_text: "   I had to test out the camera system to make sure all is set to go!
+    The Camera code for the common area seems to work properly if I input the Pink
+    button for the \u201CP\u201D and not purple. I\u2019ll have to put that and the
+    other room codes somewhere in case I forget. (get string from Lynn)\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 149388be3350a42408d6f554c26776f8, type: 2}
   m_sharedMaterial: {fileID: -5438817389661864187, guid: 149388be3350a42408d6f554c26776f8, type: 2}
@@ -11668,8 +11640,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11686,14 +11658,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 20
+  m_fontSizeBase: 18.5
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 1
+  m_fontSizeMax: 20
   m_fontStyle: 0
-  m_HorizontalAlignment: 32
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -13089,7 +13061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1009285632
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13109,8 +13081,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.8, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -0.6946, y: 0.0017915}
+  m_SizeDelta: {x: 389.5994, y: 300.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1009285633
 MonoBehaviour:
@@ -19974,10 +19946,10 @@ RectTransform:
   - {fileID: 992841846}
   m_Father: {fileID: 1009285632}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1401705320
 GameObject:
@@ -20064,7 +20036,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 531361332}
         m_TargetAssemblyTypeName: Window, Assembly-CSharp
-        m_MethodName: ToggleWindow
+        m_MethodName: SetWindow
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22661,7 +22633,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1682241437
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26563,10 +26535,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1009285632}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0, y: 101}
-  m_SizeDelta: {x: 153.29, y: 24.98}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.6799927, y: 0}
+  m_SizeDelta: {x: -66.41, y: 21.15}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1983973555
 MonoBehaviour:
@@ -26615,12 +26587,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.65
+  m_fontSize: 16.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 1
-  m_fontSizeMax: 72
+  m_fontSizeMin: 0.1
+  m_fontSizeMax: 18
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -27233,37 +27205,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2009615256}
   m_CullTransparentMesh: 1
---- !u!1 &2011137745
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2011137746}
-  m_Layer: 0
-  m_Name: GameObject (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2011137746
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2011137745}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 429.04785, y: 416.54803, z: 1.214099}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2021890772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28580,11 +28521,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1009285632}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 86.317, y: 133.01}
-  m_SizeDelta: {x: 27.365, y: 13.98}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 39, y: 21.22}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &2120753486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29872,5 +29813,3 @@ SceneRoots:
   - {fileID: 1538509857}
   - {fileID: 1666433888}
   - {fileID: 1958628951}
-  - {fileID: 45083938}
-  - {fileID: 2011137746}

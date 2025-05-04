@@ -9,8 +9,9 @@ public class LogsManager : MonoBehaviour
 {
     [Header("Proprties")]
     [SerializeField] bool prefixObjectName;
-    [SerializeField] List<Logger> loggers = new List<Logger>();
+    [SerializeField] List<Logger> loggers = new();
 
+    // Maybe if the object itself is not listed inside the list of loggers, I could create a dictionary or some kind of switch statement that associated a given class to a logging object
     [Header("Public Logging Objects")]
     [field: SerializeField] public GameObject WindowsLoggingObject { get; private set; }
     [field: SerializeField] public GameObject ComputerIconLoggingObject { get; private set; }
