@@ -1598,7 +1598,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 888744238}
         m_TargetAssemblyTypeName: Window, Assembly-CSharp
-        m_MethodName: ToggleWindow
+        m_MethodName: SetWindow
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3598,7 +3598,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1009285635}
         m_TargetAssemblyTypeName: Window, Assembly-CSharp
-        m_MethodName: ToggleWindow
+        m_MethodName: SetWindow
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6441,7 +6441,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1682241440}
         m_TargetAssemblyTypeName: Window, Assembly-CSharp
-        m_MethodName: ToggleWindow
+        m_MethodName: SetWindow
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20034,7 +20034,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 531361332}
         m_TargetAssemblyTypeName: Window, Assembly-CSharp
-        m_MethodName: ToggleWindow
+        m_MethodName: SetWindow
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22305,7 +22305,7 @@ MonoBehaviour:
     <ShouldLogWarnings>k__BackingField: 1
   - <LoggingObject>k__BackingField: {fileID: 1498266428}
     <MyTextColor>k__BackingField: 15
-    <ShouldLog>k__BackingField: 0
+    <ShouldLog>k__BackingField: 1
     <ShouldLogWarnings>k__BackingField: 1
   - <LoggingObject>k__BackingField: {fileID: 1558199139}
     <MyTextColor>k__BackingField: 16
