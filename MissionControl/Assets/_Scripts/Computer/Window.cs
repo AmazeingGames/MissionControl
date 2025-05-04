@@ -97,4 +97,11 @@ public class Window : MonoBehaviour
         }
         return true;
     }
+
+    private void OnEnable() =>
+        AudioManager.inst.PlayOneShot(AudioHelper.inst.OpenWindow);
+
+    private void OnDisable() =>
+        AudioManager.inst.PlayOneShot(AudioHelper.inst.CloseWindow);
+
 }

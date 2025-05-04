@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8762181067023745073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotebookToggleOff
+  m_EditorClassIdentifier: 
+  Path: event:/NotebookToggleOff
+  Guid:
+    Data1: 423662691
+    Data2: 1249318331
+    Data3: -90858074
+    Data4: 47422246
+  Banks:
+  - {fileID: -6188038758760805234}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 535
 --- !u!114 &-6653472963458271784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,10 +69,30 @@ MonoBehaviour:
   Path: ../../MissionControlFMOD/MissionControl/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638818787261697573
+  lastModified: 638819003062282066
   FileSizes:
   - Name: Desktop
-    Value: 69888
+    Value: 72544
+  Exists: 1
+--- !u!114 &-5418654648732271537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: ../../MissionControlFMOD/MissionControl/Build/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 638818977313651070
+  FileSizes:
+  - Name: Desktop
+    Value: 2520960
   Exists: 1
 --- !u!114 &-4057273751888714692
 MonoBehaviour:
@@ -62,11 +109,38 @@ MonoBehaviour:
   Path: ../../MissionControlFMOD/MissionControl/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638818787258840739
+  lastModified: 638818996194862775
   FileSizes:
   - Name: Desktop
-    Value: 1158
+    Value: 1304
   Exists: 1
+--- !u!114 &-3376524701500658839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MenuMusic
+  m_EditorClassIdentifier: 
+  Path: event:/MenuMusic
+  Guid:
+    Data1: 92334101
+    Data2: 1339802527
+    Data3: 833681336
+    Data4: 451200428
+  Banks:
+  - {fileID: -5418654648732271537}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 218566
 --- !u!114 &-3076216375679552438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +156,7 @@ MonoBehaviour:
   Path: ../../MissionControlFMOD/MissionControl/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638818787258832082
+  lastModified: 638818996194853662
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -141,33 +215,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-1162928814720474571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotebookSlide
-  m_EditorClassIdentifier: 
-  Path: event:/NotebookSlide
-  Guid:
-    Data1: 57872285
-    Data2: 1302999493
-    Data3: -42529864
-    Data4: 1554756857
-  Banks:
-  - {fileID: -6188038758760805234}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 940
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,21 +232,24 @@ MonoBehaviour:
   - {fileID: 8310413709579102338}
   - {fileID: -3076216375679552438}
   - {fileID: -6188038758760805234}
+  - {fileID: -5418654648732271537}
   EditorEvents:
   - {fileID: 1728585336173812765}
   - {fileID: -6653472963458271784}
   - {fileID: 7122903673002057477}
-  - {fileID: -1162928814720474571}
   - {fileID: 4744013817381629907}
   - {fileID: 5095150613715876599}
   - {fileID: -1632373054215599816}
   - {fileID: -1473028947024455474}
+  - {fileID: -3376524701500658839}
+  - {fileID: -8762181067023745073}
+  - {fileID: 7132510017750485375}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3076216375679552438}
   StringsBanks:
   - {fileID: -4057273751888714692}
-  cacheTime: 638818787261697573
+  cacheTime: 638819003062282066
   cacheVersion: 131624
 --- !u!114 &1728585336173812765
 MonoBehaviour:
@@ -309,7 +359,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 940
+  Length: 690
+--- !u!114 &7132510017750485375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotebookToggleOn
+  m_EditorClassIdentifier: 
+  Path: event:/NotebookToggleOn
+  Guid:
+    Data1: 57872285
+    Data2: 1302999493
+    Data3: -42529864
+    Data4: 1554756857
+  Banks:
+  - {fileID: -6188038758760805234}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 460
 --- !u!114 &8310413709579102338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,7 +402,7 @@ MonoBehaviour:
   Path: ../../MissionControlFMOD/MissionControl/Build/Desktop/Bank A.bank
   Name: Bank A
   StudioPath: bank:/Bank A
-  lastModified: 638818781860648303
+  lastModified: 638819002646065404
   FileSizes:
   - Name: Desktop
     Value: 4416
