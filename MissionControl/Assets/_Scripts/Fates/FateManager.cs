@@ -82,7 +82,7 @@ public class FateManager : MonoBehaviour, ISelectFate
     {
         if (fatesToView == null)
         {
-            this.LogWarning("Trying to view a null list of fates");
+            this.Log("Trying to view a null list of fates");
             return -1;
         }    
 

@@ -12,7 +12,9 @@ public class LogsManager : MonoBehaviour
     [SerializeField] List<Logger> loggers = new List<Logger>();
 
     [Header("Public Logging Objects")]
-    [field: SerializeField] public GameObject WindowsLogger { get; private set; }
+    [field: SerializeField] public GameObject WindowsLoggingObject { get; private set; }
+    [field: SerializeField] public GameObject ComputerIconLoggingObject { get; private set; }
+
 
     public static LogsManager Instance { get; private set; }
 

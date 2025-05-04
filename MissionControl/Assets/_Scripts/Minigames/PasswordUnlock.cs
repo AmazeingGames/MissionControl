@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -16,22 +17,27 @@ public class PasswordUnlock : MonoBehaviour
     [SerializeField] float shakeAmount = 1;
     [SerializeField] Ease ease = Ease.Linear;
 
-    [Header("Password")]
+    [Header("Properties")]
+    [SerializeField] ComputerIcon.ScreenType myScreenToOpen;
     [SerializeField] List<string> password;
-
 
     Sequence shakeSequence;
     Window unlockWindow;
     Window lockWindow;
+
+    public static EventHandler<EnterPasswordEventArgs> EnterPasswordEventHandler;
+
     private void Start()
     {
         lockWindow = lockScreen.GetComponent<Window>();
         unlockWindow = unlockScreen.GetComponent<Window>();
     }
+
     public void ReadInput(string input)
     {
         Debug.Log("reading password input");
         input = new string(input.ToLower());
+
         if (password.Contains(input))
         {
             inputField.text = "";
@@ -45,6 +51,8 @@ public class PasswordUnlock : MonoBehaviour
                 unlockWindow.SetWindow(true);
             else
                 unlockScreen.SetActive(true);
+
+            EnterPasswordEventHandler?.Invoke(this, new(myScreenToOpen));
         }
         else if (inputField != null && inputField.text != "")
         {
@@ -65,4 +73,14 @@ public class PasswordUnlock : MonoBehaviour
             Debug.LogWarning("Input field should not be null");
     }
 
+}
+
+public class EnterPasswordEventArgs : EventArgs
+{
+    public ComputerIcon.ScreenType myScreenToOpen;
+
+    public EnterPasswordEventArgs(ComputerIcon.ScreenType myScreenToOpen)
+    {
+        this.myScreenToOpen = myScreenToOpen;
+    }
 }

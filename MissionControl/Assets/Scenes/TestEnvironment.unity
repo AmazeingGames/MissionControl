@@ -2455,10 +2455,11 @@ GameObject:
   m_Component:
   - component: {fileID: 141329425}
   - component: {fileID: 141329428}
+  - component: {fileID: 141329429}
   - component: {fileID: 141329427}
   - component: {fileID: 141329426}
   m_Layer: 5
-  m_Name: SearchIcon
+  m_Name: LogsIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2526,19 +2527,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 141329427}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 517215760}
-        m_TargetAssemblyTypeName: Window, Assembly-CSharp
-        m_MethodName: SetWindow
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &141329427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2577,6 +2566,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 141329424}
   m_CullTransparentMesh: 1
+--- !u!114 &141329429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141329424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7435dc6777699d549bf425e52842690f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myWindowToOpen: 3
+  myButtonType: 1
+  myConditionalType: 1
+  defaultWindow: {fileID: 517215760}
+  conditionalWindow: {fileID: 1105554135}
 --- !u!1 &162441866
 GameObject:
   m_ObjectHideFlags: 0
@@ -5830,6 +5836,7 @@ MonoBehaviour:
   duration: 0.2
   shakeAmount: 1
   ease: 1
+  myScreenToOpen: 0
   password:
   - 2152023
   - 21523
@@ -5948,8 +5955,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -74.85199}
-  m_SizeDelta: {x: 0, y: -149.7}
+  m_AnchoredPosition: {x: 0, y: -99.65}
+  m_SizeDelta: {x: 0, y: -199.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &400638424
 MonoBehaviour:
@@ -5971,9 +5978,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'enter
-
-    acquire log data
+  m_text: 'acquire log data
 
 
 '
@@ -6011,7 +6016,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -7092,6 +7097,7 @@ MonoBehaviour:
   duration: 0.2
   shakeAmount: 0.25
   ease: 1
+  myScreenToOpen: 3
   password:
   - acquire log data
 --- !u!114 &517215756
@@ -8584,8 +8590,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.5, y: 55.234993}
-  m_SizeDelta: {x: -21.81, y: -150.12}
+  m_AnchoredPosition: {x: 6, y: 33.5}
+  m_SizeDelta: {x: -8.4413, y: -106.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &622382519
 MonoBehaviour:
@@ -8608,7 +8614,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'Personnel logs are coded in interest of privacy and security; however
-    to access logs in an emrgency:'
+    to access logs in an emrgency, enter the following access code:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7cf2bc8733f6c0468062c8e95e84690, type: 2}
   m_sharedMaterial: {fileID: -7371932871882357731, guid: a7cf2bc8733f6c0468062c8e95e84690, type: 2}
@@ -8635,7 +8641,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.75
+  m_fontSize: 15.65
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -15139,6 +15145,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124643021}
   m_CullTransparentMesh: 1
+--- !u!1 &1129860399
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1129860400}
+  m_Layer: 0
+  m_Name: ComputerIconLoggingObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1129860400
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129860399}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1606485245}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1139704940
 GameObject:
   m_ObjectHideFlags: 0
@@ -15864,10 +15901,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1178309713}
   - component: {fileID: 1178309716}
-  - component: {fileID: 1178309715}
+  - component: {fileID: 1178309717}
   - component: {fileID: 1178309714}
+  - component: {fileID: 1178309715}
   m_Layer: 5
-  m_Name: SearchIcon
+  m_Name: LogsIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15935,19 +15973,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1178309715}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 517215760}
-        m_TargetAssemblyTypeName: Window, Assembly-CSharp
-        m_MethodName: ToggleWindow
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1178309715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15986,6 +16012,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1178309712}
   m_CullTransparentMesh: 1
+--- !u!114 &1178309717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178309712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7435dc6777699d549bf425e52842690f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myWindowToOpen: 3
+  myButtonType: 2
+  myConditionalType: 1
+  defaultWindow: {fileID: 517215760}
+  conditionalWindow: {fileID: 1105554135}
 --- !u!1 &1181493880
 GameObject:
   m_ObjectHideFlags: 0
@@ -20736,7 +20779,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1498266429}
   m_Layer: 0
-  m_Name: Windows
+  m_Name: WindowsLoggingObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22258,6 +22301,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1498266429}
+  - {fileID: 1129860400}
   m_Father: {fileID: 764548470}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1606485246
@@ -22298,7 +22342,12 @@ MonoBehaviour:
     <MyTextColor>k__BackingField: 16
     <ShouldLog>k__BackingField: 0
     <ShouldLogWarnings>k__BackingField: 1
-  <WindowsLogger>k__BackingField: {fileID: 1498266428}
+  - <LoggingObject>k__BackingField: {fileID: 1129860399}
+    <MyTextColor>k__BackingField: 10
+    <ShouldLog>k__BackingField: 1
+    <ShouldLogWarnings>k__BackingField: 1
+  <WindowsLoggingObject>k__BackingField: {fileID: 1498266428}
+  <ComputerIconLoggingObject>k__BackingField: {fileID: 1129860399}
 --- !u!1 &1610715496
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,7 +29,7 @@ public class Window : MonoBehaviour
 
         RectTransform.SetAsLastSibling();
 
-        LogsManager.Log(LogsManager.Instance.WindowsLogger, $"Started {(isOpening ? "open" : "close")}");
+        LogsManager.Log(LogsManager.Instance.WindowsLoggingObject, $"Started {(isOpening ? "open" : "close")}");
 
         if (isOpening)
             gameObject.SetActive(true);
@@ -39,13 +39,13 @@ public class Window : MonoBehaviour
 
         if (!hasOpened && !isOpening)
         {
-            LogsManager.LogWarning(LogsManager.Instance.WindowsLogger, "Attempting to close window before it should even be open.");
+            LogsManager.Log(LogsManager.Instance.WindowsLoggingObject, "Attempting to close window before it should even be open.");
             return;
         }
 
         if (!hasOpened)
         {
-            LogsManager.Log(LogsManager.Instance.WindowsLogger, $"Is {(isOpening ? "opening" : "closing")} for the first time");
+            LogsManager.Log(LogsManager.Instance.WindowsLoggingObject, $"Is {(isOpening ? "opening" : "closing")} for the first time");
             sequence.Append(RectTransform.DOScale(0, 0));
         }
 
@@ -54,9 +54,9 @@ public class Window : MonoBehaviour
 
         // Disables the window after the animation sequence has finished
         if (!isOpening)
-            sequence.OnComplete(() => { gameObject.SetActive(false); LogsManager.Log(LogsManager.Instance.WindowsLogger, "finished closing"); onComplete?.Invoke(); });
+            sequence.OnComplete(() => { gameObject.SetActive(false); LogsManager.Log(LogsManager.Instance.WindowsLoggingObject, "finished closing"); onComplete?.Invoke(); });
         else
-            sequence.OnComplete(() => { LogsManager.Log(LogsManager.Instance.WindowsLogger, "finished opening"); onComplete?.Invoke(); });
+            sequence.OnComplete(() => { LogsManager.Log(LogsManager.Instance.WindowsLoggingObject, "finished opening"); onComplete?.Invoke(); });
 
         hasOpened = true;
     }
