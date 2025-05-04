@@ -4,30 +4,32 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FateSelectButton : MonoBehaviour, IPointerClickHandler
+public class FateSelectButton : MonoBehaviour, IPointerClickHandler, IPageButton
 {
     [SerializeField] TextMeshProUGUI display_TMP;
-    FateData fate;
+    FateData fateData;
 
     public static ISelectFate selectFateHandler;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        selectFateHandler?.HandleSelectFate(new FateArguments(fate));
+        selectFateHandler?.HandleSelectFate(new FateArguments(fateData));
     }
 
-    public void InitializeFate(FateData fate)
+    public void Initialize<T>(T data) where T : IPageData
     {
-        this.fate = fate;
+        fateData = data as FateData;
 
-        if (fate != null)
+        if (fateData != null)
         {
             gameObject.SetActive(true);
-            display_TMP.text = fate.ShortDisplay;
+            display_TMP.text = fateData.ShortDisplay;
+            LogsManager.Log(LogsManager.Instance.PageButtonLoggingObject, $"Initialized fate select button | Short Text: {this.fateData.ShortDisplay}");
         }
         else
             gameObject.SetActive(false);
     }
+
 }
 
 public interface ISelectFate { void HandleSelectFate(FateArguments fateArguments); }

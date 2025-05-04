@@ -1,23 +1,13 @@
 using System.Data;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 
 public class PopupButton : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] PopupsManager.Popup myPopup;
     [SerializeField] bool isOpening;
-    static IClickPopup clickPopupHandler;
-    public static IClickPopup ClickPopupHandler
-    {
-        get
-            => clickPopupHandler;
-        set
-        {
-            if (clickPopupHandler != null)
-                Debug.LogWarning($"Trying to set handler to {value}, when it's already set to {clickPopupHandler}");
-            clickPopupHandler = value;
-        }
-    }
+    public static IClickPopup clickPopupHandler;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -47,6 +37,11 @@ public class PopupButton : MonoBehaviour, IPointerClickHandler
 
             throw new DataException($"Popup on {gameObject.name} should not be set to none. Hierarchy is as follows: {hierarchyPath}");
         }
+    }
+
+    void Update()
+    {
+        Assert.IsNotNull(clickPopupHandler, "Click popup handler should not be null");
     }
 }
 

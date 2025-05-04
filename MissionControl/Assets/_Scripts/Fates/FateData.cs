@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "FateData", menuName = "Scriptable Objects/FateData")]
-public class FateData : ScriptableObject
+public class FateData : ScriptableObject, IPageData
 {
     [field: SerializeField] public string ShortDisplay { get; private set; }
     [field: SerializeField] public string FullDisplay { get; private set; }

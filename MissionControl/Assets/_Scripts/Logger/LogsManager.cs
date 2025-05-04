@@ -15,6 +15,8 @@ public class LogsManager : MonoBehaviour
     [Header("Public Logging Objects")]
     [field: SerializeField] public GameObject WindowsLoggingObject { get; private set; }
     [field: SerializeField] public GameObject ComputerIconLoggingObject { get; private set; }
+    [field: SerializeField] public GameObject PageManagerLoggingObject { get; private set; }
+    [field: SerializeField] public GameObject PageButtonLoggingObject { get; private set; }
 
 
     public static LogsManager Instance { get; private set; }

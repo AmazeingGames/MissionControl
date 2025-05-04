@@ -1,11 +1,11 @@
 using DG.Tweening;
-using Sirenix.Serialization;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using static PopupsManager;
+using UnityEngine.Assertions;
 
 public class PopupsManager : MonoBehaviour, IClickPopup
 {
@@ -33,7 +33,6 @@ public class PopupsManager : MonoBehaviour, IClickPopup
 
     List<Window> popups = new();
     static readonly List<Window> openPopups = new();
-    static PopupsManager instance;
 
     public static bool IsAPopupOpen => openPopups.Count > 0;
 
@@ -48,13 +47,12 @@ public class PopupsManager : MonoBehaviour, IClickPopup
     void OnDisable()
     {
         GameStateManager.ChangePlayStateEventHandler -= HandleChangePlayState;
-        FateManager.SelectFateEventHandler += HandleSelectFate;
+        FateManager.SelectFateEventHandler -= HandleSelectFate;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        instance = this;
         popupParent.SetActive(false);
 
         for (int i = 0; i < popupParent.transform.childCount; i++)
@@ -62,7 +60,7 @@ public class PopupsManager : MonoBehaviour, IClickPopup
 
         popupBackground.gameObject.SetActive(false);
 
-        PopupButton.ClickPopupHandler = this;
+        PopupButton.clickPopupHandler = this;
 
         PopupsToWindow = new Dictionary<Popup, Window>()
         {
@@ -93,6 +91,8 @@ public class PopupsManager : MonoBehaviour, IClickPopup
                     TogglePopup(openPopups[^1], false);
                 break;
         }
+
+        Assert.IsNotNull(this);
     }
 
     void HandleSelectFate(object sender, EventArgs e)
@@ -151,6 +151,14 @@ public class PopupsManager : MonoBehaviour, IClickPopup
         bool isAPopupOpen = openPopups.Count != 0;
         popupWindow.SetWindow(isOpening, onComplete, toggleDuration);
 
+        if (this == null)
+        {
+            Debug.LogWarning("I don't understand how Popups Manager is null at all");
+            return;
+        }
+        Assert.IsNotNull(this, "Popups Manager should not be null");
+        Assert.IsTrue(PopupsToWindow.Count > 0, "Popups to Window should contain at least 1 value");
+
         Popup myPopup = PopupsToWindow.FirstOrDefault(x => x.Value == popupWindow).Key;
 
         TogglePopupEventHandler?.Invoke(this, new(myPopup, isOpening, openPopups.Count));
@@ -190,9 +198,6 @@ public class PopupsManager : MonoBehaviour, IClickPopup
         name_TMP.text = $"{crewData.MyName}";
         photo.sprite = crewData.Picture;
     }
-
-    public static bool IsPopupOpen(Popup popup)
-        => instance.PopupsToWindow[popup].gameObject.activeSelf;
 }
 
 public class TogglePopupsArgs : EventArgs

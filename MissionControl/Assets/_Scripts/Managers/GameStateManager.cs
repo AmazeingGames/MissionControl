@@ -64,6 +64,8 @@ public class GameStateManager : MonoBehaviour, IClickGameButton, IToggleNotes, I
 
     private void Update()
     {
+        Assert.IsNotNull(this);
+
         isFocusedOnInput = IsFocusedOnInput;
         RunGameState();
     }
