@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: c7a8a51fdfa043842ae67e6a5d019931
+guid: 70c1c2129429bbc4f803f4c845d8e592
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -913287461523969993
-    second: victor-NhtPNp7X4rs-unsplash_0
+      213: -1332654295341014191
+    second: monitors_al_0
+  - first:
+      213: 2638832387316681980
+    second: monitors_al_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,13 +155,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: victor-NhtPNp7X4rs-unsplash_0
+      name: monitors_al_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2911
-        height: 4366
+        width: 100
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +170,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 738ab0e74e95353f0800000000000000
-      internalID: -913287461523969993
+      spriteID: 153ecc5aaf5718de0800000000000000
+      internalID: -1332654295341014191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monitors_al_1
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 0
+        width: 341
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfc8ecb33140f9420800000000000000
+      internalID: 2638832387316681980
       vertices: []
       indices: 
       edges: []
@@ -187,7 +212,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      victor-NhtPNp7X4rs-unsplash_0: -913287461523969993
+      monitors_al_0: -1332654295341014191
+      monitors_al_1: 2638832387316681980
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

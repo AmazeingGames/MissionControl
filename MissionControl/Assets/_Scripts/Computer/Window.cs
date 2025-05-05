@@ -2,11 +2,13 @@ using DG.Tweening;
 using System;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.EventSystems;
 
-public class Window : MonoBehaviour
+public class Window : MonoBehaviour, IPointerClickHandler
 {
     [Header("Properties")]
     [SerializeField] WindowType myWindowType;
+    [SerializeField] bool setAsLastSiblingOnClick = false;
 
     [Header("Animation")]
     [SerializeField] float originalSize = 1f;
@@ -118,6 +120,12 @@ public class Window : MonoBehaviour
                 return false;
         }
         return true;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (setAsLastSiblingOnClick)
+            transform.SetAsLastSibling();
     }
 }
 

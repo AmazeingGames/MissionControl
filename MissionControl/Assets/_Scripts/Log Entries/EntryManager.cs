@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class EntryManager : MonoBehaviour
 {
     [Header("Text")]
     [SerializeField] int spacesAtEntryStart;
+    [SerializeField] List<UnlockableLog> unlockableLogs;
 
     [Header("Text Tween")]
     [SerializeField] float entryEaseDuration;
@@ -17,22 +19,26 @@ public class EntryManager : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI entry_TMP;
     [SerializeField] Transform entryButtonsParent;
 
+
     PageDisplayer pageDisplayer;
     List<EntryData> unlockedLogEntries = new();
 
+    public static EventHandler<UnlockEntryEventArgs> UnlockEntryEventHandler;
 
     private void OnEnable()
     {
         EntryButton.ClickEntryEventHandler += HandleClickEntry;
         Window.SetWindowEventHandler += HandleSetWindow;
-        RoomItem.UnlockLogsEventHandler += HandleUnlockLogs;
+        RoomItem.ClickItemEventHandler += HandleClickItem;
+        CameraUnlockButton.UnlockCameraEventHandler += HandleUnlockCamera;
     }
 
     private void OnDisable()
     {
         EntryButton.ClickEntryEventHandler -= HandleClickEntry;
         Window.SetWindowEventHandler -= HandleSetWindow;
-        RoomItem.UnlockLogsEventHandler -= HandleUnlockLogs;
+        RoomItem.ClickItemEventHandler -= HandleClickItem;
+        CameraUnlockButton.UnlockCameraEventHandler -= HandleUnlockCamera;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -45,12 +51,30 @@ public class EntryManager : MonoBehaviour
         pageDisplayer = new(entryButtons.ToList<IPageButton>());
     }
 
-    void HandleUnlockLogs(object sender, UnlockLogsEventArgs e) 
+    void HandleUnlockCamera(object sender, UnlockCameraEventArgs e)
     {
-        unlockedLogEntries.Add(e.entryData);
+        for (int i = 0; i < unlockableLogs.Count; i++)
+        {
+            if (unlockableLogs[i].OnRoomUnlock != e.ipInformation.myRoom)
+                continue;
+
+            OnUnlockEntry(unlockableLogs[i].EntryData);
+        }
+    }
+
+    void HandleClickItem(object sender, ClickItemEventArgs e) 
+    {
+        OnUnlockEntry(e.entryData);
+    }
+
+    void OnUnlockEntry(EntryData entryData)
+    {
+        unlockedLogEntries.Add(entryData);
 
         pageDisplayer.DisplayPageButtons<EntryData, EntryButton>(0, unlockedLogEntries, true);
-    }
+
+        UnlockEntryEventHandler?.Invoke(this, new(entryData));
+    }    
 
     void HandleSetWindow(object sender, SetWindowEventArgs e)
     {
@@ -73,6 +97,23 @@ public class EntryManager : MonoBehaviour
         targetText += e.entryData.DisplayText;
 
         entry_TMP.DOText(targetText, entryEaseDuration, true, textScrambleMode, null).SetEase(textEase);
+    }
+}
 
+[Serializable] 
+public class UnlockableLog
+{
+    [field: SerializeField] public EntryData EntryData { get; private set; }
+
+    [field: SerializeField] public IPInformation.Room OnRoomUnlock { get; private set; } = IPInformation.Room.None;
+}
+
+public class UnlockEntryEventArgs : EventArgs
+{
+    public readonly EntryData entryData;
+
+    public UnlockEntryEventArgs(EntryData entryData)
+    {
+        this.entryData = entryData;
     }
 }

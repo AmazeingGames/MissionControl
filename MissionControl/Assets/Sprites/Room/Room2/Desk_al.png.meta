@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c7a8a51fdfa043842ae67e6a5d019931
+guid: b3faa4036e443ea48bbba4b80e9ddd2a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -913287461523969993
-    second: victor-NhtPNp7X4rs-unsplash_0
+      213: 3451642236036393960
+    second: Desk_al_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,13 +152,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: victor-NhtPNp7X4rs-unsplash_0
+      name: Desk_al_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2911
-        height: 4366
+        width: 630
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 738ab0e74e95353f0800000000000000
-      internalID: -913287461523969993
+      spriteID: 8eb2faa7352b6ef20800000000000000
+      internalID: 3451642236036393960
       vertices: []
       indices: 
       edges: []
@@ -187,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      victor-NhtPNp7X4rs-unsplash_0: -913287461523969993
+      Desk_al_0: 3451642236036393960
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -5,10 +5,13 @@ using System.Collections;
 public class CodeModule : MonoBehaviour
 {
     [SerializeField] char character;
+    [SerializeField] Color pressedColor;
 
     public static Action<SendCodeDigitEventArgs> SendCharacterEventHandler; 
 
     SpriteRenderer spriteRenderer;
+
+    Color startingColor;
 
     private void OnMouseDown()
     {
@@ -16,16 +19,15 @@ public class CodeModule : MonoBehaviour
         SendCharacterEventHandler?.Invoke(new SendCodeDigitEventArgs(character));
     }
 
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        startingColor = spriteRenderer.color;
+    }
+
     IEnumerator ResetButtonColor()
     {
-        while (spriteRenderer == null)
-        {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            yield return null;
-        }
-
-        Color startingColor = spriteRenderer.color;
-        spriteRenderer.color = Color.black;
+        spriteRenderer.color = pressedColor;
         yield return new WaitForSeconds(.1f);
         spriteRenderer.color = startingColor;
     }

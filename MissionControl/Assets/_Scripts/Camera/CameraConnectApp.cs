@@ -14,9 +14,9 @@ public class CameraConnectApp : MonoBehaviour
     List<IPInformation> ipsInformation = new()
     {
         { new IPInformation("192.168.0.1",  "BGRYY", Room.CaptainsQuarters) },
-        { new IPInformation("10.0.0.1",     "RPRPG", Room.ScienceCenter) },
-        { new IPInformation("172.16.01",    "OBPOB", Room.None) },
-        { new IPInformation("255.100.42.7", "BBBYR", Room.None) },
+        { new IPInformation("10.0.0.1",     "RPRPG", Room.AlvaroA1) },
+        { new IPInformation("255.100.42.7", "BBBYR", Room.LizA2) },
+        // { new IPInformation("172.16.01",    "OBPOB", Room.None) },
     };
 
     string colorCode = "";
@@ -93,7 +93,7 @@ public class CameraConnectApp : MonoBehaviour
 
 public class IPInformation
 {
-    public enum Room { None, CaptainsQuarters, MedicalCenter, ScienceCenter }
+    public enum Room { None, CaptainsQuarters, AlvaroA1, LizA2 }
 
     public readonly string ipAddress;
     public readonly string colorCode;

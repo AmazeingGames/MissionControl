@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class RoomButton : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] IPInformation.Room myRoom;
+    [field: SerializeField] public IPInformation.Room myRoom { get; private set; }
+    [SerializeField] GameObject roomDisplay;
 
     [Header("Shake Tween")]
     [SerializeField] float shakeDuration = .2f;
@@ -21,10 +22,10 @@ public class RoomButton : MonoBehaviour, IPointerClickHandler
     [SerializeField] Ease colorEase = Ease.InOutSine;
 
     [Header("Components")]
-    [SerializeField] Image lockImage;
+    [SerializeField] public Image lockImage;
     [SerializeField] Image boxImage;
 
-    bool isUnlocked = false;
+    public bool isUnlocked = false;
 
     Sequence shakeSequence;
     Sequence lockColorSequence;
@@ -33,42 +34,36 @@ public class RoomButton : MonoBehaviour, IPointerClickHandler
     Color lockDefaultColor;
     Color boxDefaultColor;
 
-    public static EventHandler<OpenCameraEventArgs> OpenCameraEventHandler;
-
-    private void OnEnable()
-    {
-        CameraUnlockButton.UnlockCameraEventHandler += HandleUnlockCamera;
-    }
-
-    private void OnDisable()
-    {
-        CameraUnlockButton.UnlockCameraEventHandler -= HandleUnlockCamera;
-    }
+    public static EventHandler<ToggleCameraEventArgs> ToggleCameraEventHandler;
 
     void Start()
     {
-        Assert.IsTrue(myRoom != IPInformation.Room.None);
 
-        lockDefaultColor = lockImage.color;
-        boxDefaultColor = boxImage.color;
-        lockImage.gameObject.SetActive(true);
+        if (lockImage != null)
+        {
+            lockDefaultColor = lockImage.color;
+            boxDefaultColor = boxImage.color;
+            boxImage.gameObject.SetActive(true);
+            lockImage.gameObject.SetActive(true);
+        }
+        
+        if (roomDisplay != null)
+        {
+            roomDisplay.SetActive(false);
+        }
     }
-
-    void HandleUnlockCamera(object sender, UnlockCameraEventArgs e)
-    {
-        if (e.ipInformation.myRoom != myRoom)
-            return;
-
-        e.ipInformation.HandleCameraUnlock();
-        lockImage.gameObject.SetActive(false);
-        isUnlocked = true;
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (myRoom == IPInformation.Room.None)
+        {
+            ToggleCameraEventHandler?.Invoke(this, new(myRoom, isOpening: false));
+            return;
+        }
+
         if (isUnlocked)
         {
-
+            roomDisplay.SetActive(true);
+            ToggleCameraEventHandler?.Invoke(this, new(myRoom, isOpening: true));
         }
         else
         {
@@ -93,9 +88,14 @@ public class RoomButton : MonoBehaviour, IPointerClickHandler
     }
 }
 
-public class OpenCameraEventArgs : EventArgs
+public class ToggleCameraEventArgs : EventArgs
 {
-    public IPInformation.Room myRoomToOpen;
+    public readonly IPInformation.Room myRoom;
+    public readonly bool isOpening;
 
-
+    public ToggleCameraEventArgs(IPInformation.Room myRoom, bool isOpening)
+    {
+        this.myRoom = myRoom;
+        this.isOpening = isOpening;
+    }
 }

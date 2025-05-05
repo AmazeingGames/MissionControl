@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: c7a8a51fdfa043842ae67e6a5d019931
+guid: b8d07b7779c9b8c4e9cca0fd10dc80d7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -913287461523969993
-    second: victor-NhtPNp7X4rs-unsplash_0
+      213: 1870262237216174819
+    second: specimen_0
+  - first:
+      213: -3080083508155683268
+    second: specimen_1
+  - first:
+      213: 1079156770547211207
+    second: specimen_2
+  - first:
+      213: -8891870554531948786
+    second: specimen_3
+  - first:
+      213: -3407042258899188512
+    second: specimen_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,13 +164,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: victor-NhtPNp7X4rs-unsplash_0
+      name: specimen_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 2911
-        height: 4366
+        y: 35
+        width: 99
+        height: 112
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +179,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 738ab0e74e95353f0800000000000000
-      internalID: -913287461523969993
+      spriteID: 3e2f81e789184f910800000000000000
+      internalID: 1870262237216174819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: specimen_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 109
+        width: 16
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3e67d94e585145d0800000000000000
+      internalID: -3080083508155683268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: specimen_2
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 126
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cb9c6d7d5fe9fe00800000000000000
+      internalID: 1079156770547211207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: specimen_3
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 127
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e071e5087dab99480800000000000000
+      internalID: -8891870554531948786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: specimen_4
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 0
+        width: 14
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e4c197ed11c7b0d0800000000000000
+      internalID: -3407042258899188512
       vertices: []
       indices: 
       edges: []
@@ -187,7 +287,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      victor-NhtPNp7X4rs-unsplash_0: -913287461523969993
+      specimen_0: 1870262237216174819
+      specimen_1: -3080083508155683268
+      specimen_2: 1079156770547211207
+      specimen_3: -8891870554531948786
+      specimen_4: -3407042258899188512
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
