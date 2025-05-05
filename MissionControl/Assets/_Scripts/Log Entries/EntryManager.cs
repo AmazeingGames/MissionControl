@@ -6,7 +6,6 @@ using UnityEngine;
 public class EntryManager : MonoBehaviour
 {
     [Header("Text")]
-    [SerializeField] List<EntryData> logEntries;
     [SerializeField] int spacesAtEntryStart;
 
     [Header("Text Tween")]
@@ -19,30 +18,38 @@ public class EntryManager : MonoBehaviour
     [SerializeField] Transform entryButtonsParent;
 
     PageDisplayer pageDisplayer;
+    List<EntryData> unlockedLogEntries = new();
+
 
     private void OnEnable()
     {
         EntryButton.ClickEntryEventHandler += HandleClickEntry;
         Window.SetWindowEventHandler += HandleSetWindow;
+        RoomItem.UnlockLogsEventHandler += HandleUnlockLogs;
     }
 
     private void OnDisable()
     {
         EntryButton.ClickEntryEventHandler -= HandleClickEntry;
         Window.SetWindowEventHandler -= HandleSetWindow;
+        RoomItem.UnlockLogsEventHandler -= HandleUnlockLogs;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        foreach (var entry in logEntries)
-            entry.Initialize();
-
         List<EntryButton> entryButtons = new List<EntryButton>();
         for (int i = 0; i < entryButtonsParent.childCount; i++) 
             entryButtons.Add(entryButtonsParent.GetChild(i).GetComponent<EntryButton>());
 
         pageDisplayer = new(entryButtons.ToList<IPageButton>());
+    }
+
+    void HandleUnlockLogs(object sender, UnlockLogsEventArgs e) 
+    {
+        unlockedLogEntries.Add(e.entryData);
+
+        pageDisplayer.DisplayPageButtons<EntryData, EntryButton>(0, unlockedLogEntries, true);
     }
 
     void HandleSetWindow(object sender, SetWindowEventArgs e)
@@ -53,8 +60,7 @@ public class EntryManager : MonoBehaviour
         if (!e.isOpening)
             return;
         
-        int pageToDisplay = pageDisplayer.LastViewedPage(logEntries);
-        pageDisplayer.DisplayPageButtons<EntryData, EntryButton>(pageToDisplay, logEntries, true);
+        pageDisplayer.DisplayPageButtons<EntryData, EntryButton>(0, unlockedLogEntries, true);
     }
 
     void HandleClickEntry(object sender, ClickEntryEventArgs e)
