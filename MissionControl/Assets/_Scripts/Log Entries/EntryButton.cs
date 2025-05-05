@@ -33,8 +33,19 @@ public class EntryButton : MonoBehaviour, IPointerClickHandler, IPageButton
 [Serializable]
 public class EntryData : IPageData
 {
-    [SerializeField] public string displayName;
-    [SerializeField] public TextAsset entryText;
+    public readonly string displayName;
+    public readonly string displayText;
+    [SerializeField] TextAsset entryText;
+
+    EntryData()
+    {
+        string[] lines = entryText ? entryText.text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries) : null;
+
+        displayName = lines[0];
+
+        for (int i = 1; i < lines.Length; i++)
+            displayText += lines[i];
+    }
 }
 
 public class ClickEntryEventArgs

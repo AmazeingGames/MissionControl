@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SearchService;
 
 public class RoomManager : MonoBehaviour
 {
@@ -6,12 +7,17 @@ public class RoomManager : MonoBehaviour
 
     private void OnEnable()
     {
-        RoomButton.Event
+        RoomButton.OpenCameraEventHandler += HandleOpenCamera;
     }
 
     private void OnDisable()
     {
-        
+        RoomButton.OpenCameraEventHandler -= HandleOpenCamera;
+    }
+
+    void HandleOpenCamera(object sender, OpenCameraEventArgs e)
+    {
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
