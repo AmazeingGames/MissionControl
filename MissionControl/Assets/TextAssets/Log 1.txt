@@ -1,2 +1,2 @@
-[DISPLAY TEXT GOES HERE]
-[TEXT (can use spaces)]
+[ENTRY NAME GOES HERE]
+[LOG ENTRY]
