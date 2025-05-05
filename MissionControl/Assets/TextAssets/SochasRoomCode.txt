@@ -1,1 +1,0 @@
-The code input for camera access depends on the oRder of the colored Buttons pRessed on the right side of the console. it inputs the five required characters in caps lock so maYbe You should consider pressing the correct ones indicated in this entry.
