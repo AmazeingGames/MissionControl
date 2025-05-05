@@ -21,15 +21,13 @@ public class AudioManager : MonoBehaviour
 
     private void OnEnable()
     {
-        
+          
     }
 
     private void OnDisable()
     {
 
     }
-
-
 
     public void PlayOneShot(EventReference audioClip)
     {

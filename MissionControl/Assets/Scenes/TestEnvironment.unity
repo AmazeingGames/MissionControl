@@ -4171,11 +4171,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 459809248
-      Data2: 1143939038
-      Data3: 877196946
-      Data4: 1659535163
-    Path: event:/Ambience/GameMusic
+      Data1: 92334101
+      Data2: 1339802527
+      Data3: 833681336
+      Data4: 451200428
+    Path: event:/MenuMusic
   Event: 
   EventPlayTrigger: 12
   EventStopTrigger: 11
@@ -28479,11 +28479,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <GameAmbience>k__BackingField:
     Guid:
-      Data1: 459809248
-      Data2: 1143939038
-      Data3: 877196946
-      Data4: 1659535163
-    Path: event:/Ambience/GameMusic
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   <GameMusic>k__BackingField:
     Guid:
       Data1: 0
@@ -28500,11 +28500,11 @@ MonoBehaviour:
     Path: 
   <TitleMusic>k__BackingField:
     Guid:
-      Data1: -35403706
-      Data2: 1124096962
-      Data3: -670962547
-      Data4: 625499655
-    Path: event:/Ambience/MenuMusic
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   <UIHover>k__BackingField:
     Guid:
       Data1: 0
@@ -28548,6 +28548,55 @@ MonoBehaviour:
       Data4: 0
     Path: 
   <CorrectDeduction>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <MouseDown>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <MouseUp>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <OpenWindow>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <CloseWindow>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <ToggleNotebookOpen>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <ToggleNotebookClose>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <NotebookTab>k__BackingField:
     Guid:
       Data1: 0
       Data2: 0
@@ -29124,11 +29173,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -35403706
-      Data2: 1124096962
-      Data3: -670962547
-      Data4: 625499655
-    Path: event:/Ambience/MenuMusic
+      Data1: 92334101
+      Data2: 1339802527
+      Data3: 833681336
+      Data4: 451200428
+    Path: event:/MenuMusic
   Event: 
   EventPlayTrigger: 11
   EventStopTrigger: 12

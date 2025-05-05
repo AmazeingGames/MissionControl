@@ -463,8 +463,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../MissionControlFMOD/MissionControl/MissionControl.fspro
-  sourceBankPath: ../../MissionControlFMOD/MissionControl/Build
+  sourceProjectPath: ../../../FMOD/MissionControlFMOD/MissionControl/MissionControl.fspro
+  sourceBankPath: ../../../FMOD/MissionControlFMOD/MissionControl/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
