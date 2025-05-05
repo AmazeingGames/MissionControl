@@ -6,6 +6,8 @@ using System;
 // Stores every FMOD event reference and creates any needed event instances.
 public class AudioHelper : MonoBehaviour
 {
+    public static AudioHelper inst;
+    
     [field: Header("Ambience")]
     [field: SerializeField] public EventReference GameAmbience { get; private set; }
 
@@ -27,12 +29,31 @@ public class AudioHelper : MonoBehaviour
     [field: SerializeField] public EventReference WriteEntry { get; private set; }
     [field: SerializeField] public EventReference CorrectDeduction { get; private set; }
 
+    [field: Header("Computer Interactions")]
+    [field: SerializeField] public EventReference MouseDown { get; private set; }
+    [field: SerializeField] public EventReference MouseUp { get; private set; }
+    [field: SerializeField] public EventReference OpenWindow { get; private set; }
+    [field: SerializeField] public EventReference CloseWindow { get; private set; }
+
+    [field: Header("Notebook")]
+    [field: SerializeField] public EventReference ToggleNotebookOpen { get; private set; }
+    [field: SerializeField] public EventReference ToggleNotebookClose { get; private set; }
+    [field: SerializeField] public EventReference NotebookTab { get; private set; }
+
     public Bus MasterBus { get; private set; }
 
     public EventInstance GameAmbience_Instance { get; private set; }
     public EventInstance GameMusic_Instance { get; private set; }
     public EventInstance PauseMusic_Instance { get; private set; }
     public EventInstance TitleMusic_Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (inst == null)
+            inst = this;
+        else
+            Destroy(gameObject);
+    }
 
     void Start()
     {
@@ -53,7 +74,9 @@ public class AudioHelper : MonoBehaviour
         }
         return RuntimeManager.CreateInstance(eventReference);
     }
-       
+
+
+
 }
 
 

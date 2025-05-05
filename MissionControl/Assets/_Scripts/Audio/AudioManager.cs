@@ -9,10 +9,19 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioHelper audioHelper;
+    public static AudioManager inst;
+
+    void Awake()
+    {
+        if (inst == null)
+            inst = this;
+        else
+            Destroy(gameObject);
+    }
 
     private void OnEnable()
     {
-
+        
     }
 
     private void OnDisable()
@@ -20,4 +29,11 @@ public class AudioManager : MonoBehaviour
 
     }
 
+
+
+    public void PlayOneShot(EventReference audioClip)
+    {
+        RuntimeManager.PlayOneShot(audioClip);
+    }
 }
+

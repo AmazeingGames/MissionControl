@@ -187,11 +187,13 @@ public class NotesManager : MonoBehaviour
 
         if (isOpening)
         {
+            AudioManager.inst.PlayOneShot(AudioHelper.inst.ToggleNotebookOpen);
             notesCanvas.gameObject.SetActive(isOpening);
             notebookSequence.Append(notes.DOLocalMoveY(inPosition, moveInDuration).SetEase(moveEase));
         }
         else
-        { 
+        {
+            AudioManager.inst.PlayOneShot(AudioHelper.inst.ToggleNotebookClose);
             notebookSequence.Append(notes.DOLocalMoveY(outPosition, moveOutDuration).SetEase(moveEase));
             notebookSequence.OnComplete(() => notesCanvas.gameObject.SetActive(isOpening));
         }
