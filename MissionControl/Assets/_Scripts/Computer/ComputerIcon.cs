@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class ComputerIcon : MonoBehaviour, IPointerClickHandler
 {
     [Header("Properties")]
-    [SerializeField] ScreenType myWindowToOpen;
+    [SerializeField] Window.WindowType myWindowToOpen;
     [SerializeField] ButtonType myButtonType;
     [SerializeField] ConditionalType myConditionalType;
 
@@ -15,13 +15,12 @@ public class ComputerIcon : MonoBehaviour, IPointerClickHandler
 
     bool hasCompletedCondition = false;
     public enum ButtonType { None, DesktopIcon, TaskbarIcon }
-    public enum ScreenType { None, LockScreen, HomeScreen, Logs }
     public enum ConditionalType { None, Password }
 
     private void OnValidate()
     {
         Assert.IsTrue(myButtonType != ButtonType.None);
-        Assert.IsTrue(myWindowToOpen != ScreenType.None);
+        Assert.IsTrue(myWindowToOpen != Window.WindowType .None);
     }
 
     void OnEnable()

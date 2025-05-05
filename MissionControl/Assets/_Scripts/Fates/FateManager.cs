@@ -78,10 +78,13 @@ public class FateManager : MonoBehaviour, ISelectFate
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
-            pageDisplayer.DisplayNext<FateData, FateSelectButton>(true);
-        else if (Input.GetKeyDown(KeyCode.A))
-            pageDisplayer.DisplayPrevious<FateData, FateSelectButton>(true);
+        if (PopupsManager.OpenPopups.Contains(PopupsManager.Popup.Fate))
+        {
+            if (Input.GetKeyDown(KeyCode.D))
+                pageDisplayer.DisplayNext<FateData, FateSelectButton>(true);
+            else if (Input.GetKeyDown(KeyCode.A))
+                pageDisplayer.DisplayPrevious<FateData, FateSelectButton>(true);
+        }
     }
 
     public static FateData GetGuessedFate(CrewData.Name name)
@@ -135,11 +138,11 @@ public class FateManager : MonoBehaviour, ISelectFate
         else
         {
             int lastViewedSubPage = pageDisplayer.LastViewedPage(fateData.SubFates);
-            pageDisplayer.DisplayPage<FateData, FateSelectButton>(lastViewedSubPage, fateData.SubFates, true);
+            pageDisplayer.DisplayPageButtons<FateData, FateSelectButton>(lastViewedSubPage, fateData.SubFates, true);
         }
     }
 
-    void HandleTogglePopup(object sender, TogglePopupsArgs e)
+    void HandleTogglePopup(object sender, TogglePopupsEventArgs e)
     {
         switch (e.popup)
         {
@@ -150,9 +153,9 @@ public class FateManager : MonoBehaviour, ISelectFate
             case PopupsManager.Popup.SelectFate:
                 if (e.isOpening)
                 {
-                    int pageToOpen = shouldRememberPage ? pageDisplayer.LastViewedPage(allFates) : 0;
-                    this.Log($"Opened fates at page: {pageToOpen}");
-                    pageDisplayer.DisplayPage<FateData, FateSelectButton>(pageToOpen, allFates, true);
+                    int pageNumber = shouldRememberPage ? pageDisplayer.LastViewedPage(allFates) : 0;
+                    this.Log($"Opened fates at page: {pageNumber}");
+                    pageDisplayer.DisplayPageButtons<FateData, FateSelectButton>(pageNumber, allFates, true);
                 }
                 break;
         }

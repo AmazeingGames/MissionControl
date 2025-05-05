@@ -18,7 +18,7 @@ public class PopupsManager : MonoBehaviour, IClickPopup
     [SerializeField] Window NotesPopup;
     [SerializeField] Window selectFatePopup;
     [SerializeField] GameObject popupParent;
-    Dictionary<Popup, Window> PopupsToWindow;
+    static Dictionary<Popup, Window> PopupsToWindow;
 
     [Header("Tween")]
     [Range(0f, 1f)]
@@ -33,10 +33,24 @@ public class PopupsManager : MonoBehaviour, IClickPopup
 
     List<Window> popups = new();
     static readonly List<Window> openPopups = new();
+    public static List<Popup> OpenPopups
+    {
+        get
+        {
+            List<Popup> myPopups = new();
+
+            foreach (Window openPopup in openPopups)
+            {
+                Popup myPopup = PopupsToWindow.FirstOrDefault(key => key.Value == openPopup).Key;
+                myPopups.Add(myPopup);
+            }
+            return myPopups;
+        }
+    }
 
     public static bool IsAPopupOpen => openPopups.Count > 0;
 
-    public static EventHandler<TogglePopupsArgs> TogglePopupEventHandler;
+    public static EventHandler<TogglePopupsEventArgs> TogglePopupEventHandler;
 
     void OnEnable()
     {
@@ -200,13 +214,13 @@ public class PopupsManager : MonoBehaviour, IClickPopup
     }
 }
 
-public class TogglePopupsArgs : EventArgs
+public class TogglePopupsEventArgs : EventArgs
 {
     public readonly PopupsManager.Popup popup;
     public readonly bool isOpening;
     public readonly int countAfterToggled;
 
-    public TogglePopupsArgs(Popup popup, bool isOpening, int countAfterToggled)
+    public TogglePopupsEventArgs(Popup popup, bool isOpening, int countAfterToggled)
     {
         this.popup = popup;
         this.isOpening = isOpening;

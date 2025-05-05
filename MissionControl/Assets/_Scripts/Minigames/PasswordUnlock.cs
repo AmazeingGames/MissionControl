@@ -18,7 +18,7 @@ public class PasswordUnlock : MonoBehaviour
     [SerializeField] Ease ease = Ease.Linear;
 
     [Header("Properties")]
-    [SerializeField] ComputerIcon.ScreenType myScreenToOpen;
+    [SerializeField] Window.WindowType myScreenToOpen;
     [SerializeField] List<string> password;
 
     Sequence shakeSequence;
@@ -77,9 +77,9 @@ public class PasswordUnlock : MonoBehaviour
 
 public class EnterPasswordEventArgs : EventArgs
 {
-    public ComputerIcon.ScreenType myScreenToOpen;
+    public Window.WindowType myScreenToOpen;
 
-    public EnterPasswordEventArgs(ComputerIcon.ScreenType myScreenToOpen)
+    public EnterPasswordEventArgs(Window.WindowType myScreenToOpen)
     {
         this.myScreenToOpen = myScreenToOpen;
     }

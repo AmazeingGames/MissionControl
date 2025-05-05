@@ -27,6 +27,7 @@ public class GameStateManager : MonoBehaviour, IClickGameButton, IToggleNotes, I
     // Scripts should not access these variables directly, but instead get them through event handling
     public static bool IsFocusedOnInput { get => instance.inputFields.Any(i => i.isFocused); }
 
+    public static NotesState MyNotesState { get; private set; }
     public static PlayState MyPreviousPlayState { get; private set; }
     public static PlayState MyPlayState { get; private set; }
     public static GameState MyPreviousGameState { get; private set; }
@@ -43,6 +44,16 @@ public class GameStateManager : MonoBehaviour, IClickGameButton, IToggleNotes, I
     List<TMP_InputField> inputFields;
 
     readonly KeyCode pauseKey = KeyCode.Escape;
+
+    void OnEnable()
+    {
+        PopupsManager.TogglePopupEventHandler += HandleTogglePopups;
+    }
+
+    void OnDisable()
+    {
+        PopupsManager.TogglePopupEventHandler -= HandleTogglePopups;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +81,9 @@ public class GameStateManager : MonoBehaviour, IClickGameButton, IToggleNotes, I
         RunGameState();
     }
 
+    void HandleTogglePopups(object sender, TogglePopupsEventArgs e)
+        => MyNotesState = e.isOpening ? NotesState.Popup : NotesState.Notebook;
+
     public void HandleGameButton(GameAction myGameAction)
         => PerformGameAction(myGameAction);
 
@@ -77,9 +91,7 @@ public class GameStateManager : MonoBehaviour, IClickGameButton, IToggleNotes, I
         => ChangePlayState(PlayState.Station);
 
     public void HandleToggleNotes(ToggleNotesArgs e)
-    {
-        ChangePlayState(e.isOpening ? PlayState.Notes : PlayState.Station);
-    }
+        => ChangePlayState(e.isOpening ? PlayState.Notes : PlayState.Station);
 
     void RunGameState()
     {

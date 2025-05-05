@@ -23,7 +23,7 @@ public class PageDisplayer
 
     List<IPageData> previouslyDisplayedData;
 
-    public void DisplayPage<Data, Button>(int pageNumber, List<Data> pageDataToDisplay, bool multiplyByCount) where Data : IPageData where Button : IPageButton
+    public void DisplayPageButtons<Data, Button>(int pageNumber, List<Data> pageDataToDisplay, bool multiplyByCount) where Data : IPageData where Button : IPageButton
     {
         if (pageDataToDisplay == null)
         {
@@ -71,14 +71,14 @@ public class PageDisplayer
     {
         int nextPageNumber = LastViewedPage(currentlyDisplayedData) + 1;
 
-        DisplayPage<IPageData, Button>(nextPageNumber, currentlyDisplayedData, multiplyByCount);
+        DisplayPageButtons<IPageData, Button>(nextPageNumber, currentlyDisplayedData, multiplyByCount);
     }
 
     public void DisplayPrevious<Data, Button>(bool multiplyByCount) where Data : IPageData where Button : IPageButton
     {
         int previousPageNumber = LastViewedPage(currentlyDisplayedData) - 1;
         
-        DisplayPage<IPageData, Button>(previousPageNumber, currentlyDisplayedData, multiplyByCount);
+        DisplayPageButtons<IPageData, Button>(previousPageNumber, currentlyDisplayedData, multiplyByCount);
     }
     public int LastViewedPage<T>(List<T> pageDataToView) where T : IPageData
     {
