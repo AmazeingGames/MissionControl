@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
             case GameStateManager.GameAction.EnterMainMenu:
             case GameStateManager.GameAction.PauseGame:
             case GameStateManager.GameAction.ResumeGame:
-            case GameStateManager.GameAction.LoseGame:
+            case GameStateManager.GameAction.BeatGame:
                 break;
         }
     }

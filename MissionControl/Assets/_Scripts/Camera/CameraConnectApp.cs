@@ -13,9 +13,9 @@ public class CameraConnectApp : MonoBehaviour
     // Which IP addresses belong with which color codes, and number codes
     List<IPInformation> ipsInformation = new()
     {
-        { new IPInformation("192.168.0.1",  "BGRYY", Room.CaptainsQuarters) },
-        { new IPInformation("10.0.0.1",     "RPRPG", Room.AlvaroA1) },
-        { new IPInformation("255.100.42.7", "BBBYR", Room.LizA2) },
+        { new IPInformation("192.168.0.1",  "RBRYY", Room.CaptainsQuarters) },
+        { new IPInformation("10.0.0.1",     "RPRPG", Room.DwellingA1) },
+        { new IPInformation("255.100.42.7", "BBBYR", Room.DwellingA2) },
         // { new IPInformation("172.16.01",    "OBPOB", Room.None) },
     };
 
@@ -93,7 +93,7 @@ public class CameraConnectApp : MonoBehaviour
 
 public class IPInformation
 {
-    public enum Room { None, CaptainsQuarters, AlvaroA1, LizA2 }
+    public enum Room { None, CaptainsQuarters, DwellingA1, DwellingA2 }
 
     public readonly string ipAddress;
     public readonly string colorCode;

@@ -59,19 +59,21 @@ public class EntryManager : MonoBehaviour
                 continue;
 
             Debug.Log("unlocked entry by camera");
-            OnUnlockEntry(unlockableLogs[i].EntryData);
+            OnUnlockEntry(unlockableLogs[i].EntryData, $"{e.ipInformation.myRoom} - ");
         }
     }
 
     void HandleClickItem(object sender, ClickItemEventArgs e)
     {
-        OnUnlockEntry(e.entryData);
+        OnUnlockEntry(e.entryData, $"{e.roomOrigin} - ");
     }
 
-    void OnUnlockEntry(EntryData entryData)
+    void OnUnlockEntry(EntryData entryData, string appendText)
     {
         if (unlockedLogEntries.Contains(entryData) || entryData == null || entryData.EntryText == null)
             return;
+
+        entryData.SetAppendText(appendText);
         unlockedLogEntries.Add(entryData);
 
         pageDisplayer.DisplayPageButtons<EntryData, EntryButton>(0, unlockedLogEntries, true);
@@ -92,10 +94,11 @@ public class EntryManager : MonoBehaviour
 
     void HandleClickEntry(object sender, ClickEntryEventArgs e)
     {
-        string targetText = "";
-
+        var targetText = "";
         for (int i = 0; i < spacesAtEntryStart; i++)
             targetText += " ";
+
+        targetText += e.entryData.StartText;
 
         targetText += e.entryData.DisplayText;
 

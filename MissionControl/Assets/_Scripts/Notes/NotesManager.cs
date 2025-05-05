@@ -124,7 +124,7 @@ public class NotesManager : MonoBehaviour
             case GameStateManager.GameAction.ResumeGame:
                 ToggleNotes(wasOpenOnPause);
                 break;
-            case GameStateManager.GameAction.LoseGame:
+            case GameStateManager.GameAction.BeatGame:
                 break;
         }
     }

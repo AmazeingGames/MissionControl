@@ -22,7 +22,7 @@ public class GameStateManager : MonoBehaviour, IClickGameButton, IToggleNotes, I
     public enum NotesState { Notebook, Popup }
     public enum PlayState { None, Station, Notes }
     public enum GameState { None, InMenu, Running, Paused, Loading }
-    public enum GameAction { None, EnterMainMenu, StartGame, PauseGame, ResumeGame, LoseGame, QuitGame }
+    public enum GameAction { None, EnterMainMenu, StartGame, PauseGame, ResumeGame, BeatGame, QuitGame }
 
     // Scripts should not access these variables directly, but instead get them through event handling
     public static bool IsFocusedOnInput { get => instance.inputFields.Any(i => i.isFocused); }
@@ -48,11 +48,13 @@ public class GameStateManager : MonoBehaviour, IClickGameButton, IToggleNotes, I
     void OnEnable()
     {
         PopupsManager.TogglePopupEventHandler += HandleTogglePopups;
+        FateManager.GuessAllFatesEventHandler += HandleGuessAllFates;
     }
 
     void OnDisable()
     {
         PopupsManager.TogglePopupEventHandler -= HandleTogglePopups;
+        FateManager.GuessAllFatesEventHandler -= HandleGuessAllFates;
     }
 
     // Start is called before the first frame update
@@ -80,6 +82,11 @@ public class GameStateManager : MonoBehaviour, IClickGameButton, IToggleNotes, I
         isFocusedOnInput = IsFocusedOnInput;
         RunGameState();
     }
+
+    void HandleGuessAllFates(object sender, EventArgs e)
+    {
+        PerformGameAction(GameAction.BeatGame);
+    }    
 
     void HandleTogglePopups(object sender, TogglePopupsEventArgs e)
         => MyNotesState = e.isOpening ? NotesState.Popup : NotesState.Notebook;
@@ -136,7 +143,7 @@ public class GameStateManager : MonoBehaviour, IClickGameButton, IToggleNotes, I
         switch (action)
         {
             case GameAction.EnterMainMenu:
-            case GameAction.LoseGame:
+            case GameAction.BeatGame:
                 ChangeGameState(GameState.InMenu);
                 break;
 

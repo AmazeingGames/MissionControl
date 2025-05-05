@@ -37,6 +37,12 @@ public class EntryData : IPageData
 
     public TextAsset EntryText => entryText;
 
+    public string StartText { get; private set; } = "";
+    public void SetAppendText(string text)
+    {
+        StartText = text;
+    }
+
     public string DisplayName 
     { 
         get

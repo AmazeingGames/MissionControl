@@ -71,7 +71,7 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
                         break;
                     case GameStateManager.GameAction.ResumeGame:
                         break;
-                    case GameStateManager.GameAction.LoseGame:
+                    case GameStateManager.GameAction.BeatGame:
                         break;
                     case GameStateManager.GameAction.QuitGame:
                         if (Application.platform != RuntimePlatform.WindowsPlayer && Application.platform != RuntimePlatform.OSXPlayer)
@@ -211,7 +211,7 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
                     case GameStateManager.GameAction.StartGame:
                     case GameStateManager.GameAction.PauseGame:
                     case GameStateManager.GameAction.ResumeGame:
-                    case GameStateManager.GameAction.LoseGame:
+                    case GameStateManager.GameAction.BeatGame:
                         break;
                 }
                 break;

@@ -14,10 +14,11 @@ public class UIManager : MonoBehaviour, IClickUIButton
     [SerializeField] Menu pauseMenu;
     [SerializeField] Menu settingsMenu;
     [SerializeField] Menu creditsScreen;
+    [SerializeField] Menu beatGameScreen;
 
     [SerializeField] List<GameObject> menuAudioSources;
 
-    public enum MenuType { None, Previous, MainMenu, Credits, Pause, Settings, Empty }
+    public enum MenuType { None, Previous, MainMenu, Credits, Pause, Settings, Empty, BeatGame }
 
     public static event EventHandler<MenuChangeEventArgs> MenuChangeEventHandler;
 
@@ -46,6 +47,7 @@ public class UIManager : MonoBehaviour, IClickUIButton
             { MenuType.Pause,           pauseMenu},
             { MenuType.Settings,        settingsMenu},
             { MenuType.Credits,         creditsScreen},
+            { MenuType.BeatGame,         beatGameScreen},
         };
 
         MenuToMenuType = MenuTypeToMenu.ToDictionary(x => x.Value, x => x.Key);
@@ -126,6 +128,7 @@ public class UIManager : MonoBehaviour, IClickUIButton
         {
             GameAction.EnterMainMenu => MenuType.MainMenu,
             GameAction.PauseGame => MenuType.Pause,
+            GameAction.BeatGame => MenuType.BeatGame,
             _ => MenuType.Empty,
         };
         LoadMenu(menuToLoad);

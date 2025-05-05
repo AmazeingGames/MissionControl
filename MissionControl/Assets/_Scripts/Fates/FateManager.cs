@@ -33,7 +33,6 @@ public class FateManager : MonoBehaviour, ISelectFate
     public static EventHandler SelectFateEventHandler;
 
     static List<MemberFateData> membersFateData;
-
     CrewData crewData;
 
     // Describes the path of the page data we've selected in order to accomodate for subfates (i.e. Suicide -> Gun)
@@ -54,6 +53,8 @@ public class FateManager : MonoBehaviour, ISelectFate
         PopupsManager.TogglePopupEventHandler -= HandleTogglePopup;
     }
 
+    public static EventHandler GuessAllFatesEventHandler;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -68,10 +69,10 @@ public class FateManager : MonoBehaviour, ISelectFate
         membersFateData = new()
         {
             { new(CrewData.Name.Socha,  LynnsFate,   unkownFate) },
-            { new(CrewData.Name.Zen, AlvarosFate, unkownFate) },
+            { new(CrewData.Name.Zen,    AlvarosFate, unkownFate) },
             { new(CrewData.Name.Mel,    MelsFate,    unkownFate) },
             { new(CrewData.Name.Blake,  BlakesFate,  unkownFate) },
-            { new(CrewData.Name.Ethena,    LizsFate,    unkownFate) },
+            { new(CrewData.Name.Ethena, LizsFate,    unkownFate) },
         };
     }
 
@@ -127,10 +128,18 @@ public class FateManager : MonoBehaviour, ISelectFate
         {
             GetMemberFate(crewData.MyName).SetGuessedFate(fateData);
 
+            int correctGuesses = 0;
             for (int i = 0; i < membersFateData.Count; i++)
             {
+                
                 if (membersFateData[i].correctFate == membersFateData[i].GuessedFate)
+                {
+                    correctGuesses++;
                     this.Log($"Correctly guessed the fate of {membersFateData[i].myName}");
+                }
+
+                if (correctGuesses >= 3)
+                    GuessAllFatesEventHandler?.Invoke(this, new());
 
                 SelectFateEventHandler?.Invoke(this, new());
             }
