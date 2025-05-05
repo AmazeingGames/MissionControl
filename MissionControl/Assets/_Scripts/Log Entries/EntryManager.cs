@@ -35,6 +35,9 @@ public class EntryManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        foreach (var entry in logEntries)
+            entry.Initialize();
+
         List<EntryButton> entryButtons = new List<EntryButton>();
         for (int i = 0; i < entryButtonsParent.childCount; i++) 
             entryButtons.Add(entryButtonsParent.GetChild(i).GetComponent<EntryButton>());
@@ -61,7 +64,7 @@ public class EntryManager : MonoBehaviour
         for (int i = 0; i < spacesAtEntryStart; i++)
             targetText += " ";
 
-        targetText += e.entryData.entryText.text;
+        targetText += e.entryData.DisplayText;
 
         entry_TMP.DOText(targetText, entryEaseDuration, true, textScrambleMode, null).SetEase(textEase);
 

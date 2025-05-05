@@ -22,8 +22,8 @@ public class EntryButton : MonoBehaviour, IPointerClickHandler, IPageButton
         if (entryData != null)
         {
             gameObject.SetActive(true);
-            display_TMP.text = entryData.displayName;
-            LogsManager.Log(LogsManager.Instance.PageButtonLoggingObject, $"Initialized entry select button | Short Text: {this.entryData.displayName}");
+            display_TMP.text = entryData.DisplayName;
+            LogsManager.Log(LogsManager.Instance.PageButtonLoggingObject, $"Initialized entry select button | Short Text: {this.entryData.DisplayName}");
         }
         else
             gameObject.SetActive(false);
@@ -33,18 +33,18 @@ public class EntryButton : MonoBehaviour, IPointerClickHandler, IPageButton
 [Serializable]
 public class EntryData : IPageData
 {
-    public readonly string displayName;
-    public readonly string displayText;
+    public string DisplayName { get; private set; }
+    public string DisplayText { get; private set; }
     [SerializeField] TextAsset entryText;
 
-    EntryData()
+    public void Initialize()
     {
         string[] lines = entryText ? entryText.text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries) : null;
 
-        displayName = lines[0];
+        DisplayName = lines[0];
 
         for (int i = 1; i < lines.Length; i++)
-            displayText += lines[i];
+            DisplayText += lines[i];
     }
 }
 
