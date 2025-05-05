@@ -4,23 +4,16 @@ using System.Collections;
 
 public class CodeModule : MonoBehaviour
 {
-    public enum CodeTypes { numbers, colors }
+    [SerializeField] char character;
 
-    [SerializeField] string codeCharacter;
-    [SerializeField] CodeTypes codeType; 
-
-    public static Action<SendCodeDigitEventArgs> OnSendCodeDigit; //string1 is codeType, string 2 is the digit that you want to send as part of the secret code
+    public static Action<SendCodeDigitEventArgs> SendCharacterEventHandler; 
 
     SpriteRenderer spriteRenderer;
-    private void Start()
-    {
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-    }
 
     private void OnMouseDown()
     {
         StartCoroutine(ResetButtonColor());
-        OnSendCodeDigit?.Invoke(new SendCodeDigitEventArgs(codeType, codeCharacter));
+        SendCharacterEventHandler?.Invoke(new SendCodeDigitEventArgs(character));
     }
 
     IEnumerator ResetButtonColor()
@@ -41,12 +34,10 @@ public class CodeModule : MonoBehaviour
 
 public class SendCodeDigitEventArgs
 {
-    public readonly CodeModule.CodeTypes myCodeType;
-    public readonly string digit;
+    public readonly char digit;
 
-    public SendCodeDigitEventArgs(CodeModule.CodeTypes myCodeType, string digit)
+    public SendCodeDigitEventArgs(char digit)
     {
-        this.myCodeType = myCodeType;
         this.digit = digit;
     }
 }

@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -27,10 +28,30 @@ public class PasswordUnlock : MonoBehaviour
 
     public static EventHandler<EnterPasswordEventArgs> EnterPasswordEventHandler;
 
+    bool wasFocused;
+
     private void Start()
     {
         lockWindow = lockScreen.GetComponent<Window>();
         unlockWindow = unlockScreen.GetComponent<Window>();
+    }
+
+    private void Update()
+    {
+        if (!inputField.isFocused)
+            StartCoroutine(SetWasFocused_CO());
+        else
+            wasFocused = inputField.isFocused;
+
+        if (wasFocused && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Return)))
+            ReadInput(inputField.text);
+    }
+
+    IEnumerator SetWasFocused_CO()
+    {
+        yield return new WaitForSeconds(.1f);
+
+        wasFocused = inputField.isFocused;
     }
 
     public void ReadInput(string input)

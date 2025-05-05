@@ -42,12 +42,6 @@ public class EntryManager : MonoBehaviour
         pageDisplayer = new(entryButtons.ToList<IPageButton>());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void HandleSetWindow(object sender, SetWindowEventArgs e)
     {
         if (e.myWindowType != Window.WindowType.Logs)
