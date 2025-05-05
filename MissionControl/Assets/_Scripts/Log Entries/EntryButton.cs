@@ -35,6 +35,8 @@ public class EntryData : IPageData
 {
     [SerializeField] TextAsset entryText;
 
+    public TextAsset EntryText => entryText;
+
     public string DisplayName 
     { 
         get

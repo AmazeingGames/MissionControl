@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efbf48f4abbc234582d25e5549cada4, type: 3}
   m_Name: Illness
   m_EditorClassIdentifier: 
-  <ShortDisplay>k__BackingField: Illness
-  <FullDisplay>k__BackingField: Succumbed to a tragic illness
+  <ShortDisplay>k__BackingField: Infection
+  <FullDisplay>k__BackingField: succumbed to a horrid disease
   <HasPerpetrator>k__BackingField: 0
   <SubFates>k__BackingField: []
   <SelectedSubFate>k__BackingField: {fileID: 0}
-  <Perpetrator>k__BackingField: 5

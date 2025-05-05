@@ -45,7 +45,7 @@ public class EntryManager : MonoBehaviour
     void Start()
     {
         List<EntryButton> entryButtons = new List<EntryButton>();
-        for (int i = 0; i < entryButtonsParent.childCount; i++) 
+        for (int i = 0; i < entryButtonsParent.childCount; i++)
             entryButtons.Add(entryButtonsParent.GetChild(i).GetComponent<EntryButton>());
 
         pageDisplayer = new(entryButtons.ToList<IPageButton>());
@@ -55,20 +55,23 @@ public class EntryManager : MonoBehaviour
     {
         for (int i = 0; i < unlockableLogs.Count; i++)
         {
-            if (unlockableLogs[i].OnRoomUnlock != e.ipInformation.myRoom)
+            if (!unlockableLogs[i].OnRoomUnlock.Contains(e.ipInformation.myRoom))
                 continue;
 
+            Debug.Log("unlocked entry by camera");
             OnUnlockEntry(unlockableLogs[i].EntryData);
         }
     }
 
-    void HandleClickItem(object sender, ClickItemEventArgs e) 
+    void HandleClickItem(object sender, ClickItemEventArgs e)
     {
         OnUnlockEntry(e.entryData);
     }
 
     void OnUnlockEntry(EntryData entryData)
     {
+        if (unlockedLogEntries.Contains(entryData) || entryData == null || entryData.EntryText == null)
+            return;
         unlockedLogEntries.Add(entryData);
 
         pageDisplayer.DisplayPageButtons<EntryData, EntryButton>(0, unlockedLogEntries, true);
@@ -105,7 +108,7 @@ public class UnlockableLog
 {
     [field: SerializeField] public EntryData EntryData { get; private set; }
 
-    [field: SerializeField] public IPInformation.Room OnRoomUnlock { get; private set; } = IPInformation.Room.None;
+    [field: SerializeField] public List<IPInformation.Room> OnRoomUnlock { get; private set; } = new();
 }
 
 public class UnlockEntryEventArgs : EventArgs

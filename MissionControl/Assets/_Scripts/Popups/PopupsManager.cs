@@ -137,6 +137,12 @@ public class PopupsManager : MonoBehaviour, IClickPopup
 
     void TogglePopup(Window popupWindow, bool isOpening)
     {
+        if (popupWindow == null)
+        {
+            this.LogWarning("Popup should not be null");
+            return;
+        }
+
         Action onComplete = null;
 
         if (isOpening)

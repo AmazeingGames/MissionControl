@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9efbf48f4abbc234582d25e5549cada4, type: 3}
-  m_Name: Decapitated
+  m_Name: Suffocated
   m_EditorClassIdentifier: 
-  <ShortDisplay>k__BackingField: Decapitated
-  <FullDisplay>k__BackingField: was decapitated
+  <ShortDisplay>k__BackingField: Froze
+  <FullDisplay>k__BackingField: froze to death
   <HasPerpetrator>k__BackingField: 0
   <SubFates>k__BackingField: []
   <SelectedSubFate>k__BackingField: {fileID: 0}

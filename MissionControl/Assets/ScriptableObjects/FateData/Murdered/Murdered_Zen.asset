@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9efbf48f4abbc234582d25e5549cada4, type: 3}
-  m_Name: Strangled
+  m_Name: Murdered_Zen
   m_EditorClassIdentifier: 
-  <ShortDisplay>k__BackingField: Strangled
-  <FullDisplay>k__BackingField: was strangled
-  <HasPerpetrator>k__BackingField: 1
+  <ShortDisplay>k__BackingField: Zen
+  <FullDisplay>k__BackingField: by Zen
+  <HasPerpetrator>k__BackingField: 0
   <SubFates>k__BackingField: []
   <SelectedSubFate>k__BackingField: {fileID: 0}
-  <Perpetrator>k__BackingField: 5

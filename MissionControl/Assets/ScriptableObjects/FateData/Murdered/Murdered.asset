@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9efbf48f4abbc234582d25e5549cada4, type: 3}
-  m_Name: Suicide
+  m_Name: Murdered
   m_EditorClassIdentifier: 
-  <ShortDisplay>k__BackingField: Suicide
-  <FullDisplay>k__BackingField: 
+  <ShortDisplay>k__BackingField: Murdered
+  <FullDisplay>k__BackingField: was murdered
   <HasPerpetrator>k__BackingField: 0
   <SubFates>k__BackingField:
-  - {fileID: 11400000, guid: 2b10031ef644fd24589d8063e55dccbf, type: 2}
-  - {fileID: 11400000, guid: 93489ef14ab7e704db9a0a0bfaace6ad, type: 2}
-  - {fileID: 11400000, guid: 8d995845a9f7e9b4d86de6174307e87e, type: 2}
-  <SelectedSubFate>k__BackingField: {fileID: 11400000, guid: 8d995845a9f7e9b4d86de6174307e87e, type: 2}
+  - {fileID: 11400000, guid: 5547a492c7a53754c995f0530b28822e, type: 2}
+  - {fileID: 11400000, guid: 8d0dc8e463f251d4e8376be8f7bc4183, type: 2}
+  - {fileID: 11400000, guid: 5df1df15082ddd143b0bd54f02171416, type: 2}
+  <SelectedSubFate>k__BackingField: {fileID: 11400000, guid: 5df1df15082ddd143b0bd54f02171416, type: 2}

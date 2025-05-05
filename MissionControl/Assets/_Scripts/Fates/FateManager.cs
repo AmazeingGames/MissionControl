@@ -68,10 +68,10 @@ public class FateManager : MonoBehaviour, ISelectFate
         membersFateData = new()
         {
             { new(CrewData.Name.Socha,  LynnsFate,   unkownFate) },
-            { new(CrewData.Name.Alvaro, AlvarosFate, unkownFate) },
+            { new(CrewData.Name.Zen, AlvarosFate, unkownFate) },
             { new(CrewData.Name.Mel,    MelsFate,    unkownFate) },
             { new(CrewData.Name.Blake,  BlakesFate,  unkownFate) },
-            { new(CrewData.Name.Liz,    LizsFate,    unkownFate) },
+            { new(CrewData.Name.Ethena,    LizsFate,    unkownFate) },
         };
     }
 
